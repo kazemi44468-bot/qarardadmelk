@@ -5,9 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>قرارداد صلح و واگذاری امتیاز پیش‌فروش — گروه تعاون ملک ایرانیان</title>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  @font-face{font-family:Vazirmatn;src:url('../assets/fonts/Vazirmatn-Regular.woff2') format('woff2');font-weight:400;font-display:swap}
+  @font-face{font-family:Vazirmatn;src:url('../assets/fonts/Vazirmatn-Medium.woff2') format('woff2');font-weight:500;font-display:swap}
+  @font-face{font-family:Vazirmatn;src:url('../assets/fonts/Vazirmatn-Bold.woff2') format('woff2');font-weight:700;font-display:swap}
+  @font-face{font-family:Vazirmatn;src:url('../assets/fonts/Vazirmatn-ExtraBold.woff2') format('woff2');font-weight:800 900;font-display:swap}
+</style>
 
 <style>
   :root{
@@ -98,7 +101,11 @@
     white-space:nowrap;
   }
   .page-header .brand .logo{
-    max-height: 38px; max-width: 70px; object-fit: contain;
+    width:44px; height:44px; max-width:44px; max-height:44px;
+    object-fit:contain; padding:3px; flex:0 0 auto;
+    background:linear-gradient(145deg,#fffdf8,#f4ead7);
+    border:1px solid rgba(176,141,87,.45); border-radius:8px;
+    box-shadow:0 2px 7px rgba(27,36,48,.08);
   }
   .page-header .doc-title{
     font-weight:800; font-size:12.5px; color:var(--ink);
@@ -287,22 +294,37 @@
   .page.cover .page-inner{ padding:0; }
   .cover-frame{
     flex:1; margin:8mm; border:2px solid var(--gold);
-    border-radius:6px; padding:12mm 12mm 8mm;
+    border-radius:10px; padding:12mm 12mm 8mm;
     position:relative; display:flex; flex-direction:column;
-    background:linear-gradient(180deg,#fffdf8 0%,#fff 40%,#fdfaf3 100%);
+    background:
+      radial-gradient(ellipse at 50% 0%,rgba(176,141,87,.09),transparent 42%),
+      linear-gradient(180deg,#fffdf8 0%,#fff 40%,#fdfaf3 100%);
   }
   .cover-frame::before{
     content:""; position:absolute; inset:6px;
     border:1px solid rgba(176,141,87,.4);
-    border-radius:4px; pointer-events:none;
+    border-radius:7px; pointer-events:none;
+  }
+  .cover-frame::after{
+    content:""; position:absolute; inset:12px;
+    border:1px solid rgba(176,141,87,.12);
+    border-radius:5px; pointer-events:none;
+  }
+  .cover-top,.cover-meta,.cover-parties,.cover-subject,.cover-stamp-area,.cover-footer-note{
+    position:relative; z-index:1;
   }
   .cover-top{ text-align:center; margin-bottom:6mm; }
   .cover-logo{
-    max-height: 80px; max-width: 150px; object-fit: contain; margin-bottom: 8px;
+    width:132px; height:104px; max-width:42%; object-fit:contain;
+    padding:8px; margin-bottom:10px;
+    background:radial-gradient(circle,#fff 35%,#fbf5e9 100%);
+    border:1px solid rgba(176,141,87,.55); border-radius:18px;
+    box-shadow:0 8px 22px rgba(27,36,48,.08), inset 0 0 0 4px rgba(255,255,255,.9);
   }
   .company-name-cover {
-    font-size: 14px; font-weight: 800; color: var(--accent);
-    letter-spacing: 1px; margin-bottom: 10px;
+    font-size: 15px; font-weight: 800; color: var(--accent);
+    letter-spacing: 0; margin-bottom: 12px;
+    text-shadow:0 1px 0 #fff;
   }
   .cover-seal{
     width:60px; height:60px; margin:0 auto 8px;
@@ -559,7 +581,7 @@
   <div class="page-inner">
     <div class="cover-frame">
       <div class="cover-top">
-        <img src="logo.png" alt="Logo" class="cover-logo">
+        <img src="../assets/images/logo.png" alt="Logo" class="cover-logo">
         <div class="company-name-cover">گروه تعاون ملک ایرانیان</div>
         <div class="cover-seal">⚖</div>
         <div class="cover-label">سند صلح و واگذاری — دفترچه قرارداد</div>
@@ -614,7 +636,7 @@
   <div class="page-inner">
     <header class="page-header">
       <div class="brand">
-        <img src="logo.png" alt="Logo" class="logo">
+        <img src="../assets/images/logo.png" alt="Logo" class="logo">
         <span>گروه تعاون ملک ایرانیان</span>
       </div>
       <div class="doc-title">
@@ -725,7 +747,7 @@
   <div class="page-inner">
     <header class="page-header">
       <div class="brand">
-        <img src="logo.png" alt="Logo" class="logo">
+        <img src="../assets/images/logo.png" alt="Logo" class="logo">
         <span>گروه تعاون ملک ایرانیان</span>
       </div>
       <div class="doc-title">
@@ -837,7 +859,7 @@
   <div class="page-inner">
     <header class="page-header">
       <div class="brand">
-        <img src="logo.png" alt="Logo" class="logo">
+        <img src="../assets/images/logo.png" alt="Logo" class="logo">
         <span>گروه تعاون ملک ایرانیان</span>
       </div>
       <div class="doc-title">
@@ -950,7 +972,7 @@
   <div class="page-inner">
     <header class="page-header">
       <div class="brand">
-        <img src="logo.png" alt="Logo" class="logo">
+        <img src="../assets/images/logo.png" alt="Logo" class="logo">
         <span>گروه تعاون ملک ایرانیان</span>
       </div>
       <div class="doc-title">
@@ -1061,7 +1083,7 @@
   <div class="page-inner">
     <header class="page-header">
       <div class="brand">
-        <img src="logo.png" alt="Logo" class="logo">
+        <img src="../assets/images/logo.png" alt="Logo" class="logo">
         <span>گروه تعاون ملک ایرانیان</span>
       </div>
       <div class="doc-title">
