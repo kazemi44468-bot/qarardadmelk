@@ -1,0 +1,1267 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>دفترچه مبایعه‌نامه قطعی — وزارت راه و سازمان ثبت</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.6/dist/JsBarcode.all.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.js"></script>
+
+<style>
+  :root{
+    --ink:#1b2430;
+    --ink-soft:#4a5568;
+    --line:#d8dee9;
+    --gold:#b08d57;
+    --gold-soft:#f3ead9;
+    --bg:#e6ebf2;
+    --paper:#ffffff;
+    --accent:#0f4c5c;
+    --accent-soft:#e7f2f4;
+    --danger:#a33;
+    --registry:#7a1f3d;
+    --registry-soft:#f7eaf0;
+  }
+  *{ box-sizing:border-box; }
+  html,body{
+    margin:0; padding:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Vazirmatn','IRANSans','Tahoma',sans-serif;
+    line-height:1.85;
+    font-size:12.5px;
+  }
+
+  .toolbar{
+    position:fixed; top:12px; left:50%; transform:translateX(-50%);
+    z-index:100; display:flex; gap:10px;
+    padding:10px 16px; background:rgba(27,36,48,.94);
+    border-radius:40px; box-shadow:0 6px 24px rgba(0,0,0,.25);
+    backdrop-filter:blur(8px);
+  }
+  .toolbar button{
+    font-family:inherit; font-size:12.5px; font-weight:700;
+    padding:9px 22px; border-radius:30px; border:1px solid var(--gold);
+    background:var(--gold); color:#1b2430; cursor:pointer; transition:.2s;
+  }
+  .toolbar button:hover{ background:#c9a56c; }
+
+  .page{
+    width:210mm; height:297mm;
+    margin:24px auto; background:var(--paper);
+    box-shadow:0 18px 50px rgba(20,30,45,.18);
+    position:relative; display:flex; flex-direction:column;
+    overflow:hidden;
+    page-break-after:always; break-after:page;
+    page-break-inside:avoid; break-inside:avoid;
+  }
+  .page:last-of-type{ page-break-after:auto; break-after:auto; }
+
+  .page-inner{
+    display:flex; flex-direction:column; height:100%;
+    padding:10mm 12mm 7mm; position:relative; z-index:1;
+  }
+  .page::before{
+    content:""; position:absolute; inset:0;
+    background:
+      radial-gradient(circle at 0% 0%, rgba(176,141,87,.05), transparent 40%),
+      radial-gradient(circle at 100% 100%, rgba(15,76,92,.04), transparent 45%);
+    pointer-events:none;
+  }
+
+  .page-header{
+    display:flex; justify-content:space-between; align-items:center;
+    padding-bottom:7px; border-bottom:2.5px double var(--gold);
+    margin-bottom:10px; gap:10px;
+  }
+  .page-header .brand{
+    display:flex; align-items:center; gap:8px;
+    font-weight:800; font-size:12px; color:var(--accent);
+    white-space:nowrap;
+  }
+  .page-header .brand .seal{
+    width:28px; height:28px; border-radius:50%;
+    background:radial-gradient(circle at 30% 30%, #d9b878, #a57b3e);
+    display:flex; align-items:center; justify-content:center;
+    color:#fff; font-size:12px; font-weight:900;
+    box-shadow:inset 0 0 0 2px rgba(255,255,255,.4);
+  }
+  .page-header .doc-title{
+    font-weight:800; font-size:12.5px; color:var(--ink);
+    text-align:center; flex:1;
+  }
+  .page-header .doc-title small{
+    display:block; font-size:9.5px; color:var(--ink-soft);
+    font-weight:500; margin-top:2px;
+  }
+  .page-header .meta{
+    font-size:10px; color:var(--ink-soft);
+    text-align:left; line-height:1.6; white-space:nowrap;
+  }
+  .page-header .meta b{ color:var(--accent); }
+
+  .page-content{
+    flex:1; overflow:hidden;
+    font-size:11.5px; text-align:justify;
+  }
+  .page-content p{ margin:0 0 5px; }
+  .page-content h3{
+    font-size:12px; color:var(--accent); font-weight:800;
+    background:var(--accent-soft);
+    border-right:3px solid var(--accent);
+    border-radius:0 4px 4px 0;
+    padding:5px 10px; margin:7px 0 5px;
+    display:flex; align-items:center; gap:6px;
+  }
+  .page-content h3 .no{
+    background:var(--accent); color:#fff; font-size:9.5px;
+    padding:0 7px; border-radius:12px; font-weight:700;
+  }
+  .page-content h3.reg{
+    background:var(--registry-soft);
+    color:var(--registry);
+    border-right-color:var(--registry);
+  }
+  .page-content h3.reg .no{ background:var(--registry); }
+
+  .page-content ol{ margin:3px 0 5px; padding-right:18px; }
+  .page-content ol li{ margin-bottom:3px; }
+  .page-content .clause{ font-weight:700; color:var(--accent); }
+  .page-content .fill{
+    border-bottom:1.5px dotted #8c98a8;
+    display:inline-block; min-width:85px;
+  }
+  .page-content .fill.sm{ min-width:50px; }
+  .page-content .fill.lg{ min-width:140px; }
+
+  .note{
+    background:#fbf8f2; border:1px dashed var(--gold);
+    border-radius:5px; padding:5px 9px; font-size:10.5px;
+    margin:4px 0; text-align:justify;
+  }
+  .note b{ color:#7a5c22; }
+  .warn{
+    background:#fdf3f3; border:1px dashed #c96a6a;
+    border-radius:5px; padding:5px 9px; font-size:10.5px;
+    margin:4px 0;
+  }
+  .warn b{ color:var(--danger); }
+  .reg-note{
+    background:var(--registry-soft); border:1px dashed var(--registry);
+    border-radius:5px; padding:5px 9px; font-size:10.5px;
+    margin:4px 0; text-align:justify;
+  }
+  .reg-note b{ color:var(--registry); }
+
+  .preamble{
+    background:linear-gradient(180deg,#fbf8f2,#fff);
+    border:1px solid var(--gold-soft);
+    border-right:3px solid var(--gold);
+    border-radius:5px; padding:7px 11px;
+    font-size:10.8px; text-align:justify; margin-bottom:6px;
+  }
+
+  /* ==== Cover ==== */
+  .page.cover .page-inner{ padding:0; }
+  .cover-frame{
+    flex:1; margin:8mm; border:2px solid var(--gold);
+    border-radius:6px; padding:10mm 12mm 8mm;
+    position:relative; display:flex; flex-direction:column;
+    background:linear-gradient(180deg,#fffdf8 0%,#fff 40%,#fdfaf3 100%);
+  }
+  .cover-frame::before{
+    content:""; position:absolute; inset:6px;
+    border:1px solid rgba(176,141,87,.4);
+    border-radius:4px; pointer-events:none;
+  }
+  .cover-top{ text-align:center; margin-bottom:5mm; }
+  .cover-seal{
+    width:56px; height:56px; margin:0 auto 6px;
+    border-radius:50%;
+    background:radial-gradient(circle at 30% 30%, #d9b878, #a57b3e 70%);
+    display:flex; align-items:center; justify-content:center;
+    color:#fff; font-size:20px; font-weight:900;
+    box-shadow:0 0 0 4px #fff, 0 0 0 6px var(--gold-soft), 0 8px 18px rgba(176,141,87,.35);
+  }
+  .cover-label{
+    font-size:9.5px; letter-spacing:3px; color:var(--gold);
+    font-weight:700; margin-bottom:3px;
+  }
+  .cover-title{
+    font-size:21px; font-weight:900; color:var(--accent);
+    line-height:1.4; margin:3px 0 4px;
+  }
+  .cover-sub{ font-size:11.5px; color:var(--ink-soft); font-weight:500; }
+  .cover-divider{
+    height:2px; width:80px; margin:8px auto;
+    background:linear-gradient(90deg,transparent,var(--gold),transparent);
+  }
+
+  /* دو ستونه — اطلاعات سند + سامانه */
+  .cover-info-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:6px;
+    margin:3mm 0;
+  }
+  .cover-info-box{
+    background:rgba(243,234,217,.4);
+    border:1px solid var(--gold-soft);
+    border-radius:6px;
+    padding:6px 10px;
+    font-size:10px;
+  }
+  .cover-info-box.reg{
+    background:var(--registry-soft);
+    border-color:rgba(122,31,61,.3);
+  }
+  .cover-info-box .head{
+    font-size:9.5px; font-weight:800; margin-bottom:3px;
+    padding-bottom:3px;
+    border-bottom:1px dashed rgba(176,141,87,.5);
+    color:var(--gold);
+  }
+  .cover-info-box.reg .head{
+    color:var(--registry);
+    border-bottom-color:rgba(122,31,61,.4);
+  }
+  .cover-info-box .item{
+    display:flex; justify-content:space-between;
+    gap:6px; margin-bottom:2px; line-height:1.55;
+  }
+  .cover-info-box .item span:first-child{ color:var(--ink-soft); white-space:nowrap; }
+  .cover-info-box .item span:last-child{
+    font-weight:700; color:var(--accent);
+    font-family:monospace; font-size:10px;
+    letter-spacing:.3px;
+  }
+  .cover-info-box.reg .item span:last-child{ color:var(--registry); }
+
+  .cover-parties{
+    display:grid; grid-template-columns:1fr 1fr; gap:10px;
+    margin:2mm 0;
+  }
+  .cover-party{
+    border:1px solid var(--line); border-radius:6px; padding:6px 11px;
+    background:#fff;
+  }
+  .cover-party .role{
+    font-size:10.5px; font-weight:700; padding-bottom:3px;
+    border-bottom:1px dashed var(--line); margin-bottom:3px;
+  }
+  .cover-party.seller .role{ color:#0f4c5c; }
+  .cover-party.buyer  .role{ color:#7a5c22; }
+  .cover-party .row{ font-size:10.5px; margin-bottom:2px; }
+  .cover-party .row b{ color:var(--ink); }
+
+  .cover-bottom{
+    display:flex; align-items:center; justify-content:space-between;
+    gap:14px; margin-top:auto; padding-top:4mm;
+    border-top:1px dashed var(--gold-soft);
+  }
+  .cover-barcode-box{ flex:1; text-align:center; }
+  .cover-barcode-box svg{ max-width:100%; height:42px; }
+  .cover-barcode-box .barcode-caption{
+    font-size:8.5px; color:var(--ink-soft); margin-top:3px;
+  }
+  .cover-verify{
+    flex:1; font-size:9.5px; text-align:center;
+    line-height:1.8; color:var(--ink-soft);
+  }
+  .cover-verify b{ color:var(--accent); }
+  .cover-qr-box{ text-align:center; }
+  .cover-qr-box .qrcode svg{ display:block; width:70px; height:70px; }
+  .cover-qr-box .qr-caption{
+    font-size:8.5px; color:var(--ink-soft); margin-top:3px;
+  }
+
+  /* ==== Signature footer (per page) ==== */
+  .sig-footer{
+    margin-top:6px; display:flex; gap:6px; align-items:stretch;
+    page-break-inside:avoid; break-inside:avoid;
+  }
+  .sig-box{
+    flex:1; display:grid; grid-template-columns:1fr 1fr 1fr 1fr;
+    gap:4px; padding:5px 8px;
+    background:linear-gradient(180deg,#fdfbf7,#fff);
+    border:1px solid var(--gold-soft);
+    border-radius:6px; position:relative;
+  }
+  .sig-box::before{
+    content:"امضای طرفین و شهود";
+    position:absolute; top:-8px; right:10px;
+    background:#fff; padding:0 8px;
+    font-size:8.5px; color:var(--gold); font-weight:700; border-radius:2px;
+  }
+  .sig-slot{ text-align:center; padding:1px 2px; }
+  .sig-slot .lbl{
+    font-size:8.5px; color:var(--ink-soft);
+    font-weight:600; display:block; margin-bottom:1px;
+  }
+  .sig-slot .line{
+    display:block; border-bottom:1.2px solid #8c98a8; height:15px;
+  }
+  .sig-slot .dt{
+    font-size:7px; color:#b0b9c4; margin-top:1px;
+  }
+
+  .page-badge{
+    flex-shrink:0; width:44px;
+    display:flex; flex-direction:column;
+    align-items:center; justify-content:center;
+    background:var(--accent); color:#fff;
+    border-radius:6px; padding:4px 2px; line-height:1.1;
+  }
+  .page-badge .cur{ font-size:16px; font-weight:900; }
+  .page-badge .sep{ font-size:7px; opacity:.75; margin:1px 0; }
+  .page-badge .tot{ font-size:10px; font-weight:700; }
+
+  /* ==== Tables ==== */
+  .data-table{
+    width:100%; border-collapse:collapse;
+    font-size:10.5px; margin:5px 0 8px;
+    page-break-inside:avoid;
+  }
+  .data-table thead th{
+    background:var(--accent); color:#fff;
+    padding:5px 4px; border:1px solid #0b3d4a;
+    text-align:center; font-weight:600;
+  }
+  .data-table.reg thead th{
+    background:var(--registry);
+    border-color:#4d1226;
+  }
+  .data-table tbody td{
+    border:1px solid var(--line); padding:6px 5px;
+    text-align:center; height:22px;
+    color:var(--ink-soft);
+  }
+  .data-table tbody tr:nth-child(even) td{ background:#fafbfd; }
+
+  /* ==== Final signature page ==== */
+  .final-sig-title{
+    text-align:center; margin-top:8px; margin-bottom:10px;
+    padding-bottom:8px; border-bottom:2px solid var(--gold-soft);
+    font-size:13px; font-weight:800; color:var(--accent);
+  }
+  .final-sig{
+    display:grid; grid-template-columns:1fr 1fr; gap:12px;
+  }
+  .final-sig .box{
+    border:1.5px solid var(--line); border-radius:8px;
+    padding:10px 14px 50px; position:relative;
+    background:#fdfdfe; min-height:125px;
+  }
+  .final-sig .box.seller{ border-color:#0f4c5c; }
+  .final-sig .box.buyer{ border-color:#b08d57; }
+  .final-sig .box .role{
+    font-size:11.5px; font-weight:800;
+    border-bottom:1px dashed var(--line);
+    padding-bottom:5px; margin-bottom:6px;
+  }
+  .final-sig .box.seller .role{ color:#0f4c5c; }
+  .final-sig .box.buyer .role{ color:#7a5c22; }
+  .final-sig .box p{
+    margin:0 0 4px; font-size:10.5px; color:var(--ink-soft);
+  }
+  .final-sig .box p b{ color:var(--ink); }
+  .final-sig .box .stamp{
+    position:absolute; left:12px; bottom:10px;
+    width:58px; height:58px;
+    border:1.5px dashed #c8d0db; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    font-size:8px; color:#aab3c0; text-align:center; line-height:1.3;
+  }
+  .witnesses-final{
+    margin-top:12px; display:grid;
+    grid-template-columns:1fr 1fr; gap:12px;
+  }
+  .witnesses-final .box{
+    border:1px solid var(--line); border-radius:8px;
+    padding:9px 14px 36px; background:#fdfdfe; min-height:85px;
+  }
+  .witnesses-final .role{
+    font-size:11px; font-weight:700; color:var(--ink-soft);
+    border-bottom:1px dashed var(--line);
+    padding-bottom:4px; margin-bottom:5px;
+  }
+  .witnesses-final p{
+    margin:0 0 3px; font-size:10px; color:var(--ink-soft);
+  }
+
+  .office-seal{
+    margin-top:12px;
+    border:1.5px dashed var(--registry);
+    border-radius:8px;
+    padding:8px 14px 40px;
+    background:var(--registry-soft);
+    position:relative;
+    min-height:80px;
+  }
+  .office-seal .role{
+    font-size:11px; font-weight:800; color:var(--registry);
+    border-bottom:1px dashed rgba(122,31,61,.4);
+    padding-bottom:4px; margin-bottom:5px;
+  }
+  .office-seal p{
+    font-size:10px; color:var(--ink-soft); margin:0 0 3px;
+  }
+
+  /* ==== Print ==== */
+  @page{ size:A4; margin:0; }
+  @media print{
+    html,body{
+      background:#fff !important; font-size:10.5px;
+      -webkit-print-color-adjust:exact; print-color-adjust:exact;
+    }
+    .toolbar{ display:none !important; }
+    .page{
+      width:210mm; height:297mm; margin:0;
+      box-shadow:none; border-radius:0;
+      page-break-after:always;
+    }
+    .page:last-of-type{ page-break-after:auto; }
+    .page::before{ display:none; }
+  }
+
+  @media (max-width:820px){
+    .page{ width:96vw; height:auto; min-height:calc(96vw * 1.414); }
+    .cover-info-grid{ grid-template-columns:1fr; }
+    .cover-parties{ grid-template-columns:1fr; }
+    .sig-box{ grid-template-columns:1fr 1fr; gap:3px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="toolbar">
+  <button onclick="window.print()">🖨️ چاپ دفترچه (A4)</button>
+</div>
+
+<!-- ═══════════ صفحه ۱ — جلد ═══════════ -->
+<div class="page cover" data-page="1">
+  <div class="page-inner">
+    <div class="cover-frame">
+      <div class="cover-top">
+        <div class="cover-seal">⚖</div>
+        <div class="cover-label">سند معتبر — دفترچه مبایعه‌نامه</div>
+        <h1 class="cover-title">مبایعه‌نامه قطعی<br>خرید و فروش ملک</h1>
+        <div class="cover-divider"></div>
+        <div class="cover-sub">
+          مطابق مفاد وزارت راه و شهرسازی و سازمان ثبت اسناد و املاک کشور<br>
+          قانون مدنی — قانون الزام به ثبت رسمی معاملات اموال غیرمنقول ۱۴۰۳
+        </div>
+      </div>
+
+      <div class="cover-info-grid">
+        <!-- اطلاعات سند -->
+        <div class="cover-info-box">
+          <div class="head">📄 اطلاعات سند</div>
+          <div class="item"><span>شماره سند:</span><span>۱۴۰۴/م/۰۰۳۴۵۶</span></div>
+          <div class="item"><span>تاریخ تنظیم:</span><span>۲۲/۰۸/۱۴۰۴</span></div>
+          <div class="item"><span>کد تصدیق:</span><span>TR-RE-1404-9P4M-7W3Z</span></div>
+          <div class="item"><span>تعداد صفحات:</span><span>۹ صفحه</span></div>
+        </div>
+
+        <!-- اطلاعات سامانه -->
+        <div class="cover-info-box reg">
+          <div class="head">🏛️ اطلاعات سامانه ثبت</div>
+          <div class="item"><span>شماره ثبت سامانه:</span><span>1404-RE-88-01234</span></div>
+          <div class="item"><span>سریال هولوگرام:</span><span>HOLO-1404-9876-5432</span></div>
+          <div class="item"><span>شناسه مشاور:</span><span>MB-1404-5678</span></div>
+          <div class="item"><span>شناسه صنفی:</span><span>ET-22567</span></div>
+        </div>
+      </div>
+
+      <div class="cover-parties">
+        <div class="cover-party seller">
+          <div class="role">فروشنده</div>
+          <div class="row">نام: <b>رضا محمدی</b></div>
+          <div class="row">کد ملی: <b>۰۰۷۹۸۷۶۵۴۳</b></div>
+        </div>
+        <div class="cover-party buyer">
+          <div class="role">خریدار</div>
+          <div class="row">نام: <b>فاطمه احمدی</b></div>
+          <div class="row">کد ملی: <b>۰۰۱۲۳۴۵۶۷۸</b></div>
+        </div>
+      </div>
+
+      <div class="note" style="text-align:center;margin:2mm 0;font-size:10.5px;">
+        موضوع: <b>شش‌دانگ</b> یک واحد مسکونی به پلاک ثبتی <b>۴/۱۲۳۴</b> واقع در تهران، منطقه ۵، شهران
+      </div>
+
+      <div class="cover-bottom">
+        <div class="cover-barcode-box">
+          <svg class="barcode" data-code="1404M003456"></svg>
+          <div class="barcode-caption">بارکد استعلام الکترونیکی</div>
+        </div>
+        <div class="cover-verify">
+          استعلام اینترنتی:<br>
+          <b>verify.iranian-docs.ir</b><br>
+          کد اختصاصی:<br>
+          <b>1404M003456 / TR-RE-1404-9P4M-7W3Z</b>
+        </div>
+        <div class="cover-qr-box">
+          <div class="qrcode" data-url="https://verify.iranian-docs.ir/doc/1404M003456?code=TR-RE-1404-9P4M-7W3Z"></div>
+          <div class="qr-caption">اسکن کنید</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ صفحه ۲ — مقدمه + ماده ۱ + ماده ۲ (بخش ۱) ═══════════ -->
+<div class="page" data-page="2">
+  <div class="page-inner">
+    <header class="page-header">
+      <div class="brand"><div class="seal">⚖</div><span>سند معتبر</span></div>
+      <div class="doc-title">
+        مبایعه‌نامه قطعی خرید و فروش ملک
+        <small>شماره سند: ۱۴۰۴/م/۰۰۳۴۵۶ &nbsp;|&nbsp; کد تصدیق: TR-RE-1404-9P4M-7W3Z</small>
+      </div>
+      <div class="meta">تاریخ: ۲۲/۰۸/۱۴۰۴<br><b>صفحه ۲ از ۹</b></div>
+    </header>
+
+    <div class="page-content">
+      <div class="preamble">
+        نظر به اینکه <b>آقای رضا محمدی فرزند حسن به شماره ملی ۰۰۷۹۸۷۶۵۴۳</b> (که از این پس
+        <b>«فروشنده»</b> یا <b>«بایع»</b> نامیده می‌شود) مالک قطعی و شش‌دانگ یک واحد مسکونی
+        به شرح مندرج در ماده ۲ این قرارداد می‌باشد، و نظر به اینکه
+        <b>خانم فاطمه احمدی فرزند محمود به شماره ملی ۰۰۱۲۳۴۵۶۷۸</b> (که از این پس
+        <b>«خریدار»</b> یا <b>«مشتری»</b> نامیده می‌شود) متقاضی خرید ملک مذکور است،
+        طرفین با علم و آگاهی کامل نسبت به مفاد، آثار و تبعات حقوقی، با رعایت
+        <b>مواد ۱۰، ۱۹۰، ۳۳۸ و ۳۶۲ قانون مدنی</b>، <b>قانون الزام به ثبت رسمی معاملات اموال
+        غیرمنقول مصوب ۱۴۰۳</b>، <b>قانون پیش‌فروش ساختمان مصوب ۱۳۸۹ (اصلاحی ۱۴۰۱)</b> و
+        <b>آیین‌نامه اجرایی آن (وزارت راه و شهرسازی)</b>، و <b>دستورالعمل‌های سازمان ثبت
+        اسناد و املاک کشور</b>، این مبایعه‌نامه را با شرایط و مواعد ذیل منعقد و امضا می‌نمایند.
+        کلیه پیوست‌ها جزء لاینفک این قرارداد محسوب می‌شود.
+      </div>
+
+      <h3><span class="no">ماده ۱</span> طرفین قرارداد</h3>
+      <p>
+        <span class="clause">۱-۱. فروشنده:</span> آقای رضا محمدی فرزند حسن، شماره ملی
+        <b>۰۰۷۹۸۷۶۵۴۳</b>، شماره شناسنامه ۴۵۶۷، تاریخ تولد ۱۳۵۸/۰۴/۱۵، محل صدور تهران،
+        وضعیت تأهل متأهل، نشانی: تهران، سعادت‌آباد، بلوار دریا، کوچه صدف، پلاک ۱۲، واحد ۵،
+        تلفن همراه: ۰۹۱۲۱۱۱۲۲۳۳.
+      </p>
+      <p>
+        <span class="clause">۱-۲. خریدار:</span> خانم فاطمه احمدی فرزند محمود، شماره ملی
+        <b>۰۰۱۲۳۴۵۶۷۸</b>، شماره شناسنامه ۸۹۰۱، تاریخ تولد ۱۳۶۵/۰۹/۲۰، محل صدور تهران،
+        وضعیت تأهل متأهل، نشانی: تهران، شهران، خیابان کوهسار، کوچه ۱۵، پلاک ۸، واحد ۲،
+        تلفن همراه: ۰۹۳۵۴۴۵۵۶۶۷.
+      </p>
+      <p>
+        <span class="clause">۱-۳. شهود:</span>
+        شاهد اول: <b>آقای حسین رضایی</b> فرزند محمد به شماره ملی <span class="fill"></span>؛
+        شاهد دوم: <b>خانم مریم کریمی</b> فرزند علی به شماره ملی <span class="fill"></span>.
+      </p>
+
+      <h3><span class="no">ماده ۲</span> موضوع معامله — مشخصات ثبتی و فنی ملک</h3>
+      <p>
+        <span class="clause">۲-۱. مشخصات ثبتی:</span>
+      </p>
+      <ol>
+        <li><b>نشانی:</b> تهران، منطقه ۵، شهران، خیابان کوهسار، کوچه ۱۵، پلاک ۸، طبقه ۲، واحد ۴.</li>
+        <li><b>پلاک ثبتی اصلی:</b> ۴/۱۲۳۴ — <b>فرعی:</b> ۴/۱۲۳۴/۴</li>
+        <li><b>بخش ثبتی:</b> ۱۲ تهران — <b>حوزه ثبتی:</b> ۵</li>
+        <li><b>شماره سند مالکیت:</b> <span class="fill"></span> — <b>سریال:</b> <span class="fill sm"></span> — <b>صفحه:</b> <span class="fill sm"></span> — <b>دفتر:</b> <span class="fill sm"></span></li>
+        <li><b>شناسه یکتا:</b> <span class="fill"></span></li>
+        <li><b>کد رهگیری سامانه املاک:</b> <span class="fill"></span></li>
+      </ol>
+
+      <p>
+        <span class="clause">۲-۲. مشخصات فیزیکی:</span>
+      </p>
+      <ol>
+        <li><b>مساحت کل:</b> ۱۲۰ مترمربع (طبق سند رسمی مالکیت)</li>
+        <li><b>مساحت مفید:</b> <span class="fill sm"></span> مترمربع</li>
+        <li><b>تعداد اتاق:</b> ۲ خواب + پذیرایی + آشپزخانه + سرویس بهداشتی + بالکن</li>
+        <li><b>سال ساخت:</b> ۱۴۰۰</li>
+      </ol>
+
+      <p>
+        <span class="clause">۲-۳. منضمات و متعلقات:</span>
+      </p>
+      <ol>
+        <li><b>پارکینگ:</b> یک واحد به شماره ۱۲</li>
+        <li><b>انبار:</b> یک واحد به شماره ۷ (متراژ: <span class="fill sm"></span>)</li>
+        <li><b>حق انشعابات:</b> آب، برق، گاز، تلفن و فاضلاب مطابق با پروانه ساخت — <b>وضعیت:</b> <span class="fill lg"></span></li>
+      </ol>
+
+    </div>
+
+    <div class="sig-footer">
+      <div class="sig-box">
+        <div class="sig-slot"><span class="lbl">فروشنده</span><span class="line"></span><span class="dt">تاریخ</span></div>
+        <div class="sig-slot"><span class="lbl">خریدار</span><span class="line"></span><span class="dt">تاریخ</span></div>
+        <div class="sig-slot"><span class="lbl">شاهد اول</span><span class="line"></span><span class="dt">تاریخ</span></div>
+        <div class="sig-slot"><span class="lbl">شاهد دوم</span><span class="line"></span><span class="dt">تاریخ</span></div>
+      </div>
+      <div class="page-badge"><span class="cur">۲</span><span class="sep">از</span><span class="tot">۹</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ صفحه ۳ — ماده ۲ (بخش ۲) + ماده ۳ ═══════════ -->
+<div class="page" data-page="3">
+  <div class="page-inner">
+    <header class="page-header">
+      <div class="brand"><div class="seal">⚖</div><span>سند معتبر</span></div>
+      <div class="doc-title">
+        مبایعه‌نامه قطعی خرید و فروش ملک
+        <small>شماره سند: ۱۴۰۴/م/۰۰۳۴۵۶ &nbsp;|&nbsp; کد تصدیق: TR-RE-1404-9P4M-7W3Z</small>
+      </div>
+      <div class="meta">تاریخ: ۲۲/۰۸/۱۴۰۴<br><b>صفحه ۳ از ۹</b></div>
+    </header>
+
+    <div class="page-content">
+      <p>
+        <span class="clause">۲-۴. مدارک و مستندات فنی:</span>
+      </p>
+      <ol>
+        <li><b>شماره پروانه ساختمانی:</b> <span class="fill"></span> — <b>تاریخ صدور:</b> <span class="fill sm"></span> — <b>صادره از شهرداری:</b> <span class="fill"></span></li>
+        <li><b>شماره پایان‌کار:</b> <span class="fill"></span> — <b>تاریخ صدور:</b> <span class="fill sm"></span></li>
+        <li><b>شناسنامه فنی ساختمان:</b> <b>دارد / ندارد</b> — <b>شماره:</b> <span class="fill sm"></span></li>
+        <li><b>صورت‌مجلس تفکیکی:</b> <b>دارد / ندارد</b> — <b>شماره:</b> <span class="fill sm"></span> — <b>تاریخ:</b> <span class="fill sm"></span></li>
+        <li><b>مفاصاحساب شهرداری:</b> <b>دارد / ندارد</b> — <b>تاریخ:</b> <span class="fill sm"></span></li>
+        <li><b>مفاصاحساب دارایی:</b> <b>دارد / ندارد</b> — <b>تاریخ:</b> <span class="fill sm"></span></li>
+      </ol>
+
+      <div class="reg-note">
+        <b>وفق مفاد وزارت راه و شهرسازی:</b> ملاک نهایی محاسبه مساحت و قیمت، <b>صورت‌مجلس
+        تفکیکی</b> صادره از اداره ثبت اسناد و املاک می‌باشد. در صورت عدم وجود صورت‌مجلس
+        تفکیکی، فروشنده موظف به اخذ آن تا تاریخ <span class="fill sm"></span> و ارائه به
+        خریدار می‌باشد.
+      </div>
+
+      <p>
+        <span class="clause">۲-۵.</span> فروشنده اقرار می‌نماید که ملک <b>در رهن، توقیف،
+        بازداشت یا هرگونه محدودیت قانونی</b> نبوده و هیچ‌گونه معامله معارض یا تعهدی نسبت به
+        آن با شخص ثالث منعقد نکرده است.
+      </p>
+      <p>
+        <span class="clause">۲-۶.</span> کلیه <b>مدارک، اسناد مالکیت، پایان‌کار، شناسنامه فنی،
+        مفاصاحساب شهرداری و دارایی، صورت‌مجلس‌های ساختمان و مدارک مربوط به شارژ</b> هم‌زمان با
+        امضای این قرارداد به خریدار تحویل گردیده و خریدار اقرار به دریافت آن‌ها نموده است.
+      </p>
+
+      <h3><span class="no">ماده ۳</span> ثمن معامله (قیمت ملک)</h3>
+      <p>
+        <span class="clause">۳-۱.</span> بهای کل ملک موضوع این مبایعه‌نامه، مبلغ
+        <b>۱۵,۰۰۰,۰۰۰,۰۰۰ ریال</b> معادل <b>یک میلیارد و پانصد میلیون تومان</b> می‌باشد
+        که بین طرفین توافق و قطعی گردیده است.
+      </p>
+      <p>
+        <span class="clause">۳-۲.</span> طرفین اقرار می‌نمایند که ثمن معامله به
+        <b>قیمت روز بازار</b> و با رضایت کامل تعیین شده و <b>هیچ‌گونه غبن، اکراه یا اجحافی</b>
+        در تعیین آن صورت نگرفته است. کلیه <b>خیارات</b>، به‌ویژه <b>خیار غبن</b> (اعم از فاحش
+        و غیرفاحش) و <b>خیار مجلس</b>، از طرفین ساقط گردیده و هیچ‌یک حق ادعا یا اعتراض نسبت به
+        ثمن یا ملک را نخواهند داشت، مگر در مورد <b>عیوب پنهان</b> که مطابق ماده ۴۲۲ قانون مدنی
+        قابل مطالبه است.
+      </p>
+      <div class="note">
+        <b>تبصره ۱:</b> مبلغ ثمن به‌صورت دست‌نویس در ذیل این ماده مورد تایید طرفین است.
+        در صورت اختلاف بین عدد و حروف، <b>عدد حروفی</b> ملاک عمل خواهد بود.
+      </div>
+      <div class="note">
+        <b>تبصره ۲:</b> کلیه <b>هزینه‌های مربوط به تنظیم سند رسمی</b> (شامل حق‌التحریر،
+        حق‌الثبت، مالیات نقل و انتقال، عوارض و هرگونه هزینه قانونی دیگر) <b>بر عهده
+        خریدار</b> می‌باشد.
+      </div>
+    </div>
+
+    <div class="sig-footer">
+      <div class="sig-box">
+        <div class="sig-slot"><span class="lbl">فروشنده</span><span class="line"></span><span class="dt">تاریخ</span></div>
+        <div class="sig-slot"><span class="lbl">خریدار</span><span class="line"></span><span class="dt">تاریخ</span></div>
+        <div class="sig-slot"><span class="lbl">شاهد اول</span><span class="line"></span><span class="dt">تاریخ</span></div>
+        <div class="sig-slot"><span class="lbl">شاهد دوم</span><span class="line"></span><span class="dt">تاریخ</span></div>
+      </div>
+      <div class="page-badge"><span class="cur">۳</span><span class="sep">از</span><span class="tot">۹</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ صفحه ۴ — ماده ۴ + ماده ۵ ═══════════ -->
+<div class="page" data-page="4">
+  <div class="page-inner">
+    <header class="page-header">
+      <div class="brand"><div class="seal">⚖</div><span>سند معتبر</span></div>
+      <div class="doc-title">
+        مبایعه‌نامه قطعی خرید و فروش ملک
+        <small>شماره سند: ۱۴۰۴/م/۰۰۳۴۵۶ &nbsp;|&nbsp; کد تصدیق: TR-RE-1404-9P4M-7W3Z</small>
+      </div>
+      <div class="meta">تاریخ: ۲۲/۰۸/۱۴۰۴<br><b>صفحه ۴ از ۹</b></div>
+    </header>
+
+    <div class="page-content">
+      <h3><span class="no">ماده ۴</span> نحوه و مواعد پرداخت ثمن</h3>
+      <p>
+        <span class="clause">۴-۱.</span> خریدار متعهد است ثمن معامله را به شرح ذیل
+        به فروشنده پرداخت نماید:
+      </p>
+      <ol>
+        <li>
+          مبلغ <b>۳,۰۰۰,۰۰۰,۰۰۰ ریال</b> معادل سیصد میلیون تومان نقداً هم‌زمان با امضای
+          این مبایعه‌نامه، از طریق <span class="fill"></span> به حساب شماره
+          <span class="fill"></span> نزد بانک <span class="fill"></span>
+          به نام فروشنده.
+        </li>
+        <li>
+          مبلغ <b>۱۲,۰۰۰,۰۰۰,۰۰۰ ریال</b> معادل یک میلیارد و دویست میلیون تومان،
+          <b>در تاریخ تنظیم سند رسمی انتقال در دفترخانه</b> و هم‌زمان با امضای سند
+          به نام خریدار پرداخت می‌گردد.
+        </li>
+      </ol>
+      <p>
+        <span class="clause">۴-۲.</span> فروشنده اقرار می‌نماید که <b>مبلغ پیش‌پرداخت</b>
+        (سیصد میلیون تومان) را دریافت نموده و هیچ‌گونه مطالبه دیگری نسبت به ملک یا
+        خریدار تا تاریخ تنظیم سند ندارد.
+      </p>
+
+      <div class="warn">
+        <b>هشدار:</b> در صورت عدم پرداخت به‌موقع مبلغ پیش‌پرداخت یا مابقی ثمن توسط خریدار
+        در تاریخ مقرر، وی متعهد است به ازای <b>هر روز تأخیر</b>، مبلغ
+        <b>۳۰,۰۰۰,۰۰۰ ریال</b> به‌عنوان <b>وجه التزام</b> به فروشنده پرداخت نماید.
+        این مبلغ علاوه بر خسارات واقعی و حق فسخ فروشنده است.
+      </div>
+
+      <p>
+        <span class="clause">۴-۳.</span> در صورت عدم حضور خریدار در دفترخانه در تاریخ
+        مقرر برای پرداخت مابقی ثمن، فروشنده حق <b>فسخ قرارداد</b> و مطالبه
+        <b>وجه التزام موضوع ماده ۹</b> را خواهد داشت.
+      </p>
+
+      <h3><span class="no">ماده ۵</span> تعهدات و اقرارهای فروشنده</h3>
+      <ol>
+        <li>فروشنده متعهد است <b>در تاریخ ۳۰/۰۸/۱۴۰۴</b> در <b>دفترخانه اسناد رسمی شماره ۱۲۳</b> واقع در <b>تهران، سعادت‌آباد</b> حاضر شده و <b>سند رسمی انتقال قطعی</b> را به نام خریدار تنظیم و امضا نماید.</li>
+        <li>فروشنده متعهد است <b>ملک را در تاریخ ۳۰/۰۸/۱۴۰۴</b> به‌صورت <b>تخلیه کامل</b> (از سکنه، اثاثیه و هرگونه تصرف) به خریدار تحویل نماید.</li>
+        <li>فروشنده متعهد است <b>کلیه مفاصاحساب‌های شهرداری، دارایی، آب، برق، گاز و شارژ ساختمان</b> را تا تاریخ تحویل پرداخت نموده و مدارک را به خریدار ارائه نماید.</li>
+        <li>فروشنده اقرار می‌نماید که ملک <b>در رهن، توقیف یا بازداشت</b> نبوده و <b>هیچ‌گونه معامله معارض</b> نسبت به آن با شخص ثالث منعقد نکرده است.</li>
+        <li>فروشنده اقرار می‌نماید که <b>جزو اشخاص ممنوع‌المعامله نبوده</b> و دارای <b>اهلیت قانونی کامل</b> (بلوغ، عقل، رشد و اختیار) برای انجام این معامله است.</li>
+        <li>فروشنده متعهد است <b>صورت‌مجلس تفکیکی</b> و <b>شناسنامه فنی ساختمان</b> را (در صورت وجود) به خریدار تحویل دهد.</li>
+      </ol>
+    </div>
+
+    <div class="sig-footer">
+      <div class="sig-box">
+        <div class="sig-slot"><span class="lbl">فروشنده</span><span class="line"></span><span class="dt">تاریخ</span></div>
+        <div class="sig-slot"><span class="lbl">خریدار</span><span class="line"></span><span class="dt">تاریخ</span></div>
+        <div class="sig-slot"><span class="lbl">شاهد اول</span><span class="line"></span><span class="dt">تاریخ</span></div>
+        <div class="sig-slot"><span class="lbl">شاهد دوم</span><span class="line"></span><span class="dt">تاریخ</span></div>
+      </div>
+      <div class="page-badge"><span class="cur">۴</span><span class="sep">از</span><span class="tot">۹</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ صفحه ۵ — ماده ۶ + ماده ۷ ═══════════ -->
+<div class="page" data-page="5">
+  <div class="page-inner">
+    <header class="page-header">
+      <div class="brand"><div class="seal">⚖</div><span>سند معتبر</span></div>
+      <div class="doc-title">
+        مبایعه‌نامه قطعی خرید و فروش ملک
+        <small>شماره سند: ۱۴۰۴/م/۰۰۳۴۵۶ &nbsp;|&nbsp; کد تصدیق: TR-RE-1404-9P4M-7W3Z</small>
+      </div>
+      <div class="meta">تاریخ: ۲۲/۰۸/۱۴۰۴<br><b>صفحه ۵ از ۹</b></div>
+    </header>
+
+    <div class="page-content">
+      <h3><span class="no">ماده ۶</span> تعهدات و اقرارهای خریدار</h3>
+      <ol>
+        <li>خریدار متعهد است ثمن معامله را در مواعد مقرر در ماده ۴ این قرارداد به فروشنده پرداخت نماید.</li>
+        <li>خریدار متعهد است <b>کلیه هزینه‌های دفترخانه</b> (حق‌التحریر، حق‌الثبت)، <b>مالیات نقل و انتقال</b>، <b>عوارض</b> و هرگونه هزینه قانونی دیگر مربوط به تنظیم سند رسمی انتقال را پرداخت نماید.</li>
+        <li>خریدار متعهد است <b>در تاریخ ۳۰/۰۸/۱۴۰۴ در دفترخانه حاضر</b> شده و سند رسمی انتقال را به نام خود تنظیم نماید.</li>
+        <li>خریدار اقرار می‌نماید که ملک را <b>مشاهده و معاینه کامل</b> نموده و از وضعیت فنی، ثبتی و حقوقی آن آگاه است.</li>
+        <li>خریدار اقرار می‌نماید که <b>جزو اشخاص ممنوع‌المعامله نبوده</b> و دارای <b>اهلیت قانونی کامل</b> برای انجام این معامله است.</li>
+        <li>خریدار متعهد است <b>پس از تحویل ملک</b>، کلیه قبوض و شارژ ساختمان را از تاریخ تحویل به بعد به نام خود منتقل نماید.</li>
+      </ol>
+
+      <div class="note">
+        <b>تبصره:</b> در صورت عدم حضور خریدار در دفترخانه در تاریخ مقرر برای تنظیم سند رسمی،
+        خریدار متعهد به پرداخت <b>هزینه‌های مجدد تنظیم سند</b> و <b>وجه التزام موضوع ماده ۹</b>
+        خواهد بود.
+      </div>
+
+      <h3><span class="no">ماده ۷</span> تحویل ملک و انتقال منافع</h3>
+      <p>
+        <span class="clause">۷-۱.</span> فروشنده متعهد است ملک را در تاریخ
+        <b>۳۰/۰۸/۱۴۰۴</b> به‌صورت <b>تخلیه کامل</b> به خریدار تحویل نماید.
+        از تاریخ تحویل، <b>کلیه منافع، مسئولیت‌های حقوقی و کیفری</b> ناشی از ملک
+        (از جمله پرداخت شارژ، قبوض و مالیات) <b>بر عهده خریدار</b> خواهد بود.
+      </p>
+      <p>
+        <span class="clause">۷-۲.</span> تحویل ملک همراه با <b>صورت‌جلسه تحویل</b>
+        شامل قرائت کنتور آب، برق و گاز، وضعیت ظاهری ملک، کلیدها و لوازم همراه انجام می‌شود
+        و به امضای طرفین می‌رسد.
+      </p>
+      <p>
+        <span class="clause">۷-۳.</span> در صورت تأخیر فروشنده در تحویل ملک بیش از
+        <b>۷ روز</b>، خریدار حق <b>فسخ قرارداد</b> و مطالبه <b>وجه التزام</b> به مبلغ
+        <b>۵۰,۰۰۰,۰۰۰ ریال</b> را خواهد داشت.
+      </p>
+    </div>
+
+    <div class="sig-footer">
+      <div class="sig-box">
+        <div class="sig-slot"><span class="lbl">فروشنده</span><span class="line"></span><span class="dt">تاریخ</span></div>
+        <div class="sig-slot"><span class="lbl">خریدار</span><span class="line"></span><span class="dt">تاریخ</span></div>
+        <div class="sig-slot"><span class="lbl">شاهد اول</span><span class="line"></span><span class="dt">تاریخ</span></div>
+        <div class="sig-slot"><span class="lbl">شاهد دوم</span><span class="line"></span><span class="dt">تاریخ</span></div>
+      </div>
+      <div class="page-badge"><span class="cur">۵</span><span class="sep">از</span><span class="tot">۹</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ صفحه ۶ — ماده ۸ + ماده ۹ ═══════════ -->
+<div class="page" data-page="6">
+  <div class="page-inner">
+    <header class="page-header">
+      <div class="brand"><div class="seal">⚖</div><span>سند معتبر</span></div>
+      <div class="doc-title">
+        مبایعه‌نامه قطعی خرید و فروش ملک
+        <small>شماره سند: ۱۴۰۴/م/۰۰۳۴۵۶ &nbsp;|&nbsp; کد تصدیق: TR-RE-1404-9P4M-7W3Z</small>
+      </div>
+      <div class="meta">تاریخ: ۲۲/۰۸/۱۴۰۴<br><b>صفحه ۶ از ۹</b></div>
+    </header>
+
+    <div class="page-content">
+      <h3><span class="no">ماده ۸</span> تضامین و وجه التزام</h3>
+      <p>
+        <span class="clause">۸-۱.</span> در صورت <b>نقض تعهدات اساسی</b> هر یک از طرفین
+        (از جمله کشف معامله معارض توسط فروشنده، عدم تحویل ملک یا عدم پرداخت ثمن توسط خریدار)،
+        طرف ناقض متعهد به پرداخت <b>معادل ۲۰٪ (بیست درصد) از کل ثمن معامله</b> به‌عنوان
+        <b>وجه التزام</b> به طرف غیرناقض خواهد بود، علاوه بر استرداد وجوه دریافتی و جبران
+        خسارات مازاد.
+      </p>
+      <p>
+        <span class="clause">۸-۲.</span> در صورت <b>کشف عیب پنهان</b> در ملک پس از تحویل،
+        خریدار حق مطالبه <b>ارش</b> یا <b>فسخ</b> مطابق ماده ۴۲۲ قانون مدنی را دارد.
+        تشخیص عیب پنهان از طریق <b>کارشناس رسمی دادگستری</b> صورت می‌گیرد.
+      </p>
+      <p>
+        <span class="clause">۸-۳.</span> در صورت <b>تأخیر فروشنده</b> در تنظیم سند رسمی
+        انتقال بیش از <b>۱۰ روز</b> از تاریخ مقرر، فروشنده متعهد است به ازای
+        <b>هر روز تأخیر</b>، مبلغ <b>۵۰,۰۰۰,۰۰۰ ریال</b> به‌عنوان <b>وجه التزام</b>
+        به خریدار پرداخت نماید.
+      </p>
+      <div class="note">
+        <b>تبصره:</b> مطالبه وجه التزام مانع از مطالبه خسارات مازاد نیست، مگر اینکه طرفین
+        به‌صورت کتبی خلاف آن را توافق نمایند.
+      </div>
+
+      <h3><span class="no">ماده ۹</span> فسخ و اقاله</h3>
+      <p>
+        <span class="clause">۹-۱.</span> این مبایعه‌نامه جز با <b>اقاله کتبی و رضایت طرفین</b>
+        یا در موارد قانونی (از جمله خیار عیب، تخلف شرط یا تدلیس) قابل برهم زدن یا ساقط کردن
+        اعتبار نیست.
+      </p>
+      <p>
+        <span class="clause">۹-۲.</span> در صورت فسخ، طرف فاسخ مکلف است <b>ظرف ۱۰ روز</b>
+        از تاریخ فسخ، ملک و وجوه دریافتی را به طرف دیگر مسترد نماید و خسارات وارده را جبران کند.
+      </p>
+
+      <h3 class="reg"><span class="no">ماده ۱۰</span> الزامات قانونی و ثبتی (وزارت راه و سازمان ثبت)</h3>
+      <p>
+        <span class="clause">۱۰-۱.</span> طرفین اقرار و آگاهی کامل دارند که طبق
+        <b>قانون الزام به ثبت رسمی معاملات اموال غیرمنقول مصوب ۱۴۰۳</b>، ثبت این
+        مبایعه‌نامه در <b>سامانه ثبت معاملات املاک و مستغلات</b> و تنظیم <b>سند رسمی
+        انتقال</b> در دفتر اسناد رسمی <b>الزامی</b> است.
+      </p>
+      <p>
+        <span class="clause">۱۰-۲.</span> طرفین متعهد می‌شوند <b>در اسرع وقت</b> و
+        حداکثر تا تاریخ <b>۳۰/۰۸/۱۴۰۴</b> نسبت به ثبت مبایعه‌نامه در سامانه مذکور و
+        تنظیم سند رسمی انتقال در دفترخانه اقدام نمایند.
+      </p>
+      <p>
+        <span class="clause">۱۰-۳.</span> طبق <b>آیین‌نامه اجرایی قانون پیش‌فروش ساختمان
+        (وزارت راه و شهرسازی)</b>، تنظیم هرگونه قرارداد راجع به پیش‌فروش یا واگذاری حقوق
+        ناشی از آن، <b>منوط به ارائه سند رسمی مالکیت</b> از سوی فروشنده است. فروشنده اقرار
+        می‌نماید که سند رسمی مالکیت ملک را پیش از امضای این قرارداد ارائه نموده است.
+      </p>
+      <p>
+        <span class="clause">۱۰-۴.</span> وفق دستورالعمل‌های <b>سازمان ثبت اسناد و املاک
+        کشور</b>، این مبایعه‌نامه در سامانه ثبت معاملات املاک و مستغلات با
+        <b>شناسه مشاور املاک: MB-1404-5678</b> و <b>شناسه صنفی: ET-22567</b>
+        و <b>سریال هولوگرام: HOLO-1404-9876-5432</b> ثبت گردیده است.
+      </p>
+      <p>
+        <span class="clause">۱۰-۵.</span> عدم ثبت رسمی معامله طبق قانون مذکور، موجب
+        <b>عدم قابلیت استناد</b> این سند در مراجع قضایی و اداری نسبت به اشخاص ثالث
+        خواهد بود و مسئولیت عدم ثبت به‌موقع بر عهده طرفی است که از انجام آن
+        <b>استنکاف</b> نموده است.
+      </p>
+
+      <div class="warn">
+        <b>هشدار قانونی:</b> صرف امضای این مبایعه‌نامه بدون ثبت رسمی، برای تضمین
+        مالکیت خریدار کافی نیست. خریدار باید بلافاصله پس از امضا نسبت به
+        <b>ثبت در سامانه</b> و <b>تنظیم سند رسمی</b> اقدام نماید.
+      </div>
+    </div>
+
+    <div class="sig-footer">
+      <div class="sig-box">
+        <div class="sig-slot"><span class="lbl">فروشنده</span><span class="line"></span><span class="dt">تاریخ</span></div>
+        <div class="sig-slot"><span class="lbl">خریدار</span><span class="line"></span><span class="dt">تاریخ</span></div>
+        <div class="sig-slot"><span class="lbl">شاهد اول</span><span class="line"></span><span class="dt">تاریخ</span></div>
+        <div class="sig-slot"><span class="lbl">شاهد دوم</span><span class="line"></span><span class="dt">تاریخ</span></div>
+      </div>
+      <div class="page-badge"><span class="cur">۶</span><span class="sep">از</span><span class="tot">۹</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ صفحه ۷ — ماده ۱۱ + ماده ۱۲ + ماده ۱۳ ═══════════ -->
+<div class="page" data-page="7">
+  <div class="page-inner">
+    <header class="page-header">
+      <div class="brand"><div class="seal">⚖</div><span>سند معتبر</span></div>
+      <div class="doc-title">
+        مبایعه‌نامه قطعی خرید و فروش ملک
+        <small>شماره سند: ۱۴۰۴/م/۰۰۳۴۵۶ &nbsp;|&nbsp; کد تصدیق: TR-RE-1404-9P4M-7W3Z</small>
+      </div>
+      <div class="meta">تاریخ: ۲۲/۰۸/۱۴۰۴<br><b>صفحه ۷ از ۹</b></div>
+    </header>
+
+    <div class="page-content">
+      <h3 class="reg"><span class="no">ماده ۱۱</span> گزارش پیشرفت کار و نظارت فنی (مخصوص پیش‌فروش)</h3>
+      <p>
+        <span class="clause">۱۱-۱.</span> وفق مفاد <b>قانون پیش‌فروش ساختمان و آیین‌نامه
+        اجرایی آن (وزارت راه و شهرسازی)</b>، در صورتی که ملک موضوع این قرارداد در حال
+        ساخت باشد، مهندس ناظر مکلف است در صورت درخواست خریدار، <b>گزارش پیشرفت کار</b>
+        را ظرف مدت <b>یک ماه</b> ارائه دهد.
+      </p>
+      <p>
+        <span class="clause">۱۱-۲.</span> خریدار حق دارد <b>پرداخت اقساط آتی</b> را به
+        میزان پیشرفت متناسب کار (طبق گزارش مهندس ناظر) <b>مشروط</b> نماید. در صورت عدم
+        پیشرفت متناسب، خریدار حق <b>توقف پرداخت قسط بعدی</b> تا رفع نقص را خواهد داشت.
+      </p>
+      <p>
+        <span class="clause">۱۱-۳.</span> در صورت وجود <b>شناسنامه فنی ساختمان</b>،
+        فروشنده متعهد است تصویر آن را به خریدار تحویل دهد. مشخصات مندرج در شناسنامه
+        فنی از نظر متراژ، تعداد پارکینگ و انبار، <b>ملاک عمل</b> در این قرارداد است.
+      </p>
+      <p>
+        <span class="clause">۱۱-۴.</span> در صورت عدم وجود <b>صورت‌مجلس تفکیکی</b>،
+        طرفین توافق می‌نمایند که ملاک محاسبه مساحت در این مرحله، <b>پروانه ساخت</b> و
+        <b>نقشه‌های تأییدشده شهرداری</b> باشد و پس از صدور صورت‌مجلس تفکیکی، در صورت
+        اختلاف مساحت بیش از <b>۵٪</b>، مابه‌التفاوت قیمت به نرخ روز محاسبه و تسویه گردد.
+      </p>
+
+      <h3><span class="no">ماده ۱۲</span> حوادث قهریه (فورس ماژور)</h3>
+      <p>
+        <span class="clause">۱۲-۱.</span> هیچ‌یک از طرفین در قبال <b>عدم اجرا یا تأخیر
+        در اجرای تعهدات</b> ناشی از <b>حوادث قهریه</b> (مانند جنگ، زلزله، سیل، آتش‌سوزی،
+        اعتصاب سراسری، انقلاب، تصمیمات حاکمیتی غیرقابل پیش‌بینی و امثال آن) که خارج از
+        کنترل متعارف طرف بوده و مانع اجرای تعهد گردد، مسئولیتی نخواهد داشت.
+      </p>
+      <p>
+        <span class="clause">۱۲-۲.</span> طرفی که با حادثه قهریه مواجه شده، مکلف است
+        <b>ظرف ۱۰ روز</b> از تاریخ وقوع، مراتب را <b>کتباً</b> به طرف دیگر اطلاع دهد.
+        در صورت تداوم حادثه قهریه بیش از <b>۳ ماه</b>، طرفین مکلف به مذاکره برای تعدیل
+        یا خاتمه قرارداد خواهند بود.
+      </p>
+
+      <h3><span class="no">ماده ۱۳</span> حل اختلاف</h3>
+      <p>
+        <span class="clause">۱۳-۱.</span> در صورت بروز هرگونه اختلاف در <b>تفسیر یا
+        اجرای</b> مفاد این مبایعه‌نامه، طرفین مکلف‌اند <b>بدواً</b> از طریق
+        <b>مذاکرات مسالمت‌آمیز</b> ظرف مدت <b>یک هفته کاری</b> از تاریخ حدوث اختلاف،
+        موضوع را حل و فصل نمایند.
+      </p>
+      <p>
+        <span class="clause">۱۳-۲.</span> در صورتی که مذاکرات ظرف مهلت مذکور به نتیجه
+        نرسد، <b>هر یک از طرفین</b> می‌تواند موضوع را به <b>مراجع قضایی صالح</b>
+        (دادگاه عمومی حقوقی محل وقوع ملک یا محل اقامت خوانده) ارجاع نماید.
+      </p>
+      <p>
+        <span class="clause">۱۳-۳.</span> طرفین می‌توانند به‌جای مراجعه به دادگاه،
+        توافق نمایند که موضوع به <b>داوری</b> ارجاع شود. در این صورت، داور مرضی‌الطرفین
+        به شرح ذیل تعیین می‌گردد: <span class="fill lg"></span>
+      </p>
+
+      <h3><span class="no">ماده ۱۴</span> فوت و قائم‌مقامی</h3>
+      <p>
+        <span class="clause">۱۴-۱.</span> در صورت <b>فوت هر یک از طرفین</b> پیش از تنظیم
+        سند رسمی انتقال، کلیه تعهدات و حقوق ناشی از این مبایعه‌نامه به <b>وراث قانونی</b>
+        وی منتقل شده و وراث مکلف به ایفای تعهدات متوفی می‌باشند. هیچ‌یک از وراث حق
+        اعتراض یا ادعا نسبت به مفاد این قرارداد را نخواهند داشت.
+      </p>
+    </div>
+
+    <div class="sig-footer">
+      <div class="sig-box">
+        <div class="sig-slot"><span class="lbl">فروشنده</span><span class="line"></span><span class="dt">تاریخ</span></div>
+        <div class="sig-slot"><span class="lbl">خریدار</span><span class="line"></span><span class="dt">تاریخ</span></div>
+        <div class="sig-slot"><span class="lbl">شاهد اول</span><span class="line"></span><span class="dt">تاریخ</span></div>
+        <div class="sig-slot"><span class="lbl">شاهد دوم</span><span class="line"></span><span class="dt">تاریخ</span></div>
+      </div>
+      <div class="page-badge"><span class="cur">۷</span><span class="sep">از</span><span class="tot">۹</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ صفحه ۸ — ماده ۱۵ + پیوست‌ها ═══════════ -->
+<div class="page" data-page="8">
+  <div class="page-inner">
+    <header class="page-header">
+      <div class="brand"><div class="seal">⚖</div><span>سند معتبر</span></div>
+      <div class="doc-title">
+        مبایعه‌نامه قطعی خرید و فروش ملک
+        <small>شماره سند: ۱۴۰۴/م/۰۰۳۴۵۶ &nbsp;|&nbsp; کد تصدیق: TR-RE-1404-9P4M-7W3Z</small>
+      </div>
+      <div class="meta">تاریخ: ۲۲/۰۸/۱۴۰۴<br><b>صفحه ۸ از ۹</b></div>
+    </header>
+
+    <div class="page-content">
+      <h3><span class="no">ماده ۱۵</span> نسخ قرارداد و اعتبار آن</h3>
+      <p>
+        <span class="clause">۱۵-۱.</span> این مبایعه‌نامه در <b>۱۵ ماده، ۷ تبصره و ۴ پیوست</b>،
+        در <b>۳ نسخه متحدالمتن</b> که همه نسخ دارای <b>اعتبار واحد</b> می‌باشند، تنظیم،
+        امضا و مبادله گردید و برای طرفین و قائم‌مقامان قانونی آن‌ها <b>لازم‌الاجرا</b> است.
+      </p>
+      <p>
+        <span class="clause">۱۵-۲.</span> این مبایعه‌نامه در کمال <b>صحّت عقل، سلامت اراده
+        و بدون اکراه و اجبار</b> تنظیم گردیده و طرفین با مطالعه کامل مفاد آن، به تمامی
+        مندرجات آن آگاه و ملتزم می‌باشند.
+      </p>
+      <p>
+        <span class="clause">۱۵-۳.</span> هرگونه تغییر، اصلاح یا الحاق به این مبایعه‌نامه
+        صرفاً به‌صورت <b>کتبی</b> و با امضای هر دو طرف معتبر خواهد بود.
+      </p>
+      <p>
+        <span class="clause">۱۵-۴.</span> کلیه <b>معاملات و قراردادهای مغایر</b> با متن
+        این مبایعه‌نامه که بین فروشنده با شخص ثالث نسبت به ملک منعقد شده یا بشود،
+        <b>باطل و بی‌اعتبار</b> بوده و فاقد هرگونه اثر قانونی است.
+      </p>
+
+      <h3><span class="no">پیوست ۱</span> فهرست مدارک تحویل‌شده به خریدار</h3>
+      <ol>
+        <li>اصل سند رسمی مالکیت ملک.</li>
+        <li>تصویر پروانه ساخت شهرداری.</li>
+        <li>تصویر پایان‌کار شهرداری.</li>
+        <li>مفاصاحساب شهرداری و دارایی.</li>
+        <li>شناسنامه فنی ساختمان (در صورت وجود).</li>
+        <li>صورت‌مجلس تفکیکی (در صورت وجود).</li>
+        <li>تصویر کارت ملی و شناسنامه فروشنده.</li>
+        <li>تصویر صورت‌مجلس‌های ساختمان و مدارک شارژ.</li>
+        <li>تصویر قبض‌های آب، برق و گاز.</li>
+        <li>شناسه یکتا و کد رهگیری ملک.</li>
+      </ol>
+
+      <h3><span class="no">پیوست ۲</span> جدول پرداخت اقساط</h3>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>ردیف</th>
+            <th>مبلغ (ریال)</th>
+            <th>تاریخ سررسید</th>
+            <th>نحوه پرداخت</th>
+            <th>شماره چک/رسید</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>۱</td><td></td><td></td><td></td><td></td></tr>
+          <tr><td>۲</td><td></td><td></td><td></td><td></td></tr>
+          <tr><td>۳</td><td></td><td></td><td></td><td></td></tr>
+        </tbody>
+      </table>
+
+      <h3><span class="no">پیوست ۳</span> صورت‌جلسه تحویل ملک</h3>
+      <p style="font-size:11px;">
+        اینجانبان ذیل‌الامضا اقرار می‌نماییم که در تاریخ <span class="fill"></span>
+        ملک موضوع این مبایعه‌نامه با شرایط ذیل به خریدار تحویل گردید:
+      </p>
+      <p style="font-size:11px;">
+        قرائت کنتور آب: <span class="fill sm"></span> &nbsp;|&nbsp;
+        برق: <span class="fill sm"></span> &nbsp;|&nbsp;
+        گاز: <span class="fill sm"></span>
+        &nbsp;|&nbsp; کلیدها: <span class="fill sm"></span> عدد
+      </p>
+      <p style="font-size:11px;">
+        وضعیت ظاهری ملک: <span class="fill lg"></span>
+      </p>
+      <p style="font-size:11px;">
+        نواقص احتمالی: <span class="fill lg"></span>
+      </p>
+
+      <h3 class="reg"><span class="no">پیوست ۴</span> اطلاعات سامانه ثبت (سازمان ثبت اسناد)</h3>
+      <table class="data-table reg">
+        <thead>
+          <tr>
+            <th>عنوان</th>
+            <th>مقدار</th>
+            <th>عنوان</th>
+            <th>مقدار</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>شماره ثبت سامانه</td><td>1404-RE-88-01234</td>
+            <td>سریال هولوگرام</td><td>HOLO-1404-9876-5432</td>
+          </tr>
+          <tr>
+            <td>شناسه مشاور املاک</td><td>MB-1404-5678</td>
+            <td>شناسه صنفی</td><td>ET-22567</td>
+          </tr>
+          <tr>
+            <td>کد رهگیری ملک</td><td colspan="3"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="sig-footer">
+      <div class="sig-box">
+        <div class="sig-slot"><span class="lbl">فروشنده</span><span class="line"></span><span class="dt">تاریخ</span></div>
+        <div class="sig-slot"><span class="lbl">خریدار</span><span class="line"></span><span class="dt">تاریخ</span></div>
+        <div class="sig-slot"><span class="lbl">شاهد اول</span><span class="line"></span><span class="dt">تاریخ</span></div>
+        <div class="sig-slot"><span class="lbl">شاهد دوم</span><span class="line"></span><span class="dt">تاریخ</span></div>
+      </div>
+      <div class="page-badge"><span class="cur">۸</span><span class="sep">از</span><span class="tot">۹</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ صفحه ۹ — امضای نهایی ═══════════ -->
+<div class="page" data-page="9">
+  <div class="page-inner">
+    <header class="page-header">
+      <div class="brand"><div class="seal">⚖</div><span>سند معتبر</span></div>
+      <div class="doc-title">
+        مبایعه‌نامه قطعی خرید و فروش ملک
+        <small>شماره سند: ۱۴۰۴/م/۰۰۳۴۵۶ &nbsp;|&nbsp; کد تصدیق: TR-RE-1404-9P4M-7W3Z</small>
+      </div>
+      <div class="meta">تاریخ: ۲۲/۰۸/۱۴۰۴<br><b>صفحه ۹ از ۹</b></div>
+    </header>
+
+    <div class="page-content">
+      <div class="final-sig-title">امضا و تعهد نهایی طرفین</div>
+
+      <div class="final-sig">
+        <div class="box seller">
+          <div class="role">فروشنده (بایع)</div>
+          <p><b>نام و نام خانوادگی:</b> رضا محمدی</p>
+          <p><b>فرزند:</b> حسن</p>
+          <p><b>شماره ملی:</b> ۰۰۷۹۸۷۶۵۴۳</p>
+          <p><b>تاریخ:</b> ................................</p>
+          <div class="stamp">محل مهر و<br>اثر انگشت</div>
+        </div>
+        <div class="box buyer">
+          <div class="role">خریدار (مشتری)</div>
+          <p><b>نام و نام خانوادگی:</b> فاطمه احمدی</p>
+          <p><b>فرزند:</b> محمود</p>
+          <p><b>شماره ملی:</b> ۰۰۱۲۳۴۵۶۷۸</p>
+          <p><b>تاریخ:</b> ................................</p>
+          <div class="stamp">محل مهر و<br>اثر انگشت</div>
+        </div>
+      </div>
+
+      <div class="witnesses-final">
+        <div class="box">
+          <div class="role">شاهد اول</div>
+          <p><b>نام و نام خانوادگی:</b> حسین رضایی</p>
+          <p><b>فرزند:</b> محمد</p>
+          <p><b>شماره ملی:</b> ................................</p>
+          <p><b>امضا:</b> ................................</p>
+        </div>
+        <div class="box">
+          <div class="role">شاهد دوم</div>
+          <p><b>نام و نام خانوادگی:</b> مریم کریمی</p>
+          <p><b>فرزند:</b> علی</p>
+          <p><b>شماره ملی:</b> ................................</p>
+          <p><b>امضا:</b> ................................</p>
+        </div>
+      </div>
+
+      <!-- محل مهر دفترخانه و مشاور املاک -->
+      <div class="office-seal">
+        <div class="role">🏛️ تایید و مهر دفتر اسناد رسمی / مشاور املاک</div>
+        <p>بدین‌وسیله تایید می‌شود که این مبایعه‌نامه در حضور اینجانب تنظیم و امضا گردیده و در <b>سامانه ثبت معاملات املاک و مستغلات</b> به شماره <b>1404-RE-88-01234</b> و سریال هولوگرام <b>HOLO-1404-9876-5432</b> ثبت گردیده است.</p>
+        <p style="margin-top:6px;">
+          <b>نام دفترخانه / مشاور:</b> <span class="fill"></span>
+          &nbsp;|&nbsp; <b>شماره ثبت:</b> <span class="fill sm"></span>
+          &nbsp;|&nbsp; <b>تاریخ:</b> <span class="fill sm"></span>
+        </p>
+        <div style="margin-top:6px; font-size:10px; color:var(--ink-soft);">
+          محل مهر و امضای رسمی
+        </div>
+      </div>
+
+      <div class="note" style="margin-top:14px; text-align:center; font-size:10.5px;">
+        این سند در <b>۳ نسخه متحدالمتن</b> تنظیم و هر نسخه دارای <b>اعتبار یکسان</b> است.
+        <br>
+        استعلام اینترنتی: <b>verify.iranian-docs.ir</b> — کد اختصاصی:
+        <b>1404M003456 / TR-RE-1404-9P4M-7W3Z</b>
+        <br>
+        سامانه ثبت معاملات املاک: <b>melk.ir</b> — شماره ثبت: <b>1404-RE-88-01234</b>
+      </div>
+    </div>
+
+    <div class="sig-footer" style="margin-top:10px;">
+      <div class="sig-box" style="grid-template-columns:1fr 1fr 1fr 1fr;">
+        <div class="sig-slot"><span class="lbl">تنظیم‌کننده / وکیل</span><span class="line"></span><span class="dt">تاریخ</span></div>
+        <div class="sig-slot"><span class="lbl">مهر دفترخانه</span><span class="line"></span><span class="dt">تاریخ</span></div>
+        <div class="sig-slot"><span class="lbl">شماره ثبت</span><span class="line"></span><span class="dt">تاریخ</span></div>
+        <div class="sig-slot"><span class="lbl">تایید نهایی</span><span class="line"></span><span class="dt">تاریخ</span></div>
+      </div>
+      <div class="page-badge"><span class="cur">۹</span><span class="sep">از</span><span class="tot">۹</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ SCRIPTS ═══════════ -->
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+
+    if (typeof JsBarcode !== 'undefined') {
+      document.querySelectorAll('.barcode').forEach(function (el) {
+        var code = el.getAttribute('data-code') || '0000000000';
+        try {
+          JsBarcode(el, code, {
+            format: 'CODE128',
+            width: 1.4, height: 42,
+            displayValue: true, fontSize: 10,
+            textMargin: 2, margin: 0,
+            font: 'Vazirmatn, Tahoma, sans-serif'
+          });
+        } catch (e) {
+          el.outerHTML = '<div style="font-family:monospace;font-size:11px;">' + code + '</div>';
+        }
+      });
+    }
+
+    if (typeof qrcode !== 'undefined') {
+      document.querySelectorAll('.qrcode').forEach(function (el) {
+        var url = el.getAttribute('data-url') || 'https://example.com';
+        try {
+          var qr = qrcode(0, 'M');
+          qr.addData(url);
+          qr.make();
+          el.innerHTML = qr.createSvgTag({ cellSize: 2, margin: 0, scalable: true });
+          var svg = el.querySelector('svg');
+          if (svg) {
+            svg.style.width = '100%';
+            svg.style.height = '100%';
+          }
+        } catch (e) {
+          el.innerHTML = '<div style="font-size:8px;">QR</div>';
+        }
+      });
+    }
+
+    if (typeof JsBarcode === 'undefined' || typeof qrcode === 'undefined') {
+      console.warn('کتابخانه‌های بارکد/QR بارگذاری نشدند. اتصال اینترنت را بررسی کنید.');
+    }
+  });
+</script>
+
+</body>
+</html>
