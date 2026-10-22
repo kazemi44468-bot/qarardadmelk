@@ -10,6 +10,7 @@
   @font-face{font-family:Vazirmatn;src:url('../assets/fonts/Vazirmatn-Medium.woff2') format('woff2');font-weight:500;font-display:swap}
   @font-face{font-family:Vazirmatn;src:url('../assets/fonts/Vazirmatn-Bold.woff2') format('woff2');font-weight:700;font-display:swap}
   @font-face{font-family:Vazirmatn;src:url('../assets/fonts/Vazirmatn-ExtraBold.woff2') format('woff2');font-weight:800 900;font-display:swap}
+  @font-face{font-family:Shekasteh;src:url('../assets/fonts/shekasteh%20v2.001.ttf') format('truetype');font-weight:400;font-display:swap}
 </style>
 
 <style>
@@ -60,6 +61,7 @@
   }
   .page:last-of-type{ page-break-after:auto; break-after:auto; }
 
+  .page::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background:url('../assets/images/logo.png') center 54% / 105mm auto no-repeat;opacity:.045;}
   .page-inner{
     display:flex; flex-direction:column; height:100%;
     padding:10mm 12mm 6mm; position:relative; z-index:1;
@@ -100,6 +102,7 @@
     font-weight:800; font-size:11.5px; color:var(--accent);
     white-space:nowrap;
   }
+  .page-header .brand span,.company-name-cover{font-family:Shekasteh,Vazirmatn,sans-serif;font-weight:400;}
   .page-header .brand .logo{
     width:44px; height:44px; max-width:44px; max-height:44px;
     object-fit:contain; padding:3px; flex:0 0 auto;
@@ -178,26 +181,13 @@
   /* ==== باکس امضا پایین هر صفحه ==== */
   .sig-panel{
     margin-top:4px; margin-bottom:3mm;
-    border: 1px solid var(--gold-soft);
-    border-radius: 6px;
-    padding: 10px 10px 8px;
-    background: linear-gradient(180deg, #fdfbf7, #fff);
+    border:0; border-radius:0; padding:2px 0;
+    background:transparent;
     position: relative;
     z-index: 2;
     box-shadow: 0 2px 6px rgba(176,141,87,.06);
   }
-  .sig-panel::before{
-    content: "امضای طرفین و شهود";
-    position: absolute;
-    top: -9px; right: 14px;
-    background: #fff;
-    padding: 0 8px;
-    font-size: 8.5px;
-    color: var(--gold);
-    font-weight: 700;
-    border-radius: 2px;
-    letter-spacing: 0.3px;
-  }
+  .sig-panel::before{content:none;}
   .sig-grid{
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -232,11 +222,7 @@
     direction: ltr;
     display: inline-block;
   }
-  .sig-line{
-    border-bottom: 1.2px solid #8c98a8;
-    height: 25px;
-    margin: 5px 2px 3px;
-  }
+  .sig-line{display:none !important;}
   .sig-date{
     font-size: 7px;
     color: #8b929b;
@@ -322,7 +308,7 @@
     box-shadow:0 8px 22px rgba(27,36,48,.08), inset 0 0 0 4px rgba(255,255,255,.9);
   }
   .company-name-cover {
-    font-size: 15px; font-weight: 800; color: var(--accent);
+    font-family:Shekasteh,Vazirmatn,sans-serif; font-size:23px; font-weight:400; color:var(--accent);
     letter-spacing: 0; margin-bottom: 12px;
     text-shadow:0 1px 0 #fff;
   }
@@ -543,7 +529,7 @@
   }
 
   /* ==== چاپ ==== */
-  @page{ size:A4; margin:0; }
+  @page{ size:A4 portrait; margin:0; }
   @media print{
     html,body{
       background:#fff !important; font-size:10.5px;
@@ -557,6 +543,7 @@
     }
     .page:last-of-type{ page-break-after:auto; }
     .page-inner { padding: 8mm 10mm 5mm; }
+    .page::before{opacity:.035;background-size:95mm auto;}
     .page:not(.cover) .page-inner::before { inset: 4mm; }
     .page:not(.cover) .page-inner::after { inset: 5mm; }
   }
@@ -583,7 +570,6 @@
       <div class="cover-top">
         <img src="../assets/images/logo.png" alt="Logo" class="cover-logo">
         <div class="company-name-cover">گروه تعاون ملک ایرانیان</div>
-        <div class="cover-seal">⚖</div>
         <div class="cover-label">سند صلح و واگذاری — دفترچه قرارداد</div>
         <h1 class="cover-title">قرارداد صلح حقوق و<br>واگذاری امتیاز پیش‌فروش</h1>
         <div class="cover-divider"></div>
@@ -595,7 +581,7 @@
 
       <div class="cover-meta">
         <div class="item"><span>شماره سند:</span><span>1405S891</span></div>\n        <div class="item"><span>شناسه یکتای استعلام:</span><span>VDV-1405-7K4M-92QX</span></div>
-        <div class="item"><span>تاریخ تنظیم:</span><span>۲۹ / ۰۷ / ۱۴۰۵</span></div>
+        <div class="item"><span>تاریخ تنظیم:</span><span>۲۹/۰۷/۱۴۰۵</span></div>
         <div class="item"><span>تعداد صفحات:</span><span>۶ صفحه</span></div>
         <div class="item"><span>شماره نسخه:</span><span>......... از ۳</span></div>
       </div>
@@ -661,7 +647,7 @@
       <h3><span class="no">ماده ۱</span> طرفین قرارداد</h3>
       <p>
         <span class="clause">۱-۱. مصالح:</span> آقای مهدی بازیار فرزند شعبانعلی،
-        شماره ملی <b>۴۵۴۰۰۰۹۳۴۶</b>، تاریخ تولد ۱۳۶۸/۰۶/۰۲،
+        شماره ملی <b>۴۵۴۰۰۰۹۳۴۶</b>، تاریخ تولد ۰۲/۰۶/۱۳۶۸،
         نشانی: تهران، میدان انقلاب، خیابان کارگر جنوبی، خیابان آذربایجان، کوچه امانی،
         پلاک ۲، واحد ۴، طبقه ۴ شمالی، کد پستی: ۱۳۱۸۸۹۶۱۶۹،
         تلفن همراه: <b>۰۹۱۲۴۷۸۸۴۶۴</b>.
@@ -689,7 +675,7 @@
         <li><b>تعاونی مرجع:</b> تعاونی مسکن شماره ۲ کارکنان نهاد نمایندگی مقام معظم رهبری در دانشگاه‌ها به شماره ثبت ۵۸۹۸۵۵.</li>
         <li><b>نشانی پروژه:</b> شهر تهران، منطقه ۲۱، محله ورداورد، بلوار اصلی، نبش بزرگراه تهران-کرج.</li>
         <li><b>پلاک ثبتی:</b> اصلی ۱۲۲۹۵، فرعی ۲، قطعه ۱۴۹۳۸۸۹۹۱۳.</li>
-        <li><b>مشخصات پروانه شهرداری:</b> شماره پرونده ۲۱۰۰۷۳۷۳۴، شماره پروانه ۲۱۰۰۱۴۶۱۱، تاریخ صدور ۱۴۰۵/۰۲/۳۰.</li>
+        <li><b>مشخصات پروانه شهرداری:</b> شماره پرونده ۲۱۰۰۷۳۷۳۴، شماره پروانه ۲۱۰۰۱۴۶۱۱، تاریخ صدور ۳۰/۰۲/۱۴۰۵.</li>
         <li><b>وضعیت فعلی پروژه:</b> در حال تکمیل کارگاه و بتن‌ریزی پی ساختمان.</li>
       </ol>
       <p>
