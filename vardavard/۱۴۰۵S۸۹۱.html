@@ -133,15 +133,15 @@
     position:relative; z-index:2;
     padding: 0 2mm;
   }
-  .page-content p{ margin:0 0 2px; line-height:1.55; }
+  .page-content p{ margin:0 0 1px; line-height:1.43; }
   /* تنظیمات فشرده برای صفحات داخلی و چاپ A4 */
-  .page[data-page="3"] .page-content{font-size:10.8px;}
-  .page[data-page="3"] .page-content p{line-height:1.48;margin-bottom:2px;}
-  .page[data-page="3"] .page-content h3{font-size:11px;padding:3px 8px;margin:3px 0 2px;}
-  .page[data-page="3"] .page-content ol li{line-height:1.48;margin-bottom:1px;}
+  .page[data-page="3"] .page-content{font-size:11px;}
+  .page[data-page="3"] .page-content p{line-height:1.43;margin-bottom:1px;}
+  .page[data-page="3"] .page-content h3{font-size:11px;padding:2px 7px;margin:2px 0 1px;}
+  .page[data-page="3"] .page-content ol li{line-height:1.43;margin-bottom:1px;}
   .page[data-page="4"] .page-content{font-size:11.5px;}
-  .page[data-page="4"] .page-content p{line-height:1.58;margin-bottom:2px;}
-  .page[data-page="4"] .page-content h3{margin:4px 0 3px;padding:4px 8px;}
+  .page[data-page="4"] .page-content p{line-height:1.43;margin-bottom:1px;}
+  .page[data-page="4"] .page-content h3{margin:2px 0 1px;padding:3px 7px;}
   .page:not(.cover) .page-inner{background:linear-gradient(135deg,rgba(243,234,217,.16),transparent 24%,transparent 76%,rgba(231,242,244,.2));}
   .page:not(.cover) .page-inner::before{border-radius:3px;box-shadow:inset 0 0 0 2px rgba(255,255,255,.85),inset 0 0 0 4px rgba(176,141,87,.12);}
   .page-content h3{background:linear-gradient(90deg,rgba(231,242,244,.96),rgba(243,234,217,.26) 72%,transparent);border-right-width:4px;}
@@ -243,17 +243,22 @@
     color: #8b929b;
   }
 
-  .page-signatures{
-    display:grid; grid-template-columns:1fr 1fr; gap:10px;
-    margin-top:7px; padding:5px 2px 4px;
-    border-top:1px solid rgba(176,141,87,.42);
-    color:var(--ink-soft); font-size:8.5px; line-height:1.4;
-    position:relative; z-index:2;
+  .sig-panel{
+    margin-top:auto; margin-bottom:2px; padding-top:4px;
+    border-top:1px solid rgba(176,141,87,.48);
+    position:relative; z-index:2; flex:0 0 auto;
   }
-  .page-signatures div{white-space:nowrap;}
-  .page-signatures b{color:var(--accent);}
-  .page-signatures span{display:block; margin-top:2px; color:var(--ink-soft); font-size:8px;}
-  @media print { .page-signatures { break-inside:avoid; page-break-inside:avoid; } }
+  .sig-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:5px;}
+  .sig-person{
+    min-height:42px; padding:4px 2px; border:1px solid rgba(176,141,87,.55);
+    border-radius:4px; background:rgba(255,255,255,.94); text-align:center;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    font-size:8px; line-height:1.3; break-inside:avoid; page-break-inside:avoid;
+  }
+  .sig-role{font-size:8px;font-weight:800;color:var(--accent);}
+  .sig-name{font-size:7.5px;font-weight:600;color:var(--ink);white-space:normal;}
+  .sig-line{display:block!important;font-size:7px;color:var(--ink-soft);margin-top:3px;}
+  @media print { .sig-panel,.sig-grid,.sig-person{break-inside:avoid;page-break-inside:avoid;} }
 
   /* ==== فوتر صفحه ==== */
   .page-footer{
@@ -636,7 +641,7 @@
         قرارداد صلح حقوق و واگذاری امتیاز پیش‌فروش
         <small>شماره سند: ۱۴۰۵S۸۹۱ · شناسه یکتا: VDV-۱۴۰۵-۷K۴M-۹۲QX</small>
       </div>
-      <div class="meta">تاریخ: ۱۴۰۵/۰۷/۲۹<br><b>صفحه ۲ از ۵</b></div>
+      <div class="meta">تاریخ: ۱۴۰۵/۰۷/۲۹</div>
     </header>
 
     <div class="page-content">
@@ -715,14 +720,16 @@
       </div>
 
 
-
-
     </div>
 
     <!-- پنل امضا -->
-    <div class="page-signatures" aria-label="نام و امضای طرفین">
-      <div><b>مصالح:</b> مهدی بازیار <span>امضا: ........................</span></div>
-      <div><b>متصالح:</b> سید محمدرضا معافی مدنی <span>امضا: ........................</span></div>
+    <div class="sig-panel" aria-label="محل امضا و تأیید طرفین و شهود">
+      <div class="sig-grid">
+        <div class="sig-person"><div class="sig-role">مصالح</div><div class="sig-name">مهدی بازیار</div><div class="sig-line">امضا: ........................</div></div>
+        <div class="sig-person"><div class="sig-role">متصالح</div><div class="sig-name">سید محمدرضا معافی مدنی</div><div class="sig-line">امضا: ........................</div></div>
+        <div class="sig-person"><div class="sig-role">شاهد اول</div><div class="sig-name">نوذر ارشدی</div><div class="sig-line">امضا: ........................</div></div>
+        <div class="sig-person"><div class="sig-role">شاهد دوم</div><div class="sig-name">سارا یعقوبی پور فرد</div><div class="sig-line">امضا: ........................</div></div>
+      </div>
     </div>
 
     <footer class="page-footer">
@@ -747,7 +754,7 @@
         قرارداد صلح حقوق و واگذاری امتیاز پیش‌فروش
         <small>شماره سند: ۱۴۰۵S۸۹۱ · شناسه یکتا: VDV-۱۴۰۵-۷K۴M-۹۲QX</small>
       </div>
-      <div class="meta">تاریخ: ۱۴۰۵/۰۷/۲۹<br><b>صفحه ۳ از ۵</b></div>
+      <div class="meta">تاریخ: ۱۴۰۵/۰۷/۲۹</div>
     </header>
 
     <div class="page-content">
@@ -847,9 +854,13 @@
       </p>
     </div>
 
-    <div class="page-signatures" aria-label="نام و امضای طرفین">
-      <div><b>مصالح:</b> مهدی بازیار <span>امضا: ........................</span></div>
-      <div><b>متصالح:</b> سید محمدرضا معافی مدنی <span>امضا: ........................</span></div>
+    <div class="sig-panel" aria-label="محل امضا و تأیید طرفین و شهود">
+      <div class="sig-grid">
+        <div class="sig-person"><div class="sig-role">مصالح</div><div class="sig-name">مهدی بازیار</div><div class="sig-line">امضا: ........................</div></div>
+        <div class="sig-person"><div class="sig-role">متصالح</div><div class="sig-name">سید محمدرضا معافی مدنی</div><div class="sig-line">امضا: ........................</div></div>
+        <div class="sig-person"><div class="sig-role">شاهد اول</div><div class="sig-name">نوذر ارشدی</div><div class="sig-line">امضا: ........................</div></div>
+        <div class="sig-person"><div class="sig-role">شاهد دوم</div><div class="sig-name">سارا یعقوبی پور فرد</div><div class="sig-line">امضا: ........................</div></div>
+      </div>
     </div>
 
     <footer class="page-footer">
@@ -874,7 +885,7 @@
         قرارداد صلح حقوق و واگذاری امتیاز پیش‌فروش
         <small>شماره سند: ۱۴۰۵S۸۹۱ · شناسه یکتا: VDV-۱۴۰۵-۷K۴M-۹۲QX</small>
       </div>
-      <div class="meta">تاریخ: ۱۴۰۵/۰۷/۲۹<br><b>صفحه ۴ از ۵</b></div>
+      <div class="meta">تاریخ: ۱۴۰۵/۰۷/۲۹</div>
     </header>
 
     <div class="page-content">
@@ -917,9 +928,13 @@
       </div>
     </div>
 
-    <div class="page-signatures" aria-label="نام و امضای طرفین">
-      <div><b>مصالح:</b> مهدی بازیار <span>امضا: ........................</span></div>
-      <div><b>متصالح:</b> سید محمدرضا معافی مدنی <span>امضا: ........................</span></div>
+    <div class="sig-panel" aria-label="محل امضا و تأیید طرفین و شهود">
+      <div class="sig-grid">
+        <div class="sig-person"><div class="sig-role">مصالح</div><div class="sig-name">مهدی بازیار</div><div class="sig-line">امضا: ........................</div></div>
+        <div class="sig-person"><div class="sig-role">متصالح</div><div class="sig-name">سید محمدرضا معافی مدنی</div><div class="sig-line">امضا: ........................</div></div>
+        <div class="sig-person"><div class="sig-role">شاهد اول</div><div class="sig-name">نوذر ارشدی</div><div class="sig-line">امضا: ........................</div></div>
+        <div class="sig-person"><div class="sig-role">شاهد دوم</div><div class="sig-name">سارا یعقوبی پور فرد</div><div class="sig-line">امضا: ........................</div></div>
+      </div>
     </div>
 
     <footer class="page-footer">
@@ -944,7 +959,7 @@
         قرارداد صلح حقوق و واگذاری امتیاز پیش‌فروش
         <small>شماره سند: ۱۴۰۵S۸۹۱ · شناسه یکتا: VDV-۱۴۰۵-۷K۴M-۹۲QX</small>
       </div>
-      <div class="meta">تاریخ: ۱۴۰۵/۰۷/۲۹<br><b>صفحه ۵ از ۵</b></div>
+      <div class="meta">تاریخ: ۱۴۰۵/۰۷/۲۹</div>
     </header>
 
     <div class="page-content">
