@@ -83,7 +83,7 @@
     position: absolute;
     inset: 6mm;
     border: 0.8px solid rgba(176,141,87,.25);
-    border-radius: 6px;
+    border-radius: 7px;
     pointer-events: none;
     z-index: 0;
   }
@@ -177,10 +177,10 @@
 
   /* ==== باکس امضا پایین هر صفحه ==== */
   .sig-panel{
-    margin-top:8px;
+    margin-top:4px; margin-bottom:3mm;
     border: 1px solid var(--gold-soft);
     border-radius: 6px;
-    padding: 8px 10px 6px;
+    padding: 10px 10px 8px;
     background: linear-gradient(180deg, #fdfbf7, #fff);
     position: relative;
     z-index: 2;
@@ -200,8 +200,8 @@
   }
   .sig-grid{
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 6px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
   }
   .sig-person{
     text-align: center;
@@ -234,12 +234,12 @@
   }
   .sig-line{
     border-bottom: 1.2px solid #8c98a8;
-    height: 22px;
-    margin: 4px 2px 2px;
+    height: 25px;
+    margin: 5px 2px 3px;
   }
   .sig-date{
     font-size: 7px;
-    color: #b0b9c4;
+    color: #8b929b;
   }
 
   /* ==== فوتر صفحه ==== */
