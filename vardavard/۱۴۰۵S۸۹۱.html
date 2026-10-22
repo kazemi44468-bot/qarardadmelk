@@ -144,10 +144,10 @@
   .page:not(.cover) .page-inner::before{border-radius:3px;box-shadow:inset 0 0 0 2px rgba(255,255,255,.85),inset 0 0 0 4px rgba(176,141,87,.12);}
   .page-content h3{background:linear-gradient(90deg,rgba(231,242,244,.96),rgba(243,234,217,.26) 72%,transparent);border-right-width:4px;}
   .page-footer{border-top:1px solid rgba(176,141,87,.35);}
-   .page[data-page="4"] .page-content{font-size:10.1px;}
-   .page[data-page="4"] .page-content p{line-height:1.42;margin-bottom:1px;}
-   .page[data-page="4"] .page-content h3{font-size:10.8px;padding:3px 8px;margin:3px 0 2px;}
-   .page[data-page="4"] .page-content ol li{line-height:1.42;margin-bottom:1px;}
+   .page[data-page="4"] .page-content{font-size:11.2px;}
+   .page[data-page="4"] .page-content p{line-height:1.58;margin-bottom:3px;}
+   .page[data-page="4"] .page-content h3{font-size:11.5px;padding:4px 9px;margin:5px 0 3px;}
+   .page[data-page="4"] .page-content ol li{line-height:1.58;margin-bottom:2px;}
   .page-content h3{
     font-size:12px; color:var(--accent); font-weight:800;
     background:linear-gradient(90deg, var(--accent-soft), transparent);
@@ -543,28 +543,67 @@
     border-radius: 0 0 4px 4px;
   }
 
-  /* ==== چاپ ==== */
-  @page{ size:A4 portrait; margin:0; }
-  @page{size:A4 portrait;margin:0;}
-  @media print{
-    html,body{
-      background:#fff !important; font-size:10.5px;
-      -webkit-print-color-adjust:exact; print-color-adjust:exact;
+  /* ==== چاپ دقیق A4 ==== */
+  @page { size: A4 portrait; margin: 0; }
+  @media print {
+    html, body {
+      width: 210mm !important;
+      min-width: 210mm !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      background: #fff !important;
+      font-size: 11px;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
     }
-    .toolbar{ display:none !important; }
-    *{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important;}
-    .page{
-      width:210mm; height:297mm; min-height:297mm; margin:0;
-      box-shadow:none; border-radius:0;
-      page-break-after:always;
+    body { display: block !important; }
+    .toolbar { display: none !important; }
+    .page {
+      display: flex !important;
+      position: relative !important;
+      width: 210mm !important;
+      min-width: 210mm !important;
+      max-width: 210mm !important;
+      height: 297mm !important;
+      min-height: 297mm !important;
+      max-height: 297mm !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      border: 0 !important;
+      border-radius: 0 !important;
+      box-shadow: none !important;
+      overflow: hidden !important;
+      break-inside: avoid !important;
+      page-break-inside: avoid !important;
+      break-after: page !important;
+      page-break-after: always !important;
     }
-    .page:last-of-type{ page-break-after:auto; }
-    .page-inner { padding: 10mm 12mm 6mm; }
-    .page::before{opacity:.035;background-size:95mm auto;}
-    .page-content{overflow:hidden;}
-    .page-content p{break-inside:avoid;orphans:2;widows:2;}
-    .page-content h3{break-after:avoid;}
-    .page-header,.page-footer,.sig-panel{break-inside:avoid;}
+    .page:last-of-type {
+      break-after: auto !important;
+      page-break-after: auto !important;
+    }
+    .page-inner {
+      width: 210mm !important;
+      height: 297mm !important;
+      min-height: 297mm !important;
+      max-height: 297mm !important;
+      margin: 0 !important;
+      padding: 10mm 12mm 6mm !important;
+      flex: 0 0 297mm !important;
+      overflow: visible !important;
+    }
+    .page-content {
+      min-height: 0 !important;
+      overflow: visible !important;
+      flex: 1 1 auto !important;
+    }
+    .page-content p, .page-content li { orphans: 2; widows: 2; }
+    .page-content h3 { break-after: avoid; page-break-after: avoid; }
+    .page-header, .page-footer, .final-sig, .witnesses-final, .final-official-area {
+      break-inside: avoid;
+      page-break-inside: avoid;
+    }
+    .page::before { opacity: .035; background-size: 95mm auto; }
     .page:not(.cover) .page-inner::before { inset: 4mm; }
     .page:not(.cover) .page-inner::after { inset: 5mm; }
   }
@@ -715,39 +754,6 @@
     </div>
 
     <!-- پنل امضا -->
-    <div class="sig-panel">
-      <div class="sig-grid">
-        <div class="sig-person">
-          <div class="sig-role">مصالح</div>
-          <div class="sig-name">مهدی بازیار</div>
-          <div class="sig-id">۴۵۴۰۰۰۹۳۴۶</div>
-          <div class="sig-line"></div>
-          <div class="sig-date">تاریخ: ...........</div>
-        </div>
-        <div class="sig-person">
-          <div class="sig-role">متصالح</div>
-          <div class="sig-name">سید محمدرضا معافی مدنی</div>
-          <div class="sig-id">۰۳۷۰۰۸۹۹۰۱</div>
-          <div class="sig-line"></div>
-          <div class="sig-date">تاریخ: ...........</div>
-        </div>
-        <div class="sig-person">
-          <div class="sig-role">شاهد اول</div>
-          <div class="sig-name">نوذر ارشدی</div>
-          <div class="sig-id">۲۴۹۱۶۸۰۸۲۳</div>
-          <div class="sig-line"></div>
-          <div class="sig-date">تاریخ: ...........</div>
-        </div>
-        <div class="sig-person">
-          <div class="sig-role">شاهد دوم</div>
-          <div class="sig-name">سارا یعقوبی پور فرد</div>
-          <div class="sig-id">۴۱۲۰۱۵۱۷۲۷</div>
-          <div class="sig-line"></div>
-          <div class="sig-date">تاریخ: ...........</div>
-        </div>
-      </div>
-    </div>
-
     <footer class="page-footer">
       <span class="fw-site"><span class="dot"></span> taavonmelk.ir</span>
       <span class="fw-left">
@@ -803,39 +809,6 @@
         نموده و هیچ‌گونه مطالبه دیگری نسبت به مورد صلح یا متصالح ندارد.
       </p>
       </div>
-
-    <div class="sig-panel">
-      <div class="sig-grid">
-        <div class="sig-person">
-          <div class="sig-role">مصالح</div>
-          <div class="sig-name">مهدی بازیار</div>
-          <div class="sig-id">۴۵۴۰۰۰۹۳۴۶</div>
-          <div class="sig-line"></div>
-          <div class="sig-date">تاریخ: ...........</div>
-        </div>
-        <div class="sig-person">
-          <div class="sig-role">متصالح</div>
-          <div class="sig-name">سید محمدرضا معافی مدنی</div>
-          <div class="sig-id">۰۳۷۰۰۸۹۹۰۱</div>
-          <div class="sig-line"></div>
-          <div class="sig-date">تاریخ: ...........</div>
-        </div>
-        <div class="sig-person">
-          <div class="sig-role">شاهد اول</div>
-          <div class="sig-name">نوذر ارشدی</div>
-          <div class="sig-id">۲۴۹۱۶۸۰۸۲۳</div>
-          <div class="sig-line"></div>
-          <div class="sig-date">تاریخ: ...........</div>
-        </div>
-        <div class="sig-person">
-          <div class="sig-role">شاهد دوم</div>
-          <div class="sig-name">سارا یعقوبی پور فرد</div>
-          <div class="sig-id">۴۱۲۰۱۵۱۷۲۷</div>
-          <div class="sig-line"></div>
-          <div class="sig-date">تاریخ: ...........</div>
-        </div>
-      </div>
-    </div>
 
     <footer class="page-footer">
       <span class="fw-site"><span class="dot"></span> taavonmelk.ir</span>
@@ -933,39 +906,6 @@
       </p>
     </div>
 
-    <div class="sig-panel">
-      <div class="sig-grid">
-        <div class="sig-person">
-          <div class="sig-role">مصالح</div>
-          <div class="sig-name">مهدی بازیار</div>
-          <div class="sig-id">۴۵۴۰۰۰۹۳۴۶</div>
-          <div class="sig-line"></div>
-          <div class="sig-date">تاریخ: ...........</div>
-        </div>
-        <div class="sig-person">
-          <div class="sig-role">متصالح</div>
-          <div class="sig-name">سید محمدرضا معافی مدنی</div>
-          <div class="sig-id">۰۳۷۰۰۸۹۹۰۱</div>
-          <div class="sig-line"></div>
-          <div class="sig-date">تاریخ: ...........</div>
-        </div>
-        <div class="sig-person">
-          <div class="sig-role">شاهد اول</div>
-          <div class="sig-name">نوذر ارشدی</div>
-          <div class="sig-id">۲۴۹۱۶۸۰۸۲۳</div>
-          <div class="sig-line"></div>
-          <div class="sig-date">تاریخ: ...........</div>
-        </div>
-        <div class="sig-person">
-          <div class="sig-role">شاهد دوم</div>
-          <div class="sig-name">سارا یعقوبی پور فرد</div>
-          <div class="sig-id">۴۱۲۰۱۵۱۷۲۷</div>
-          <div class="sig-line"></div>
-          <div class="sig-date">تاریخ: ...........</div>
-        </div>
-      </div>
-    </div>
-
     <footer class="page-footer">
       <span class="fw-site"><span class="dot"></span> taavonmelk.ir</span>
       <span class="fw-left">
@@ -1041,39 +981,6 @@
       <div class="note">
         <b>تبصره نهایی:</b> کلیه مشخصات دست‌نویس، امضاها، اثر انگشت و شماره‌های درج‌شده
         به‌صورت دستی در متن این قرارداد و پیوست‌های آن، مورد تایید و پذیرش طرفین است.
-      </div>
-    </div>
-
-    <div class="sig-panel">
-      <div class="sig-grid">
-        <div class="sig-person">
-          <div class="sig-role">مصالح</div>
-          <div class="sig-name">مهدی بازیار</div>
-          <div class="sig-id">۴۵۴۰۰۰۹۳۴۶</div>
-          <div class="sig-line"></div>
-          <div class="sig-date">تاریخ: ...........</div>
-        </div>
-        <div class="sig-person">
-          <div class="sig-role">متصالح</div>
-          <div class="sig-name">سید محمدرضا معافی مدنی</div>
-          <div class="sig-id">۰۳۷۰۰۸۹۹۰۱</div>
-          <div class="sig-line"></div>
-          <div class="sig-date">تاریخ: ...........</div>
-        </div>
-        <div class="sig-person">
-          <div class="sig-role">شاهد اول</div>
-          <div class="sig-name">نوذر ارشدی</div>
-          <div class="sig-id">۲۴۹۱۶۸۰۸۲۳</div>
-          <div class="sig-line"></div>
-          <div class="sig-date">تاریخ: ...........</div>
-        </div>
-        <div class="sig-person">
-          <div class="sig-role">شاهد دوم</div>
-          <div class="sig-name">سارا یعقوبی پور فرد</div>
-          <div class="sig-id">۴۱۲۰۱۵۱۷۲۷</div>
-          <div class="sig-line"></div>
-          <div class="sig-date">تاریخ: ...........</div>
-        </div>
       </div>
     </div>
 
