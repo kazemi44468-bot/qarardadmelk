@@ -209,4 +209,562 @@
   <dialog id="guideDialog"><div class="dialog-head"><h2>راهنمای تکمیل مبایعه‌نامه</h2><button type="button" id="closeGuide" class="close-btn" aria-label="بستن">×</button></div><ol><li>هویت طرفین را با اصل مدارک تطبیق دهید؛ اگر شرکت یا نماینده طرف قرارداد است، اختیار امضا را بررسی کنید.</li><li>مالکیت عرصه، پلاک ثبتی، رهن، بازداشت، پیش‌فروش قبلی و مجوزهای پروژه را از مراجع مربوط استعلام کنید.</li><li>نقشه، شماره واحد، پارکینگ، انباری، مساحت، سهم مشاعات و مشخصات فنی را دقیقاً در قرارداد و پیوست‌ها یکسان درج کنید.</li><li>ثمن را به عدد و حروف بنویسید؛ سررسید هر قسط، شرط پرداخت و مدرک دریافت وجه را روشن کنید.</li><li>مبلغ و مبنای وجه التزام، موعد تحویل، رفع عیب، مراجعه برای سند و آثار تخلف را بدون ابهام تکمیل کنید.</li><li>برای پیش‌فروش، الزامات قانون پیش‌فروش ساختمان و مقررات ثبت رسمی معاملات اموال غیرمنقول را بررسی کنید و پیش از استفاده واقعی از وکیل یا دفتر اسناد رسمی راهنمایی بگیرید.</li></ol><p class="guide-warning">این قالب ابزار آماده‌سازی پیش‌نویس است و تضمین نمی‌کند معامله با هر وضعیت ثبتی یا حقوقی سازگار باشد. چاپ آن جایگزین ثبت رسمی الزامی نیست.</p><button type="button" class="btn btn-gold" id="guidePrint">بازگشت به قرارداد و چاپ</button></dialog>
 </main>
 <script src="assets/js/app.js"></script>
+</body></html
+  <div class="notice no-print"><strong>پیش از امضا:</strong> پیش‌فروش ساختمان تابع الزامات قانونی و ثبتی ویژه است. این فرم به‌تنهایی جایگزین تنظیم و ثبت رسمی لازم نیست. مشخصات ثبتی، اختیار فروشنده، مجوزها، نقشه‌ها و امکان ثبت معامله باید پیش از امضا بررسی شود.</div>
+  <div class="workspace">
+    <aside class="side-panel no-print">
+      <h2>بخش‌های قرارداد</h2>
+      <a href="#parties">۱. طرفین قرارداد</a><a href="#property">۲. مشخصات ملک و واحد</a><a href="#price">۳. ثمن و پرداخت‌ها</a><a href="#terms">۴. مواد و تعهدات</a><a href="#annexes">۵. پیوست‌ها</a><a href="#signatures">۶. امضا و اثر انگشت</a>
+      <div class="side-note"><strong>راهنمای استفاده</strong><p>فیلدهای خالی را تکمیل کنید. موارد نامرتبط را حذف یا با توافق طرفین اصلاح کنید. تمام صفحات و پیوست‌ها باید شماره‌گذاری و به امضای طرفین برسند.</p></div>
+      <button type="button" class="btn btn-outline btn-full" id="clearForm">پاک‌کردن اطلاعات واردشده</button>
+    </aside>
+    <article class="contract" id="contractDocument">
+      <div class="document-heading">
+        <div class="document-brandline">
+          <img class="document-logo" src="assets/images/logo.png" alt="لوگوی گروه تعاون ملک ایرانیان">
+          <div class="document-titlegroup">
+            <div class="document-kicker">گروه تعاون ملک ایرانیان</div>
+            <h2>مبایعه‌نامه و قرارداد پیش‌فروش آپارتمان</h2>
+            <p>فرم تنظیم توافقات و تعهدات پیش‌فروشنده و پیش‌خریدار</p>
+          </div>
+          <div class="document-mark">نسخه<br>تکمیلی</div>
+        </div>
+        <div class="doc-meta"><span>شماره قرارداد: <input name="docNo" placeholder="................"></span><span>تاریخ تنظیم: <input name="docDate" data-date placeholder="................"></span><span>محل تنظیم: <input name="docPlace" placeholder="شهر / محل تنظیم"></span></div>
+      </div>
+      <p class="preamble">این قرارداد با قصد و رضای طرفین و با رعایت شرایط قانونی، پس از مطالعه تمام مواد و پیوست‌ها، میان اشخاص زیر منعقد می‌شود. طرفین متعهدند اطلاعات را صحیح و کامل درج کنند و هرگونه توافق مؤثر بر موضوع، ثمن، زمان‌بندی یا ضمانت اجرا را به‌صورت مکتوب و امضاشده ضمیمه نمایند.</p>
+      <section class="contract-section" id="parties"><h3><span>ماده ۱</span> ـ مشخصات طرفین قرارداد</h3>
+        <h4>۱-۱. پیش‌فروشنده</h4>
+        <div class="form-grid">
+          <label>نام و نام خانوادگی / نام شخص حقوقی<input name="sellerName" required placeholder="نام کامل پیش‌فروشنده"></label>
+          <label>نام پدر / نماینده مجاز<input name="sellerFather" placeholder="نام پدر یا نام نماینده"></label>
+          <label>کد ملی / شناسه ملی<input name="sellerId" placeholder="شناسه هویتی"></label>
+          <label>شماره شناسنامه / ثبت<input name="sellerRegister" placeholder="شماره"></label>
+          <label>تاریخ تولد / تأسیس<input name="sellerBirth" placeholder="روز / ماه / سال"></label>
+          <label>شماره تماس<input name="sellerPhone" inputmode="tel" placeholder="شماره تماس"></label>
+          <label class="wide">نشانی کامل و کدپستی<input name="sellerAddress" placeholder="نشانی محل اقامتگاه قانونی"></label>
+          <label class="wide">سمت و مستند اختیار (در صورت نمایندگی)<input name="sellerAuthority" placeholder="وکالت‌نامه، اساسنامه، مصوبه یا مستند معتبر"></label>
+        </div>
+        <h4>۱-۲. پیش‌خریدار</h4>
+        <div class="form-grid">
+          <label>نام و نام خانوادگی<input name="buyerName" required placeholder="نام کامل پیش‌خریدار"></label>
+          <label>نام پدر<input name="buyerFather" placeholder="نام پدر"></label>
+          <label>کد ملی<input name="buyerId" placeholder="کد ملی"></label>
+          <label>شماره شناسنامه<input name="buyerRegister" placeholder="شماره شناسنامه"></label>
+          <label>تاریخ تولد<input name="buyerBirth" placeholder="روز / ماه / سال"></label>
+          <label>شماره تماس<input name="buyerPhone" inputmode="tel" placeholder="شماره تماس"></label>
+          <label class="wide">نشانی کامل و کدپستی<input name="buyerAddress" placeholder="نشانی محل اقامتگاه قانونی"></label>
+        </div>
+        <p>از این پس در قرارداد به‌ترتیب «پیش‌فروشنده» و «پیش‌خریدار» نامیده می‌شوند. در صورت تعدد هر یک از طرفین، مشخصات تمام اشخاص در برگ پیوست درج و امضا می‌شود. مسئولیت صحت مدارک و اطلاعات ارائه‌شده بر عهده ارائه‌کننده آن است.</p>
+      </section>
+      <section class="contract-section" id="property"><h3><span>ماده ۲</span> ـ موضوع قرارداد و مشخصات ثبتی</h3>
+        <p>موضوع قرارداد عبارت است از تعهد پیش‌فروشنده به احداث و تکمیل و واگذاری واحد آپارتمانی با مشخصات زیر، به همراه حقوق و قدرالسهم قانونی مربوط، مطابق نقشه‌ها، پروانه، مشخصات فنی و پیوست‌های امضاشده:</p>
+        <div class="form-grid">
+          <label class="wide">نشانی کامل پروژه<input name="projectAddress" placeholder="استان، شهر، خیابان، پلاک و نشانی دقیق"></label>
+          <label>پلاک ثبتی اصلی<input name="mainParcel" placeholder="پلاک اصلی"></label><label>پلاک ثبتی فرعی<input name="subParcel" placeholder="پلاک فرعی"></label>
+          <label>بخش ثبتی<input name="registrySection" placeholder="بخش ثبتی"></label><label>مساحت عرصه (مترمربع)<input name="landArea" inputmode="decimal" placeholder="مساحت زمین"></label>
+          <label>شماره سند مالکیت / شناسه یکتا<input name="titleNumber" placeholder="شماره سند / شناسه"></label><label>نام مالک رسمی عرصه<input name="landOwner" placeholder="مطابق سند مالکیت"></label>
+          <label>شماره پروانه ساختمانی<input name="permitNo" placeholder="شماره پروانه"></label><label>تاریخ پروانه<input name="permitDate" placeholder="تاریخ صدور"></label>
+          <label>بلوک / برج<input name="buildingBlock" placeholder="بلوک یا برج"></label><label>شماره طبقه<input name="floorNo" placeholder="طبقه"></label>
+          <label>شماره واحد<input name="unitNo" placeholder="شماره واحد"></label><label>مساحت تقریبی واحد (مترمربع)<input name="unitArea" inputmode="decimal" placeholder="مساحت"></label>
+          <label>تعداد اتاق<input name="roomCount" placeholder="تعداد"></label><label>جهت / موقعیت واحد<input name="unitPosition" placeholder="شمالی، جنوبی و ..."></label>
+          <label>پارکینگ (شماره / وضعیت)<input name="parking" placeholder="شماره و محل یا وضعیت تخصیص"></label><label>انباری (شماره / مساحت)<input name="storage" placeholder="شماره و مساحت"></label>
+          <label>سهم از مشاعات / عرصه<input name="commonShare" placeholder="طبق اسناد و مقررات"></label><label>کاربری<input name="usage" placeholder="مسکونی / سایر"></label>
+          <label class="wide">وضعیت مالکیت و مستند اختیار پیش‌فروش<input name="ownershipStatus" placeholder="مالک رسمی، مشارکت در ساخت، وکالت یا مستند قانونی دیگر"></label>
+          <label class="wide">وضعیت بازداشت، رهن، حقوق اشخاص ثالث و محدودیت‌ها<input name="encumbrances" placeholder="شرح کامل یا تصریح به نبود پس از بررسی مدارک"></label>
+        </div>
+        <p>پیش‌فروشنده اقرار می‌کند اطلاعات فوق و اسناد ارائه‌شده صحیح است و پیش از امضا، مالکیت یا اختیار قانونی خود برای پیش‌فروش و هرگونه رهن، بازداشت، تعهد قبلی یا حق اشخاص ثالث را به‌طور کامل اعلام کرده است. این اقرار جایگزین استعلام ثبتی و بررسی مدارک نخواهد بود.</p>
+      </section>
+      <section class="contract-section"><h3><span>ماده ۳</span> ـ مشخصات فنی، نقشه‌ها و کیفیت ساخت</h3>
+        <div class="form-grid">
+          <label>سیستم سازه<input name="structure" placeholder="بتنی / فلزی / مطابق پروانه"></label><label>تعداد طبقات کل ساختمان<input name="floorsTotal" placeholder="تعداد"></label>
+          <label>نوع اسکلت و سقف<input name="roofSystem" placeholder="شرح فنی"></label><label>نمای ساختمان<input name="facade" placeholder="نوع و مصالح نما"></label>
+          <label>نوع پنجره و شیشه<input name="windows" placeholder="جنس، نوع شیشه"></label><label>گرمایش و سرمایش<input name="heatingCooling" placeholder="نوع سیستم"></label>
+          <label>آسانسور و ظرفیت<input name="elevator" placeholder="تعداد / ظرفیت"></label><label>کف‌پوش و پوشش دیوار<input name="floorWall" placeholder="نوع و کیفیت"></label>
+          <label>کابینت و تجهیزات آشپزخانه<input name="kitchen" placeholder="جنس و اقلام"></label><label>تأسیسات برقی و مکانیکی<input name="installations" placeholder="شرح"></label>
+          <label class="wide">سایر مشخصات فنی، برندها و اقلام تحویلی<textarea name="technicalDetails" rows="3" placeholder="موارد توافق‌شده را دقیق درج کنید."></textarea></label>
+        </div>
+        <p>نقشه معماری واحد، نقشه جانمایی، مشخصات فنی تفصیلی، فهرست اقلام و تجهیزات و هر نمونه یا جدول مصالح که به امضای طرفین رسیده باشد، جزء لاینفک قرارداد است. در تعارض اسناد، طرفین باید پیش از اجرا توافق کتبی روشن و قانونی تنظیم کنند؛ هیچ تغییر مؤثر در مساحت، نقشه، کیفیت، تجهیزات یا حقوق اختصاصی خریدار بدون رعایت مقررات و اخذ موافقت کتبی لازم مجاز نیست.</p>
+      </section>
+      <section class="contract-section" id="price"><h3><span>ماده ۴</span> ـ بهای قرارداد و نحوه پرداخت</h3>
+        <div class="form-grid">
+          <label>بهای کل قرارداد به عدد (ریال)<input name="priceNumber" inputmode="numeric" placeholder="مبلغ به ریال"></label>
+          <label>بهای کل قرارداد به حروف<input name="priceWords" placeholder="مبلغ به حروف"></label>
+          <label>مبنای قیمت‌گذاری<input name="priceBasis" placeholder="مبلغ مقطوع / فرمول توافق‌شده"></label>
+          <label>حساب / شبا دریافت‌کننده<input name="paymentAccount" placeholder="نام صاحب حساب و شماره شبا"></label>
+        </div>
+        <p>ثمن معامله مبلغ مندرج در این ماده است. هر پرداخت فقط در برابر رسید کتبی یا سند بانکی قابل انتساب به قرارداد منظور می‌شود. پرداخت به شخص ثالث یا حسابی غیر از حساب اعلام‌شده، بدون دستور کتبی قابل احراز پیش‌فروشنده، موجب برائت ذمه پیش‌خریدار نخواهد بود. پرداخت‌ها نباید برخلاف الزامات قانونی و ثبتی مربوط به پیش‌فروش انجام شوند.</p>
+        <div class="table-wrap"><table class="payment-table"><thead><tr><th>ردیف</th><th>مرحله / شرط پرداخت</th><th>مبلغ (ریال)</th><th>سررسید</th><th>روش / مدرک پرداخت</th><th class="no-print">حذف</th></tr></thead><tbody id="paymentRows">
+          <tr><td>۱</td><td><input name="payStage[]" placeholder="پیش‌پرداخت / مرحله ساخت"></td><td><input name="payAmount[]" inputmode="numeric" placeholder="مبلغ"></td><td><input name="payDate[]" placeholder="تاریخ"></td><td><input name="payMethod[]" placeholder="رسید / انتقال بانکی"></td><td class="no-print"><button type="button" class="remove-row" aria-label="حذف ردیف">×</button></td></tr>
+          <tr><td>۲</td><td><input name="payStage[]" placeholder="مرحله ساخت"></td><td><input name="payAmount[]" inputmode="numeric" placeholder="مبلغ"></td><td><input name="payDate[]" placeholder="تاریخ"></td><td><input name="payMethod[]" placeholder="رسید / انتقال بانکی"></td><td class="no-print"><button type="button" class="remove-row" aria-label="حذف ردیف">×</button></td></tr>
+          <tr><td>۳</td><td><input name="payStage[]" placeholder="مرحله ساخت"></td><td><input name="payAmount[]" inputmode="numeric" placeholder="مبلغ"></td><td><input name="payDate[]" placeholder="تاریخ"></td><td><input name="payMethod[]" placeholder="رسید / انتقال بانکی"></td><td class="no-print"><button type="button" class="remove-row" aria-label="حذف ردیف">×</button></td></tr>
+        </tbody></table></div>
+        <div class="payment-actions no-print"><button type="button" class="btn btn-outline" id="addPayment">افزودن ردیف پرداخت</button><span id="paymentSum">جمع ردیف‌های واردشده: ۰ ریال</span></div>
+        <label class="block-label">توافق درباره مانده ثمن، پرداخت نهایی و شروط پرداخت<textarea name="paymentTerms" rows="3" placeholder="از جمله ارتباط پرداخت با پیشرفت واقعی کار و اسناد قابل احراز"></textarea></label>
+      </section>
+      <section class="contract-section"><h3><span>ماده ۵</span> ـ مدت اجرا و برنامه پیشرفت</h3>
+        <div class="form-grid"><label>تاریخ شروع / وضعیت فعلی پروژه<input name="startDate" placeholder="تاریخ یا شرح وضعیت"></label><label>موعد تکمیل تعهدات ساختمانی<input name="completionDate" placeholder="روز / ماه / سال"></label><label>موعد آماده‌سازی برای تحویل<input name="handoverDate" placeholder="روز / ماه / سال"></label><label>مرجع / ناظر پروژه<input name="supervisor" placeholder="نام و مشخصات ناظر"></label></div>
+        <p>پیش‌فروشنده مکلف است عملیات موضوع قرارداد را مطابق پروانه، نقشه‌ها، مشخصات فنی و مقررات ایمنی و ساختمانی اجرا کند، امکان بازدید متعارف پیش‌خریدار را با هماهنگی قبلی فراهم آورد و بنا به درخواست متعارف، گزارش پیشرفت و مدارک مربوط را ارائه کند. بازدید نباید موجب اخلال در ایمنی یا کارگاه شود. برنامه مراحل و نقاط عطف ساخت در پیوست زمان‌بندی درج می‌شود.</p>
+      </section>
+      <section class="contract-section"><h3><span>ماده ۶</span> ـ تعهدات پیش‌فروشنده</h3>
+        <ol>
+          <li>ارائه مدارک هویتی، مالکیت یا اختیار قانونی پیش‌فروش، مجوزهای لازم و اطلاعات صحیح و قابل بررسی.</li>
+          <li>عدم واگذاری مجدد، پیش‌فروش معارض، ایجاد تعهد ناسازگار یا انتقال حقوق موضوع قرارداد به دیگری برخلاف حقوق پیش‌خریدار و الزامات قانونی.</li>
+          <li>احداث و تکمیل واحد و بخش‌های مشترک مربوط طبق اسناد امضاشده، ضوابط فنی، پروانه و مقررات لازم‌الاجرا.</li>
+          <li>پرداخت هزینه‌ها، عوارض، دیون و تعهداتی که طبق قانون یا این قرارداد بر عهده پیش‌فروشنده قرار گرفته است و ارائه مدارک تسویه لازم در موعد مقرر.</li>
+          <li>اعلام فوری هر مانع ثبتی، قضایی، اجرایی یا فنی که بر امکان تکمیل، تحویل یا انتقال رسمی اثر بگذارد و اقدام متعارف و قانونی برای رفع آن.</li>
+          <li>فراهم‌کردن مدارک لازم برای پایان کار، صورت‌مجلس تفکیکی و انتقال رسمی، در حدود تعهدات و مقررات قابل اعمال.</li>
+        </ol>
+      </section>
+      <section class="contract-section"><h3><span>ماده ۷</span> ـ تعهدات پیش‌خریدار</h3>
+        <ol>
+          <li>پرداخت ثمن در مبالغ و سررسیدهای معتبر مندرج در قرارداد و حفظ رسیدهای پرداخت.</li>
+          <li>ارائه مدارک هویتی و اطلاعات لازم برای تنظیم اسناد رسمی و حضور در موعدهای اعلام‌شده با اطلاع‌رسانی قابل اثبات.</li>
+          <li>خودداری از مداخله در عملیات ساختمانی یا توجيه تغییرات فنی خارج از سازوکار کتبی توافق‌شده.</li>
+          <li>پرداخت هزینه‌ها و عوارضی که صریحاً طبق قانون و این قرارداد بر عهده پیش‌خریدار قرار گرفته است؛ هیچ هزینه نامشخصی بدون مبنای قانونی یا توافق معتبر قابل مطالبه نیست.</li>
+        </ol>
+      </section>
+      <section class="contract-section"><h3><span>ماده ۸</span> ـ تغییر مساحت، نقشه و مشخصات</h3>
+        <p>ملاک نهایی مساحت و مشخصات ثبتی، اسناد رسمی و صورت‌مجلس تفکیکی معتبر و مقررات حاکم است. طرفین باید روش محاسبه هر اختلاف مساحت، نرخ هر مترمربع و سقف یا آثار تغییر را در کادر زیر روشن کنند. هیچ عبارت کلی، اختیار نامحدود برای تغییر یک‌جانبه ایجاد نمی‌کند.</p>
+        <label class="block-label">فرمول و آثار اختلاف مساحت / تغییرات مورد توافق<textarea name="areaFormula" rows="3" placeholder="فرمول دقیق، مرجع اندازه‌گیری، مهلت اعتراض و آثار مالی یا قراردادی"></textarea></label>
+        <p>هر تغییر در نقشه، محل واحد، پارکینگ، انباری، مشاعات، نوع کاربری یا کیفیت اساسی باید به‌صورت مکتوب، با تعیین آثار مالی و زمانی و با رعایت حقوق قانونی طرفین تصویب شود.</p>
+      </section>
+      <section class="contract-section"><h3><span>ماده ۹</span> ـ تحویل واحد و صورت‌جلسه</h3>
+        <p>تحویل باید در موعد مقرر و با تنظیم صورت‌جلسه کتبی انجام شود. صورت‌جلسه باید وضعیت تکمیل، کلیدها، تجهیزات، قرائت کنتورها، اقلام تحویلی، عیوب مشهود و مهلت رفع آن‌ها را مشخص کند. تحویل یا تصرف، به‌خودی‌خود اسقاط حقوق قانونی مربوط به عیوب پنهان یا تعهدات انجام‌نشده نیست.</p>
+        <label class="block-label">شرایط تکمیلی تحویل و فهرست مدارک / اقلام<textarea name="handoverTerms" rows="3" placeholder="وضعیت انشعابات، مشاعات، پایان کار، تجهیزات و موارد لازم"></textarea></label>
+      </section>
+      <section class="contract-section"><h3><span>ماده ۱۰</span> ـ انتقال رسمی و مدارک لازم</h3>
+        <div class="form-grid"><label>تاریخ / مهلت مراجعه برای انتقال رسمی<input name="deedDate" placeholder="روز / ماه / سال یا مهلت مشخص"></label><label>دفتر اسناد رسمی مورد توافق<input name="notary" placeholder="شماره دفترخانه و شهر"></label><label>مهلت ارائه مدارک تکمیلی<input name="documentsDeadline" placeholder="تاریخ / مدت"></label></div>
+        <p>طرفین متعهدند در موعد قانونی و مورد توافق، با رعایت تشریفات ثبت رسمی لازم برای پیش‌فروش و انتقال ملک، در مرجع صالح حاضر شوند و مدارک و وجوهی را که قانوناً بر عهده هر یک است فراهم کنند. انتقال رسمی نهایی حسب مورد منوط به تکمیل بنا، اخذ مجوزها و مدارک لازم، تعیین وضعیت ثبتی و انجام الزامات قانونی است. درج این تعهد در قرارداد خصوصی جایگزین ثبت رسمی الزامی یا مجوز قانونی محسوب نمی‌شود.</p>
+        <label class="block-label">مدارک و اقدامات مورد تعهد هر طرف<textarea name="deedTerms" rows="3" placeholder="مدارک مالکیت، پایان کار، تفکیکی، تسویه‌ها و سایر موارد"></textarea></label>
+      </section>
+      <section class="contract-section"><h3><span>ماده ۱۱</span> ـ هزینه‌ها، بیمه، عیوب و تضمین‌ها</h3>
+        <p>هزینه‌های قانونی تنظیم و ثبت اسناد، مالیات‌ها، عوارض، بدهی‌های پیشین، هزینه‌های مشترک و هزینه‌های اختصاصی باید طبق قانون و توافق روشن طرفین تعیین شوند. توافق قراردادی نمی‌تواند تکالیف آمره قانونی را از بین ببرد.</p>
+        <div class="form-grid"><label>هزینه‌های بر عهده پیش‌فروشنده<input name="sellerCosts" placeholder="موارد مشخص"></label><label>هزینه‌های بر عهده پیش‌خریدار<input name="buyerCosts" placeholder="موارد مشخص"></label><label>نوع و مبلغ تضمین‌ها<input name="guarantees" placeholder="ضمانت‌نامه / چک / سایر، با جزئیات"></label><label>بیمه‌های پروژه و مسئولیت<input name="insurance" placeholder="نوع بیمه، شرکت و مدت"></label></div>
+        <p>پیش‌فروشنده مسئول اجرای تعهدات ساختمانی و رفع عیوبی است که بر اساس قانون، مشخصات فنی و این قرارداد بر عهده اوست. عیوب و نواقص هنگام تحویل باید در صورت‌جلسه ثبت شود. وجود تضمین، در حدود متن و قوانین مربوط، مانع استفاده از سایر حقوق قانونی طرف زیان‌دیده نیست.</p>
+      </section>
+      <section class="contract-section"><h3><span>ماده ۱۲</span> ـ وجه التزام و خسارت تأخیر</h3>
+        <p>وجه التزام باید متناسب، روشن و قابل محاسبه باشد. طرفین مبالغ و شرایط را صریحاً تکمیل کنند؛ از درج مبلغ مبهم یا چند ضمانت اجرای متعارض خودداری شود.</p>
+        <div class="form-grid"><label>وجه التزام تأخیر در تحویل (مبلغ و مبنا)<input name="lateHandoverPenalty" placeholder="مثلاً مبلغ مشخص به ازای هر روز؛ پس از بررسی حقوقی"></label><label>وجه التزام تأخیر در انتقال رسمی<input name="lateDeedPenalty" placeholder="مبلغ / مبنا / شرایط"></label><label>وجه التزام تأخیر در پرداخت<input name="latePaymentPenalty" placeholder="مبلغ / مبنا / شرایط با رعایت قانون"></label><label>مهلت اخطار و جبران تخلف<input name="curePeriod" placeholder="مدت و روش ابلاغ"></label></div>
+        <p>وجه التزام فقط در صورت تحقق شرایط مندرج در قرارداد و با رعایت قوانین آمره قابل مطالبه است. تأخیر ناشی از مانع خارج از کنترل، قوه قاهره یا قصور طرف مقابل، حسب مورد و با احراز شرایط قانونی، بررسی می‌شود؛ طرف مدعی باید وقوع مانع و آثار آن را در مهلت متعارف مستند و به طرف دیگر اطلاع دهد.</p>
+      </section>
+      <section class="contract-section"><h3><span>ماده ۱۳</span> ـ فسخ، انحلال و آثار آن</h3>
+        <p>حق فسخ فقط در موارد قانونی یا مواردی که به‌طور معتبر و روشن در قرارداد پیش‌بینی شده باشد اعمال می‌شود. پیش از اعمال حق فسخ قراردادی، جز در مواردی که قانون یا قرارداد ترتیب دیگری مقرر کرده، طرف زیان‌دیده باید تخلف را با ذکر موضوع، مستندات و مهلت جبران به نشانی یا روش ابلاغ مورد توافق اعلام کند.</p>
+        <label class="block-label">موارد و تشریفات قراردادی فسخ، مهلت رفع تخلف و شیوه تسویه<textarea name="terminationTerms" rows="4" placeholder="موارد دقیق و قانونی، روش ابلاغ، استرداد وجوه، تحویل اسناد و محاسبه خسارات"></textarea></label>
+        <p>در صورت فسخ یا انحلال معتبر، طرفین مکلف‌اند آثار مالی و اسنادی آن را مطابق قانون و توافق معتبر تعیین کنند؛ از جمله استرداد وجوه قابل استرداد، تعیین تکلیف تضمین‌ها و جبران خسارات قابل مطالبه. هیچ‌یک از طرفین حق ندارد بدون مبنای قانونی، وجوه یا اسناد متعلق به دیگری را تملک یا از استرداد آن خودداری کند.</p>
+      </section>
+      <section class="contract-section"><h3><span>ماده ۱۴</span> ـ انتقال حقوق، فوت و قائم‌مقامی</h3>
+        <p>واگذاری حقوق و تعهدات ناشی از این قرارداد به شخص ثالث، تابع قوانین و تشریفات ثبتی و قراردادی قابل اعمال است و در موارد لازم به رضایت کتبی طرف دیگر و ثبت رسمی نیاز دارد. فوت، حجر، انحلال شخص حقوقی یا تغییر نماینده، تابع مقررات قانونی و حقوق قائم‌مقامان خواهد بود و به‌تنهایی مجوز نادیده‌گرفتن تعهدات معتبر نیست.</p>
+      </section>
+      <section class="contract-section"><h3><span>ماده ۱۵</span> ـ ابلاغ‌ها، اختلافات و قوه قاهره</h3>
+        <p>نشانی‌های درج‌شده در ماده ۱، نشانی ابلاغ طرفین است. تغییر نشانی یا شماره تماس باید به روش قابل اثبات به طرف دیگر اعلام شود. پیام یا مکاتبه الکترونیکی در حدود قوانین و با امکان احراز انتساب و وصول، می‌تواند دلیل ارتباط باشد؛ تشریفات رسمی ابلاغ که قانون مقرر کرده، به قوت خود باقی است.</p>
+        <label class="block-label">سازوکار مورد توافق برای مذاکره و حل اختلاف<textarea name="disputeTerms" rows="3" placeholder="مذاکره، میانجی‌گری یا مرجع صالح قانونی؛ از تعیین مرجع غیرمجاز خودداری شود."></textarea></label>
+        <p>در صورت بروز حادثه خارج از کنترل متعارف طرف متعهد که شرایط قانونی قوه قاهره را داشته باشد، آثار آن با توجه به میزان تأثیر، تکلیف اطلاع‌رسانی و اقدام برای کاهش زیان و قوانین حاکم تعیین می‌شود. دشواری معمول یا افزایش هزینه به‌تنهایی لزوماً قوه قاهره نیست.</p>
+      </section>
+      <section class="contract-section"><h3><span>ماده ۱۶</span> ـ اسناد پیوست، تمامیت قرارداد و اصلاحات</h3>
+        <p>اسناد زیر در صورت تکمیل، امضا و اتصال به قرارداد، جزء لاینفک آن هستند. هر اصلاح، الحاق یا توافق بعدی باید کتبی، دارای تاریخ و امضای اشخاص ذی‌ربط باشد و در موارد لازم به تشریفات رسمی قانونی پایبند بماند. حذف یا بی‌اعتباری یک شرط، در حدود قانون، موجب بی‌اعتباری خودکار سایر شروط مستقل نخواهد بود.</p>
+        <div class="checklist">
+          <label><input type="checkbox" name="annex[]" value="مدارک هویتی طرفین"> تصویر مدارک هویتی طرفین</label>
+          <label><input type="checkbox" name="annex[]" value="سند مالکیت و استعلام‌ها"> سند مالکیت و استعلام‌های مربوط</label>
+          <label><input type="checkbox" name="annex[]" value="پروانه و مجوزها"> پروانه ساختمانی و مجوزهای لازم</label>
+          <label><input type="checkbox" name="annex[]" value="نقشه و مشخصات فنی"> نقشه‌ها و مشخصات فنی امضاشده</label>
+          <label><input type="checkbox" name="annex[]" value="جدول پرداخت‌ها"> جدول زمان‌بندی و پرداخت‌ها</label>
+          <label><input type="checkbox" name="annex[]" value="زمان‌بندی ساخت"> برنامه مراحل ساخت و تحویل</label>
+          <label><input type="checkbox" name="annex[]" value="تضمین‌ها و بیمه"> مدارک تضمین و بیمه</label>
+          <label><input type="checkbox" name="annex[]" value="سایر پیوست‌ها"> سایر پیوست‌های امضاشده</label>
+        </div>
+        <label class="block-label">شرح پیوست‌های دیگر و تعداد برگ‌های هر پیوست<textarea name="otherAnnexes" rows="2" placeholder="عنوان، تعداد صفحات و شماره پیوست"></textarea></label>
+      </section>
+      <section class="contract-section"><h3><span>ماده ۱۷</span> ـ نسخه‌ها، مطالعه و امضا</h3>
+        <p>طرفین اعلام می‌کنند پیش از امضا فرصت مطالعه تمام مواد و پیوست‌ها را داشته‌اند، اطلاعات و توافقات مندرج را بررسی کرده‌اند و نسخه نهایی را با آگاهی از ضرورت رعایت تشریفات رسمی و قانونی مربوط امضا می‌کنند. هیچ جای خالی مؤثر نباید بدون خط‌زدن یا تکمیل آگاهانه باقی بماند. تعداد صفحات و پیوست‌ها باید پیش از امضا مشخص شود.</p>
+        <div class="form-grid"><label>تعداد صفحات متن<input name="pageCount" placeholder="عدد"></label><label>تعداد صفحات پیوست<input name="annexPageCount" placeholder="عدد"></label><label>تعداد نسخه‌های امضاشده<input name="copyCount" placeholder="عدد"></label><label>محل امضا<input name="signaturePlace" placeholder="شهر / محل"></label></div>
+      </section>
+      <section class="signature-area" id="signatures"><h3>امضا، اثر انگشت و گواهی شهود (در صورت حضور)</h3>
+        <div class="signature-grid">
+          <div class="signature-box"><h4>پیش‌فروشنده</h4><p>نام: <input name="sellerSignatureName" placeholder="نام و نام خانوادگی"></p><div class="sign-space">محل امضا</div><div class="finger-space">محل اثر انگشت</div></div>
+          <div class="signature-box"><h4>پیش‌خریدار</h4><p>نام: <input name="buyerSignatureName" placeholder="نام و نام خانوادگی"></p><div class="sign-space">محل امضا</div><div class="finger-space">محل اثر انگشت</div></div>
+        </div>
+        <div class="signature-grid witnesses">
+          <div class="signature-box"><h4>شاهد اول (اختیاری)</h4><p>نام و کد ملی: <input name="witnessOne" placeholder="مشخصات شاهد"></p><div class="sign-space">امضا</div></div>
+          <div class="signature-box"><h4>شاهد دوم (اختیاری)</h4><p>نام و کد ملی: <input name="witnessTwo" placeholder="مشخصات شاهد"></p><div class="sign-space">امضا</div></div>
+        </div>
+      </section>
+      <footer class="document-footer"><span>تنظیم‌کننده فرم: گروه تعاون ملک ایرانیان</span><span>تمام صفحات و پیوست‌ها باید پیش از امضا بررسی و پاراف شوند.</span></footer>
+    </article>
+  </div>
+  <section class="bottom-actions no-print"><div><strong>آماده‌سازی نسخه نهایی</strong><p>پیش از چاپ، همه اطلاعات، مبالغ، تاریخ‌ها و پیوست‌ها را بررسی کنید.</p></div><button type="button" class="btn btn-gold" id="printBottom">چاپ قرارداد / ذخیره PDF</button></section>
+  <dialog id="guideDialog"><div class="dialog-head"><h2>راهنمای تکمیل مبایعه‌نامه</h2><button type="button" id="closeGuide" class="close-btn" aria-label="بستن">×</button></div><ol><li>هویت طرفین را با اصل مدارک تطبیق دهید؛ اگر شرکت یا نماینده طرف قرارداد است، اختیار امضا را بررسی کنید.</li><li>مالکیت عرصه، پلاک ثبتی، رهن، بازداشت، پیش‌فروش قبلی و مجوزهای پروژه را از مراجع مربوط استعلام کنید.</li><li>نقشه، شماره واحد، پارکینگ، انباری، مساحت، سهم مشاعات و مشخصات فنی را دقیقاً در قرارداد و پیوست‌ها یکسان درج کنید.</li><li>ثمن را به عدد و حروف بنویسید؛ سررسید هر قسط، شرط پرداخت و مدرک دریافت وجه را روشن کنید.</li><li>مبلغ و مبنای وجه التزام، موعد تحویل، رفع عیب، مراجعه برای سند و آثار تخلف را بدون ابهام تکمیل کنید.</li><li>برای پیش‌فروش، الزامات قانون پیش‌فروش ساختمان و مقررات ثبت رسمی معاملات اموال غیرمنقول را بررسی کنید و پیش از استفاده واقعی از وکیل یا دفتر اسناد رسمی راهنمایی بگیرید.</li></ol><p class="guide-warning">این قالب ابزار آماده‌سازی پیش‌نویس است و تضمین نمی‌کند معامله با هر وضعیت ثبتی یا حقوقی سازگار باشد. چاپ آن جایگزین ثبت رسمی الزامی نیست.</p><button type="button" class="btn btn-gold" id="guidePrint">بازگشت به قرارداد و چاپ</button></dialog>
+</main>
+<script src="assets/js/app.js"></script>
+</body></html
+  <div class="notice no-print"><strong>پیش از امضا:</strong> پیش‌فروش ساختمان تابع الزامات قانونی و ثبتی ویژه است. این فرم به‌تنهایی جایگزین تنظیم و ثبت رسمی لازم نیست. مشخصات ثبتی، اختیار فروشنده، مجوزها، نقشه‌ها و امکان ثبت معامله باید پیش از امضا بررسی شود.</div>
+  <div class="workspace">
+    <aside class="side-panel no-print">
+      <h2>بخش‌های قرارداد</h2>
+      <a href="#parties">۱. طرفین قرارداد</a><a href="#property">۲. مشخصات ملک و واحد</a><a href="#price">۳. ثمن و پرداخت‌ها</a><a href="#terms">۴. مواد و تعهدات</a><a href="#annexes">۵. پیوست‌ها</a><a href="#signatures">۶. امضا و اثر انگشت</a>
+      <div class="side-note"><strong>راهنمای استفاده</strong><p>فیلدهای خالی را تکمیل کنید. موارد نامرتبط را حذف یا با توافق طرفین اصلاح کنید. تمام صفحات و پیوست‌ها باید شماره‌گذاری و به امضای طرفین برسند.</p></div>
+      <button type="button" class="btn btn-outline btn-full" id="clearForm">پاک‌کردن اطلاعات واردشده</button>
+    </aside>
+    <article class="contract" id="contractDocument">
+      <div class="document-heading">
+        <div class="document-brandline">
+          <img class="document-logo" src="assets/images/logo.png" alt="لوگوی گروه تعاون ملک ایرانیان">
+          <div class="document-titlegroup">
+            <div class="document-kicker">گروه تعاون ملک ایرانیان</div>
+            <h2>مبایعه‌نامه و قرارداد پیش‌فروش آپارتمان</h2>
+            <p>فرم تنظیم توافقات و تعهدات پیش‌فروشنده و پیش‌خریدار</p>
+          </div>
+          <div class="document-mark">نسخه<br>تکمیلی</div>
+        </div>
+        <div class="doc-meta"><span>شماره قرارداد: <input name="docNo" placeholder="................"></span><span>تاریخ تنظیم: <input name="docDate" data-date placeholder="................"></span><span>محل تنظیم: <input name="docPlace" placeholder="شهر / محل تنظیم"></span></div>
+      </div>
+      <p class="preamble">این قرارداد با قصد و رضای طرفین و با رعایت شرایط قانونی، پس از مطالعه تمام مواد و پیوست‌ها، میان اشخاص زیر منعقد می‌شود. طرفین متعهدند اطلاعات را صحیح و کامل درج کنند و هرگونه توافق مؤثر بر موضوع، ثمن، زمان‌بندی یا ضمانت اجرا را به‌صورت مکتوب و امضاشده ضمیمه نمایند.</p>
+      <section class="contract-section" id="parties"><h3><span>ماده ۱</span> ـ مشخصات طرفین قرارداد</h3>
+        <h4>۱-۱. پیش‌فروشنده</h4>
+        <div class="form-grid">
+          <label>نام و نام خانوادگی / نام شخص حقوقی<input name="sellerName" required placeholder="نام کامل پیش‌فروشنده"></label>
+          <label>نام پدر / نماینده مجاز<input name="sellerFather" placeholder="نام پدر یا نام نماینده"></label>
+          <label>کد ملی / شناسه ملی<input name="sellerId" placeholder="شناسه هویتی"></label>
+          <label>شماره شناسنامه / ثبت<input name="sellerRegister" placeholder="شماره"></label>
+          <label>تاریخ تولد / تأسیس<input name="sellerBirth" placeholder="روز / ماه / سال"></label>
+          <label>شماره تماس<input name="sellerPhone" inputmode="tel" placeholder="شماره تماس"></label>
+          <label class="wide">نشانی کامل و کدپستی<input name="sellerAddress" placeholder="نشانی محل اقامتگاه قانونی"></label>
+          <label class="wide">سمت و مستند اختیار (در صورت نمایندگی)<input name="sellerAuthority" placeholder="وکالت‌نامه، اساسنامه، مصوبه یا مستند معتبر"></label>
+        </div>
+        <h4>۱-۲. پیش‌خریدار</h4>
+        <div class="form-grid">
+          <label>نام و نام خانوادگی<input name="buyerName" required placeholder="نام کامل پیش‌خریدار"></label>
+          <label>نام پدر<input name="buyerFather" placeholder="نام پدر"></label>
+          <label>کد ملی<input name="buyerId" placeholder="کد ملی"></label>
+          <label>شماره شناسنامه<input name="buyerRegister" placeholder="شماره شناسنامه"></label>
+          <label>تاریخ تولد<input name="buyerBirth" placeholder="روز / ماه / سال"></label>
+          <label>شماره تماس<input name="buyerPhone" inputmode="tel" placeholder="شماره تماس"></label>
+          <label class="wide">نشانی کامل و کدپستی<input name="buyerAddress" placeholder="نشانی محل اقامتگاه قانونی"></label>
+        </div>
+        <p>از این پس در قرارداد به‌ترتیب «پیش‌فروشنده» و «پیش‌خریدار» نامیده می‌شوند. در صورت تعدد هر یک از طرفین، مشخصات تمام اشخاص در برگ پیوست درج و امضا می‌شود. مسئولیت صحت مدارک و اطلاعات ارائه‌شده بر عهده ارائه‌کننده آن است.</p>
+      </section>
+      <section class="contract-section" id="property"><h3><span>ماده ۲</span> ـ موضوع قرارداد و مشخصات ثبتی</h3>
+        <p>موضوع قرارداد عبارت است از تعهد پیش‌فروشنده به احداث و تکمیل و واگذاری واحد آپارتمانی با مشخصات زیر، به همراه حقوق و قدرالسهم قانونی مربوط، مطابق نقشه‌ها، پروانه، مشخصات فنی و پیوست‌های امضاشده:</p>
+        <div class="form-grid">
+          <label class="wide">نشانی کامل پروژه<input name="projectAddress" placeholder="استان، شهر، خیابان، پلاک و نشانی دقیق"></label>
+          <label>پلاک ثبتی اصلی<input name="mainParcel" placeholder="پلاک اصلی"></label><label>پلاک ثبتی فرعی<input name="subParcel" placeholder="پلاک فرعی"></label>
+          <label>بخش ثبتی<input name="registrySection" placeholder="بخش ثبتی"></label><label>مساحت عرصه (مترمربع)<input name="landArea" inputmode="decimal" placeholder="مساحت زمین"></label>
+          <label>شماره سند مالکیت / شناسه یکتا<input name="titleNumber" placeholder="شماره سند / شناسه"></label><label>نام مالک رسمی عرصه<input name="landOwner" placeholder="مطابق سند مالکیت"></label>
+          <label>شماره پروانه ساختمانی<input name="permitNo" placeholder="شماره پروانه"></label><label>تاریخ پروانه<input name="permitDate" placeholder="تاریخ صدور"></label>
+          <label>بلوک / برج<input name="buildingBlock" placeholder="بلوک یا برج"></label><label>شماره طبقه<input name="floorNo" placeholder="طبقه"></label>
+          <label>شماره واحد<input name="unitNo" placeholder="شماره واحد"></label><label>مساحت تقریبی واحد (مترمربع)<input name="unitArea" inputmode="decimal" placeholder="مساحت"></label>
+          <label>تعداد اتاق<input name="roomCount" placeholder="تعداد"></label><label>جهت / موقعیت واحد<input name="unitPosition" placeholder="شمالی، جنوبی و ..."></label>
+          <label>پارکینگ (شماره / وضعیت)<input name="parking" placeholder="شماره و محل یا وضعیت تخصیص"></label><label>انباری (شماره / مساحت)<input name="storage" placeholder="شماره و مساحت"></label>
+          <label>سهم از مشاعات / عرصه<input name="commonShare" placeholder="طبق اسناد و مقررات"></label><label>کاربری<input name="usage" placeholder="مسکونی / سایر"></label>
+          <label class="wide">وضعیت مالکیت و مستند اختیار پیش‌فروش<input name="ownershipStatus" placeholder="مالک رسمی، مشارکت در ساخت، وکالت یا مستند قانونی دیگر"></label>
+          <label class="wide">وضعیت بازداشت، رهن، حقوق اشخاص ثالث و محدودیت‌ها<input name="encumbrances" placeholder="شرح کامل یا تصریح به نبود پس از بررسی مدارک"></label>
+        </div>
+        <p>پیش‌فروشنده اقرار می‌کند اطلاعات فوق و اسناد ارائه‌شده صحیح است و پیش از امضا، مالکیت یا اختیار قانونی خود برای پیش‌فروش و هرگونه رهن، بازداشت، تعهد قبلی یا حق اشخاص ثالث را به‌طور کامل اعلام کرده است. این اقرار جایگزین استعلام ثبتی و بررسی مدارک نخواهد بود.</p>
+      </section>
+      <section class="contract-section"><h3><span>ماده ۳</span> ـ مشخصات فنی، نقشه‌ها و کیفیت ساخت</h3>
+        <div class="form-grid">
+          <label>سیستم سازه<input name="structure" placeholder="بتنی / فلزی / مطابق پروانه"></label><label>تعداد طبقات کل ساختمان<input name="floorsTotal" placeholder="تعداد"></label>
+          <label>نوع اسکلت و سقف<input name="roofSystem" placeholder="شرح فنی"></label><label>نمای ساختمان<input name="facade" placeholder="نوع و مصالح نما"></label>
+          <label>نوع پنجره و شیشه<input name="windows" placeholder="جنس، نوع شیشه"></label><label>گرمایش و سرمایش<input name="heatingCooling" placeholder="نوع سیستم"></label>
+          <label>آسانسور و ظرفیت<input name="elevator" placeholder="تعداد / ظرفیت"></label><label>کف‌پوش و پوشش دیوار<input name="floorWall" placeholder="نوع و کیفیت"></label>
+          <label>کابینت و تجهیزات آشپزخانه<input name="kitchen" placeholder="جنس و اقلام"></label><label>تأسیسات برقی و مکانیکی<input name="installations" placeholder="شرح"></label>
+          <label class="wide">سایر مشخصات فنی، برندها و اقلام تحویلی<textarea name="technicalDetails" rows="3" placeholder="موارد توافق‌شده را دقیق درج کنید."></textarea></label>
+        </div>
+        <p>نقشه معماری واحد، نقشه جانمایی، مشخصات فنی تفصیلی، فهرست اقلام و تجهیزات و هر نمونه یا جدول مصالح که به امضای طرفین رسیده باشد، جزء لاینفک قرارداد است. در تعارض اسناد، طرفین باید پیش از اجرا توافق کتبی روشن و قانونی تنظیم کنند؛ هیچ تغییر مؤثر در مساحت، نقشه، کیفیت، تجهیزات یا حقوق اختصاصی خریدار بدون رعایت مقررات و اخذ موافقت کتبی لازم مجاز نیست.</p>
+      </section>
+      <section class="contract-section" id="price"><h3><span>ماده ۴</span> ـ بهای قرارداد و نحوه پرداخت</h3>
+        <div class="form-grid">
+          <label>بهای کل قرارداد به عدد (ریال)<input name="priceNumber" inputmode="numeric" placeholder="مبلغ به ریال"></label>
+          <label>بهای کل قرارداد به حروف<input name="priceWords" placeholder="مبلغ به حروف"></label>
+          <label>مبنای قیمت‌گذاری<input name="priceBasis" placeholder="مبلغ مقطوع / فرمول توافق‌شده"></label>
+          <label>حساب / شبا دریافت‌کننده<input name="paymentAccount" placeholder="نام صاحب حساب و شماره شبا"></label>
+        </div>
+        <p>ثمن معامله مبلغ مندرج در این ماده است. هر پرداخت فقط در برابر رسید کتبی یا سند بانکی قابل انتساب به قرارداد منظور می‌شود. پرداخت به شخص ثالث یا حسابی غیر از حساب اعلام‌شده، بدون دستور کتبی قابل احراز پیش‌فروشنده، موجب برائت ذمه پیش‌خریدار نخواهد بود. پرداخت‌ها نباید برخلاف الزامات قانونی و ثبتی مربوط به پیش‌فروش انجام شوند.</p>
+        <div class="table-wrap"><table class="payment-table"><thead><tr><th>ردیف</th><th>مرحله / شرط پرداخت</th><th>مبلغ (ریال)</th><th>سررسید</th><th>روش / مدرک پرداخت</th><th class="no-print">حذف</th></tr></thead><tbody id="paymentRows">
+          <tr><td>۱</td><td><input name="payStage[]" placeholder="پیش‌پرداخت / مرحله ساخت"></td><td><input name="payAmount[]" inputmode="numeric" placeholder="مبلغ"></td><td><input name="payDate[]" placeholder="تاریخ"></td><td><input name="payMethod[]" placeholder="رسید / انتقال بانکی"></td><td class="no-print"><button type="button" class="remove-row" aria-label="حذف ردیف">×</button></td></tr>
+          <tr><td>۲</td><td><input name="payStage[]" placeholder="مرحله ساخت"></td><td><input name="payAmount[]" inputmode="numeric" placeholder="مبلغ"></td><td><input name="payDate[]" placeholder="تاریخ"></td><td><input name="payMethod[]" placeholder="رسید / انتقال بانکی"></td><td class="no-print"><button type="button" class="remove-row" aria-label="حذف ردیف">×</button></td></tr>
+          <tr><td>۳</td><td><input name="payStage[]" placeholder="مرحله ساخت"></td><td><input name="payAmount[]" inputmode="numeric" placeholder="مبلغ"></td><td><input name="payDate[]" placeholder="تاریخ"></td><td><input name="payMethod[]" placeholder="رسید / انتقال بانکی"></td><td class="no-print"><button type="button" class="remove-row" aria-label="حذف ردیف">×</button></td></tr>
+        </tbody></table></div>
+        <div class="payment-actions no-print"><button type="button" class="btn btn-outline" id="addPayment">افزودن ردیف پرداخت</button><span id="paymentSum">جمع ردیف‌های واردشده: ۰ ریال</span></div>
+        <label class="block-label">توافق درباره مانده ثمن، پرداخت نهایی و شروط پرداخت<textarea name="paymentTerms" rows="3" placeholder="از جمله ارتباط پرداخت با پیشرفت واقعی کار و اسناد قابل احراز"></textarea></label>
+      </section>
+      <section class="contract-section"><h3><span>ماده ۵</span> ـ مدت اجرا و برنامه پیشرفت</h3>
+        <div class="form-grid"><label>تاریخ شروع / وضعیت فعلی پروژه<input name="startDate" placeholder="تاریخ یا شرح وضعیت"></label><label>موعد تکمیل تعهدات ساختمانی<input name="completionDate" placeholder="روز / ماه / سال"></label><label>موعد آماده‌سازی برای تحویل<input name="handoverDate" placeholder="روز / ماه / سال"></label><label>مرجع / ناظر پروژه<input name="supervisor" placeholder="نام و مشخصات ناظر"></label></div>
+        <p>پیش‌فروشنده مکلف است عملیات موضوع قرارداد را مطابق پروانه، نقشه‌ها، مشخصات فنی و مقررات ایمنی و ساختمانی اجرا کند، امکان بازدید متعارف پیش‌خریدار را با هماهنگی قبلی فراهم آورد و بنا به درخواست متعارف، گزارش پیشرفت و مدارک مربوط را ارائه کند. بازدید نباید موجب اخلال در ایمنی یا کارگاه شود. برنامه مراحل و نقاط عطف ساخت در پیوست زمان‌بندی درج می‌شود.</p>
+      </section>
+      <section class="contract-section"><h3><span>ماده ۶</span> ـ تعهدات پیش‌فروشنده</h3>
+        <ol>
+          <li>ارائه مدارک هویتی، مالکیت یا اختیار قانونی پیش‌فروش، مجوزهای لازم و اطلاعات صحیح و قابل بررسی.</li>
+          <li>عدم واگذاری مجدد، پیش‌فروش معارض، ایجاد تعهد ناسازگار یا انتقال حقوق موضوع قرارداد به دیگری برخلاف حقوق پیش‌خریدار و الزامات قانونی.</li>
+          <li>احداث و تکمیل واحد و بخش‌های مشترک مربوط طبق اسناد امضاشده، ضوابط فنی، پروانه و مقررات لازم‌الاجرا.</li>
+          <li>پرداخت هزینه‌ها، عوارض، دیون و تعهداتی که طبق قانون یا این قرارداد بر عهده پیش‌فروشنده قرار گرفته است و ارائه مدارک تسویه لازم در موعد مقرر.</li>
+          <li>اعلام فوری هر مانع ثبتی، قضایی، اجرایی یا فنی که بر امکان تکمیل، تحویل یا انتقال رسمی اثر بگذارد و اقدام متعارف و قانونی برای رفع آن.</li>
+          <li>فراهم‌کردن مدارک لازم برای پایان کار، صورت‌مجلس تفکیکی و انتقال رسمی، در حدود تعهدات و مقررات قابل اعمال.</li>
+        </ol>
+      </section>
+      <section class="contract-section"><h3><span>ماده ۷</span> ـ تعهدات پیش‌خریدار</h3>
+        <ol>
+          <li>پرداخت ثمن در مبالغ و سررسیدهای معتبر مندرج در قرارداد و حفظ رسیدهای پرداخت.</li>
+          <li>ارائه مدارک هویتی و اطلاعات لازم برای تنظیم اسناد رسمی و حضور در موعدهای اعلام‌شده با اطلاع‌رسانی قابل اثبات.</li>
+          <li>خودداری از مداخله در عملیات ساختمانی یا توجيه تغییرات فنی خارج از سازوکار کتبی توافق‌شده.</li>
+          <li>پرداخت هزینه‌ها و عوارضی که صریحاً طبق قانون و این قرارداد بر عهده پیش‌خریدار قرار گرفته است؛ هیچ هزینه نامشخصی بدون مبنای قانونی یا توافق معتبر قابل مطالبه نیست.</li>
+        </ol>
+      </section>
+      <section class="contract-section"><h3><span>ماده ۸</span> ـ تغییر مساحت، نقشه و مشخصات</h3>
+        <p>ملاک نهایی مساحت و مشخصات ثبتی، اسناد رسمی و صورت‌مجلس تفکیکی معتبر و مقررات حاکم است. طرفین باید روش محاسبه هر اختلاف مساحت، نرخ هر مترمربع و سقف یا آثار تغییر را در کادر زیر روشن کنند. هیچ عبارت کلی، اختیار نامحدود برای تغییر یک‌جانبه ایجاد نمی‌کند.</p>
+        <label class="block-label">فرمول و آثار اختلاف مساحت / تغییرات مورد توافق<textarea name="areaFormula" rows="3" placeholder="فرمول دقیق، مرجع اندازه‌گیری، مهلت اعتراض و آثار مالی یا قراردادی"></textarea></label>
+        <p>هر تغییر در نقشه، محل واحد، پارکینگ، انباری، مشاعات، نوع کاربری یا کیفیت اساسی باید به‌صورت مکتوب، با تعیین آثار مالی و زمانی و با رعایت حقوق قانونی طرفین تصویب شود.</p>
+      </section>
+      <section class="contract-section"><h3><span>ماده ۹</span> ـ تحویل واحد و صورت‌جلسه</h3>
+        <p>تحویل باید در موعد مقرر و با تنظیم صورت‌جلسه کتبی انجام شود. صورت‌جلسه باید وضعیت تکمیل، کلیدها، تجهیزات، قرائت کنتورها، اقلام تحویلی، عیوب مشهود و مهلت رفع آن‌ها را مشخص کند. تحویل یا تصرف، به‌خودی‌خود اسقاط حقوق قانونی مربوط به عیوب پنهان یا تعهدات انجام‌نشده نیست.</p>
+        <label class="block-label">شرایط تکمیلی تحویل و فهرست مدارک / اقلام<textarea name="handoverTerms" rows="3" placeholder="وضعیت انشعابات، مشاعات، پایان کار، تجهیزات و موارد لازم"></textarea></label>
+      </section>
+      <section class="contract-section"><h3><span>ماده ۱۰</span> ـ انتقال رسمی و مدارک لازم</h3>
+        <div class="form-grid"><label>تاریخ / مهلت مراجعه برای انتقال رسمی<input name="deedDate" placeholder="روز / ماه / سال یا مهلت مشخص"></label><label>دفتر اسناد رسمی مورد توافق<input name="notary" placeholder="شماره دفترخانه و شهر"></label><label>مهلت ارائه مدارک تکمیلی<input name="documentsDeadline" placeholder="تاریخ / مدت"></label></div>
+        <p>طرفین متعهدند در موعد قانونی و مورد توافق، با رعایت تشریفات ثبت رسمی لازم برای پیش‌فروش و انتقال ملک، در مرجع صالح حاضر شوند و مدارک و وجوهی را که قانوناً بر عهده هر یک است فراهم کنند. انتقال رسمی نهایی حسب مورد منوط به تکمیل بنا، اخذ مجوزها و مدارک لازم، تعیین وضعیت ثبتی و انجام الزامات قانونی است. درج این تعهد در قرارداد خصوصی جایگزین ثبت رسمی الزامی یا مجوز قانونی محسوب نمی‌شود.</p>
+        <label class="block-label">مدارک و اقدامات مورد تعهد هر طرف<textarea name="deedTerms" rows="3" placeholder="مدارک مالکیت، پایان کار، تفکیکی، تسویه‌ها و سایر موارد"></textarea></label>
+      </section>
+      <section class="contract-section"><h3><span>ماده ۱۱</span> ـ هزینه‌ها، بیمه، عیوب و تضمین‌ها</h3>
+        <p>هزینه‌های قانونی تنظیم و ثبت اسناد، مالیات‌ها، عوارض، بدهی‌های پیشین، هزینه‌های مشترک و هزینه‌های اختصاصی باید طبق قانون و توافق روشن طرفین تعیین شوند. توافق قراردادی نمی‌تواند تکالیف آمره قانونی را از بین ببرد.</p>
+        <div class="form-grid"><label>هزینه‌های بر عهده پیش‌فروشنده<input name="sellerCosts" placeholder="موارد مشخص"></label><label>هزینه‌های بر عهده پیش‌خریدار<input name="buyerCosts" placeholder="موارد مشخص"></label><label>نوع و مبلغ تضمین‌ها<input name="guarantees" placeholder="ضمانت‌نامه / چک / سایر، با جزئیات"></label><label>بیمه‌های پروژه و مسئولیت<input name="insurance" placeholder="نوع بیمه، شرکت و مدت"></label></div>
+        <p>پیش‌فروشنده مسئول اجرای تعهدات ساختمانی و رفع عیوبی است که بر اساس قانون، مشخصات فنی و این قرارداد بر عهده اوست. عیوب و نواقص هنگام تحویل باید در صورت‌جلسه ثبت شود. وجود تضمین، در حدود متن و قوانین مربوط، مانع استفاده از سایر حقوق قانونی طرف زیان‌دیده نیست.</p>
+      </section>
+      <section class="contract-section"><h3><span>ماده ۱۲</span> ـ وجه التزام و خسارت تأخیر</h3>
+        <p>وجه التزام باید متناسب، روشن و قابل محاسبه باشد. طرفین مبالغ و شرایط را صریحاً تکمیل کنند؛ از درج مبلغ مبهم یا چند ضمانت اجرای متعارض خودداری شود.</p>
+        <div class="form-grid"><label>وجه التزام تأخیر در تحویل (مبلغ و مبنا)<input name="lateHandoverPenalty" placeholder="مثلاً مبلغ مشخص به ازای هر روز؛ پس از بررسی حقوقی"></label><label>وجه التزام تأخیر در انتقال رسمی<input name="lateDeedPenalty" placeholder="مبلغ / مبنا / شرایط"></label><label>وجه التزام تأخیر در پرداخت<input name="latePaymentPenalty" placeholder="مبلغ / مبنا / شرایط با رعایت قانون"></label><label>مهلت اخطار و جبران تخلف<input name="curePeriod" placeholder="مدت و روش ابلاغ"></label></div>
+        <p>وجه التزام فقط در صورت تحقق شرایط مندرج در قرارداد و با رعایت قوانین آمره قابل مطالبه است. تأخیر ناشی از مانع خارج از کنترل، قوه قاهره یا قصور طرف مقابل، حسب مورد و با احراز شرایط قانونی، بررسی می‌شود؛ طرف مدعی باید وقوع مانع و آثار آن را در مهلت متعارف مستند و به طرف دیگر اطلاع دهد.</p>
+      </section>
+      <section class="contract-section"><h3><span>ماده ۱۳</span> ـ فسخ، انحلال و آثار آن</h3>
+        <p>حق فسخ فقط در موارد قانونی یا مواردی که به‌طور معتبر و روشن در قرارداد پیش‌بینی شده باشد اعمال می‌شود. پیش از اعمال حق فسخ قراردادی، جز در مواردی که قانون یا قرارداد ترتیب دیگری مقرر کرده، طرف زیان‌دیده باید تخلف را با ذکر موضوع، مستندات و مهلت جبران به نشانی یا روش ابلاغ مورد توافق اعلام کند.</p>
+        <label class="block-label">موارد و تشریفات قراردادی فسخ، مهلت رفع تخلف و شیوه تسویه<textarea name="terminationTerms" rows="4" placeholder="موارد دقیق و قانونی، روش ابلاغ، استرداد وجوه، تحویل اسناد و محاسبه خسارات"></textarea></label>
+        <p>در صورت فسخ یا انحلال معتبر، طرفین مکلف‌اند آثار مالی و اسنادی آن را مطابق قانون و توافق معتبر تعیین کنند؛ از جمله استرداد وجوه قابل استرداد، تعیین تکلیف تضمین‌ها و جبران خسارات قابل مطالبه. هیچ‌یک از طرفین حق ندارد بدون مبنای قانونی، وجوه یا اسناد متعلق به دیگری را تملک یا از استرداد آن خودداری کند.</p>
+      </section>
+      <section class="contract-section"><h3><span>ماده ۱۴</span> ـ انتقال حقوق، فوت و قائم‌مقامی</h3>
+        <p>واگذاری حقوق و تعهدات ناشی از این قرارداد به شخص ثالث، تابع قوانین و تشریفات ثبتی و قراردادی قابل اعمال است و در موارد لازم به رضایت کتبی طرف دیگر و ثبت رسمی نیاز دارد. فوت، حجر، انحلال شخص حقوقی یا تغییر نماینده، تابع مقررات قانونی و حقوق قائم‌مقامان خواهد بود و به‌تنهایی مجوز نادیده‌گرفتن تعهدات معتبر نیست.</p>
+      </section>
+      <section class="contract-section"><h3><span>ماده ۱۵</span> ـ ابلاغ‌ها، اختلافات و قوه قاهره</h3>
+        <p>نشانی‌های درج‌شده در ماده ۱، نشانی ابلاغ طرفین است. تغییر نشانی یا شماره تماس باید به روش قابل اثبات به طرف دیگر اعلام شود. پیام یا مکاتبه الکترونیکی در حدود قوانین و با امکان احراز انتساب و وصول، می‌تواند دلیل ارتباط باشد؛ تشریفات رسمی ابلاغ که قانون مقرر کرده، به قوت خود باقی است.</p>
+        <label class="block-label">سازوکار مورد توافق برای مذاکره و حل اختلاف<textarea name="disputeTerms" rows="3" placeholder="مذاکره، میانجی‌گری یا مرجع صالح قانونی؛ از تعیین مرجع غیرمجاز خودداری شود."></textarea></label>
+        <p>در صورت بروز حادثه خارج از کنترل متعارف طرف متعهد که شرایط قانونی قوه قاهره را داشته باشد، آثار آن با توجه به میزان تأثیر، تکلیف اطلاع‌رسانی و اقدام برای کاهش زیان و قوانین حاکم تعیین می‌شود. دشواری معمول یا افزایش هزینه به‌تنهایی لزوماً قوه قاهره نیست.</p>
+      </section>
+      <section class="contract-section"><h3><span>ماده ۱۶</span> ـ اسناد پیوست، تمامیت قرارداد و اصلاحات</h3>
+        <p>اسناد زیر در صورت تکمیل، امضا و اتصال به قرارداد، جزء لاینفک آن هستند. هر اصلاح، الحاق یا توافق بعدی باید کتبی، دارای تاریخ و امضای اشخاص ذی‌ربط باشد و در موارد لازم به تشریفات رسمی قانونی پایبند بماند. حذف یا بی‌اعتباری یک شرط، در حدود قانون، موجب بی‌اعتباری خودکار سایر شروط مستقل نخواهد بود.</p>
+        <div class="checklist">
+          <label><input type="checkbox" name="annex[]" value="مدارک هویتی طرفین"> تصویر مدارک هویتی طرفین</label>
+          <label><input type="checkbox" name="annex[]" value="سند مالکیت و استعلام‌ها"> سند مالکیت و استعلام‌های مربوط</label>
+          <label><input type="checkbox" name="annex[]" value="پروانه و مجوزها"> پروانه ساختمانی و مجوزهای لازم</label>
+          <label><input type="checkbox" name="annex[]" value="نقشه و مشخصات فنی"> نقشه‌ها و مشخصات فنی امضاشده</label>
+          <label><input type="checkbox" name="annex[]" value="جدول پرداخت‌ها"> جدول زمان‌بندی و پرداخت‌ها</label>
+          <label><input type="checkbox" name="annex[]" value="زمان‌بندی ساخت"> برنامه مراحل ساخت و تحویل</label>
+          <label><input type="checkbox" name="annex[]" value="تضمین‌ها و بیمه"> مدارک تضمین و بیمه</label>
+          <label><input type="checkbox" name="annex[]" value="سایر پیوست‌ها"> سایر پیوست‌های امضاشده</label>
+        </div>
+        <label class="block-label">شرح پیوست‌های دیگر و تعداد برگ‌های هر پیوست<textarea name="otherAnnexes" rows="2" placeholder="عنوان، تعداد صفحات و شماره پیوست"></textarea></label>
+      </section>
+      <section class="contract-section"><h3><span>ماده ۱۷</span> ـ نسخه‌ها، مطالعه و امضا</h3>
+        <p>طرفین اعلام می‌کنند پیش از امضا فرصت مطالعه تمام مواد و پیوست‌ها را داشته‌اند، اطلاعات و توافقات مندرج را بررسی کرده‌اند و نسخه نهایی را با آگاهی از ضرورت رعایت تشریفات رسمی و قانونی مربوط امضا می‌کنند. هیچ جای خالی مؤثر نباید بدون خط‌زدن یا تکمیل آگاهانه باقی بماند. تعداد صفحات و پیوست‌ها باید پیش از امضا مشخص شود.</p>
+        <div class="form-grid"><label>تعداد صفحات متن<input name="pageCount" placeholder="عدد"></label><label>تعداد صفحات پیوست<input name="annexPageCount" placeholder="عدد"></label><label>تعداد نسخه‌های امضاشده<input name="copyCount" placeholder="عدد"></label><label>محل امضا<input name="signaturePlace" placeholder="شهر / محل"></label></div>
+      </section>
+      <section class="signature-area" id="signatures"><h3>امضا، اثر انگشت و گواهی شهود (در صورت حضور)</h3>
+        <div class="signature-grid">
+          <div class="signature-box"><h4>پیش‌فروشنده</h4><p>نام: <input name="sellerSignatureName" placeholder="نام و نام خانوادگی"></p><div class="sign-space">محل امضا</div><div class="finger-space">محل اثر انگشت</div></div>
+          <div class="signature-box"><h4>پیش‌خریدار</h4><p>نام: <input name="buyerSignatureName" placeholder="نام و نام خانوادگی"></p><div class="sign-space">محل امضا</div><div class="finger-space">محل اثر انگشت</div></div>
+        </div>
+        <div class="signature-grid witnesses">
+          <div class="signature-box"><h4>شاهد اول (اختیاری)</h4><p>نام و کد ملی: <input name="witnessOne" placeholder="مشخصات شاهد"></p><div class="sign-space">امضا</div></div>
+          <div class="signature-box"><h4>شاهد دوم (اختیاری)</h4><p>نام و کد ملی: <input name="witnessTwo" placeholder="مشخصات شاهد"></p><div class="sign-space">امضا</div></div>
+        </div>
+      </section>
+      <footer class="document-footer"><span>تنظیم‌کننده فرم: گروه تعاون ملک ایرانیان</span><span>تمام صفحات و پیوست‌ها باید پیش از امضا بررسی و پاراف شوند.</span></footer>
+    </article>
+  </div>
+  <section class="bottom-actions no-print"><div><strong>آماده‌سازی نسخه نهایی</strong><p>پیش از چاپ، همه اطلاعات، مبالغ، تاریخ‌ها و پیوست‌ها را بررسی کنید.</p></div><button type="button" class="btn btn-gold" id="printBottom">چاپ قرارداد / ذخیره PDF</button></section>
+  <dialog id="guideDialog"><div class="dialog-head"><h2>راهنمای تکمیل مبایعه‌نامه</h2><button type="button" id="closeGuide" class="close-btn" aria-label="بستن">×</button></div><ol><li>هویت طرفین را با اصل مدارک تطبیق دهید؛ اگر شرکت یا نماینده طرف قرارداد است، اختیار امضا را بررسی کنید.</li><li>مالکیت عرصه، پلاک ثبتی، رهن، بازداشت، پیش‌فروش قبلی و مجوزهای پروژه را از مراجع مربوط استعلام کنید.</li><li>نقشه، شماره واحد، پارکینگ، انباری، مساحت، سهم مشاعات و مشخصات فنی را دقیقاً در قرارداد و پیوست‌ها یکسان درج کنید.</li><li>ثمن را به عدد و حروف بنویسید؛ سررسید هر قسط، شرط پرداخت و مدرک دریافت وجه را روشن کنید.</li><li>مبلغ و مبنای وجه التزام، موعد تحویل، رفع عیب، مراجعه برای سند و آثار تخلف را بدون ابهام تکمیل کنید.</li><li>برای پیش‌فروش، الزامات قانون پیش‌فروش ساختمان و مقررات ثبت رسمی معاملات اموال غیرمنقول را بررسی کنید و پیش از استفاده واقعی از وکیل یا دفتر اسناد رسمی راهنمایی بگیرید.</li></ol><p class="guide-warning">این قالب ابزار آماده‌سازی پیش‌نویس است و تضمین نمی‌کند معامله با هر وضعیت ثبتی یا حقوقی سازگار باشد. چاپ آن جایگزین ثبت رسمی الزامی نیست.</p><button type="button" class="btn btn-gold" id="guidePrint">بازگشت به قرارداد و چاپ</button></dialog>
+</main>
+<script src="assets/js/app.js"></script>
+</body></html
+  <div class="notice no-print"><strong>پیش از امضا:</strong> پیش‌فروش ساختمان تابع الزامات قانونی و ثبتی ویژه است. این فرم به‌تنهایی جایگزین تنظیم و ثبت رسمی لازم نیست. مشخصات ثبتی، اختیار فروشنده، مجوزها، نقشه‌ها و امکان ثبت معامله باید پیش از امضا بررسی شود.</div>
+  <div class="workspace">
+    <aside class="side-panel no-print">
+      <h2>بخش‌های قرارداد</h2>
+      <a href="#parties">۱. طرفین قرارداد</a><a href="#property">۲. مشخصات ملک و واحد</a><a href="#price">۳. ثمن و پرداخت‌ها</a><a href="#terms">۴. مواد و تعهدات</a><a href="#annexes">۵. پیوست‌ها</a><a href="#signatures">۶. امضا و اثر انگشت</a>
+      <div class="side-note"><strong>راهنمای استفاده</strong><p>فیلدهای خالی را تکمیل کنید. موارد نامرتبط را حذف یا با توافق طرفین اصلاح کنید. تمام صفحات و پیوست‌ها باید شماره‌گذاری و به امضای طرفین برسند.</p></div>
+      <button type="button" class="btn btn-outline btn-full" id="clearForm">پاک‌کردن اطلاعات واردشده</button>
+    </aside>
+    <article class="contract" id="contractDocument">
+      <div class="document-heading">
+        <div class="document-brandline">
+          <img class="document-logo" src="assets/images/logo.png" alt="لوگوی گروه تعاون ملک ایرانیان">
+          <div class="document-titlegroup">
+            <div class="document-kicker">گروه تعاون ملک ایرانیان</div>
+            <h2>مبایعه‌نامه و قرارداد پیش‌فروش آپارتمان</h2>
+            <p>فرم تنظیم توافقات و تعهدات پیش‌فروشنده و پیش‌خریدار</p>
+          </div>
+          <div class="document-mark">نسخه<br>تکمیلی</div>
+        </div>
+        <div class="doc-meta"><span>شماره قرارداد: <input name="docNo" placeholder="................"></span><span>تاریخ تنظیم: <input name="docDate" data-date placeholder="................"></span><span>محل تنظیم: <input name="docPlace" placeholder="شهر / محل تنظیم"></span></div>
+      </div>
+      <p class="preamble">این قرارداد با قصد و رضای طرفین و با رعایت شرایط قانونی، پس از مطالعه تمام مواد و پیوست‌ها، میان اشخاص زیر منعقد می‌شود. طرفین متعهدند اطلاعات را صحیح و کامل درج کنند و هرگونه توافق مؤثر بر موضوع، ثمن، زمان‌بندی یا ضمانت اجرا را به‌صورت مکتوب و امضاشده ضمیمه نمایند.</p>
+      <section class="contract-section" id="parties"><h3><span>ماده ۱</span> ـ مشخصات طرفین قرارداد</h3>
+        <h4>۱-۱. پیش‌فروشنده</h4>
+        <div class="form-grid">
+          <label>نام و نام خانوادگی / نام شخص حقوقی<input name="sellerName" required placeholder="نام کامل پیش‌فروشنده"></label>
+          <label>نام پدر / نماینده مجاز<input name="sellerFather" placeholder="نام پدر یا نام نماینده"></label>
+          <label>کد ملی / شناسه ملی<input name="sellerId" placeholder="شناسه هویتی"></label>
+          <label>شماره شناسنامه / ثبت<input name="sellerRegister" placeholder="شماره"></label>
+          <label>تاریخ تولد / تأسیس<input name="sellerBirth" placeholder="روز / ماه / سال"></label>
+          <label>شماره تماس<input name="sellerPhone" inputmode="tel" placeholder="شماره تماس"></label>
+          <label class="wide">نشانی کامل و کدپستی<input name="sellerAddress" placeholder="نشانی محل اقامتگاه قانونی"></label>
+          <label class="wide">سمت و مستند اختیار (در صورت نمایندگی)<input name="sellerAuthority" placeholder="وکالت‌نامه، اساسنامه، مصوبه یا مستند معتبر"></label>
+        </div>
+        <h4>۱-۲. پیش‌خریدار</h4>
+        <div class="form-grid">
+          <label>نام و نام خانوادگی<input name="buyerName" required placeholder="نام کامل پیش‌خریدار"></label>
+          <label>نام پدر<input name="buyerFather" placeholder="نام پدر"></label>
+          <label>کد ملی<input name="buyerId" placeholder="کد ملی"></label>
+          <label>شماره شناسنامه<input name="buyerRegister" placeholder="شماره شناسنامه"></label>
+          <label>تاریخ تولد<input name="buyerBirth" placeholder="روز / ماه / سال"></label>
+          <label>شماره تماس<input name="buyerPhone" inputmode="tel" placeholder="شماره تماس"></label>
+          <label class="wide">نشانی کامل و کدپستی<input name="buyerAddress" placeholder="نشانی محل اقامتگاه قانونی"></label>
+        </div>
+        <p>از این پس در قرارداد به‌ترتیب «پیش‌فروشنده» و «پیش‌خریدار» نامیده می‌شوند. در صورت تعدد هر یک از طرفین، مشخصات تمام اشخاص در برگ پیوست درج و امضا می‌شود. مسئولیت صحت مدارک و اطلاعات ارائه‌شده بر عهده ارائه‌کننده آن است.</p>
+      </section>
+      <section class="contract-section" id="property"><h3><span>ماده ۲</span> ـ موضوع قرارداد و مشخصات ثبتی</h3>
+        <p>موضوع قرارداد عبارت است از تعهد پیش‌فروشنده به احداث و تکمیل و واگذاری واحد آپارتمانی با مشخصات زیر، به همراه حقوق و قدرالسهم قانونی مربوط، مطابق نقشه‌ها، پروانه، مشخصات فنی و پیوست‌های امضاشده:</p>
+        <div class="form-grid">
+          <label class="wide">نشانی کامل پروژه<input name="projectAddress" placeholder="استان، شهر، خیابان، پلاک و نشانی دقیق"></label>
+          <label>پلاک ثبتی اصلی<input name="mainParcel" placeholder="پلاک اصلی"></label><label>پلاک ثبتی فرعی<input name="subParcel" placeholder="پلاک فرعی"></label>
+          <label>بخش ثبتی<input name="registrySection" placeholder="بخش ثبتی"></label><label>مساحت عرصه (مترمربع)<input name="landArea" inputmode="decimal" placeholder="مساحت زمین"></label>
+          <label>شماره سند مالکیت / شناسه یکتا<input name="titleNumber" placeholder="شماره سند / شناسه"></label><label>نام مالک رسمی عرصه<input name="landOwner" placeholder="مطابق سند مالکیت"></label>
+          <label>شماره پروانه ساختمانی<input name="permitNo" placeholder="شماره پروانه"></label><label>تاریخ پروانه<input name="permitDate" placeholder="تاریخ صدور"></label>
+          <label>بلوک / برج<input name="buildingBlock" placeholder="بلوک یا برج"></label><label>شماره طبقه<input name="floorNo" placeholder="طبقه"></label>
+          <label>شماره واحد<input name="unitNo" placeholder="شماره واحد"></label><label>مساحت تقریبی واحد (مترمربع)<input name="unitArea" inputmode="decimal" placeholder="مساحت"></label>
+          <label>تعداد اتاق<input name="roomCount" placeholder="تعداد"></label><label>جهت / موقعیت واحد<input name="unitPosition" placeholder="شمالی، جنوبی و ..."></label>
+          <label>پارکینگ (شماره / وضعیت)<input name="parking" placeholder="شماره و محل یا وضعیت تخصیص"></label><label>انباری (شماره / مساحت)<input name="storage" placeholder="شماره و مساحت"></label>
+          <label>سهم از مشاعات / عرصه<input name="commonShare" placeholder="طبق اسناد و مقررات"></label><label>کاربری<input name="usage" placeholder="مسکونی / سایر"></label>
+          <label class="wide">وضعیت مالکیت و مستند اختیار پیش‌فروش<input name="ownershipStatus" placeholder="مالک رسمی، مشارکت در ساخت، وکالت یا مستند قانونی دیگر"></label>
+          <label class="wide">وضعیت بازداشت، رهن، حقوق اشخاص ثالث و محدودیت‌ها<input name="encumbrances" placeholder="شرح کامل یا تصریح به نبود پس از بررسی مدارک"></label>
+        </div>
+        <p>پیش‌فروشنده اقرار می‌کند اطلاعات فوق و اسناد ارائه‌شده صحیح است و پیش از امضا، مالکیت یا اختیار قانونی خود برای پیش‌فروش و هرگونه رهن، بازداشت، تعهد قبلی یا حق اشخاص ثالث را به‌طور کامل اعلام کرده است. این اقرار جایگزین استعلام ثبتی و بررسی مدارک نخواهد بود.</p>
+      </section>
+      <section class="contract-section"><h3><span>ماده ۳</span> ـ مشخصات فنی، نقشه‌ها و کیفیت ساخت</h3>
+        <div class="form-grid">
+          <label>سیستم سازه<input name="structure" placeholder="بتنی / فلزی / مطابق پروانه"></label><label>تعداد طبقات کل ساختمان<input name="floorsTotal" placeholder="تعداد"></label>
+          <label>نوع اسکلت و سقف<input name="roofSystem" placeholder="شرح فنی"></label><label>نمای ساختمان<input name="facade" placeholder="نوع و مصالح نما"></label>
+          <label>نوع پنجره و شیشه<input name="windows" placeholder="جنس، نوع شیشه"></label><label>گرمایش و سرمایش<input name="heatingCooling" placeholder="نوع سیستم"></label>
+          <label>آسانسور و ظرفیت<input name="elevator" placeholder="تعداد / ظرفیت"></label><label>کف‌پوش و پوشش دیوار<input name="floorWall" placeholder="نوع و کیفیت"></label>
+          <label>کابینت و تجهیزات آشپزخانه<input name="kitchen" placeholder="جنس و اقلام"></label><label>تأسیسات برقی و مکانیکی<input name="installations" placeholder="شرح"></label>
+          <label class="wide">سایر مشخصات فنی، برندها و اقلام تحویلی<textarea name="technicalDetails" rows="3" placeholder="موارد توافق‌شده را دقیق درج کنید."></textarea></label>
+        </div>
+        <p>نقشه معماری واحد، نقشه جانمایی، مشخصات فنی تفصیلی، فهرست اقلام و تجهیزات و هر نمونه یا جدول مصالح که به امضای طرفین رسیده باشد، جزء لاینفک قرارداد است. در تعارض اسناد، طرفین باید پیش از اجرا توافق کتبی روشن و قانونی تنظیم کنند؛ هیچ تغییر مؤثر در مساحت، نقشه، کیفیت، تجهیزات یا حقوق اختصاصی خریدار بدون رعایت مقررات و اخذ موافقت کتبی لازم مجاز نیست.</p>
+      </section>
+      <section class="contract-section" id="price"><h3><span>ماده ۴</span> ـ بهای قرارداد و نحوه پرداخت</h3>
+        <div class="form-grid">
+          <label>بهای کل قرارداد به عدد (ریال)<input name="priceNumber" inputmode="numeric" placeholder="مبلغ به ریال"></label>
+          <label>بهای کل قرارداد به حروف<input name="priceWords" placeholder="مبلغ به حروف"></label>
+          <label>مبنای قیمت‌گذاری<input name="priceBasis" placeholder="مبلغ مقطوع / فرمول توافق‌شده"></label>
+          <label>حساب / شبا دریافت‌کننده<input name="paymentAccount" placeholder="نام صاحب حساب و شماره شبا"></label>
+        </div>
+        <p>ثمن معامله مبلغ مندرج در این ماده است. هر پرداخت فقط در برابر رسید کتبی یا سند بانکی قابل انتساب به قرارداد منظور می‌شود. پرداخت به شخص ثالث یا حسابی غیر از حساب اعلام‌شده، بدون دستور کتبی قابل احراز پیش‌فروشنده، موجب برائت ذمه پیش‌خریدار نخواهد بود. پرداخت‌ها نباید برخلاف الزامات قانونی و ثبتی مربوط به پیش‌فروش انجام شوند.</p>
+        <div class="table-wrap"><table class="payment-table"><thead><tr><th>ردیف</th><th>مرحله / شرط پرداخت</th><th>مبلغ (ریال)</th><th>سررسید</th><th>روش / مدرک پرداخت</th><th class="no-print">حذف</th></tr></thead><tbody id="paymentRows">
+          <tr><td>۱</td><td><input name="payStage[]" placeholder="پیش‌پرداخت / مرحله ساخت"></td><td><input name="payAmount[]" inputmode="numeric" placeholder="مبلغ"></td><td><input name="payDate[]" placeholder="تاریخ"></td><td><input name="payMethod[]" placeholder="رسید / انتقال بانکی"></td><td class="no-print"><button type="button" class="remove-row" aria-label="حذف ردیف">×</button></td></tr>
+          <tr><td>۲</td><td><input name="payStage[]" placeholder="مرحله ساخت"></td><td><input name="payAmount[]" inputmode="numeric" placeholder="مبلغ"></td><td><input name="payDate[]" placeholder="تاریخ"></td><td><input name="payMethod[]" placeholder="رسید / انتقال بانکی"></td><td class="no-print"><button type="button" class="remove-row" aria-label="حذف ردیف">×</button></td></tr>
+          <tr><td>۳</td><td><input name="payStage[]" placeholder="مرحله ساخت"></td><td><input name="payAmount[]" inputmode="numeric" placeholder="مبلغ"></td><td><input name="payDate[]" placeholder="تاریخ"></td><td><input name="payMethod[]" placeholder="رسید / انتقال بانکی"></td><td class="no-print"><button type="button" class="remove-row" aria-label="حذف ردیف">×</button></td></tr>
+        </tbody></table></div>
+        <div class="payment-actions no-print"><button type="button" class="btn btn-outline" id="addPayment">افزودن ردیف پرداخت</button><span id="paymentSum">جمع ردیف‌های واردشده: ۰ ریال</span></div>
+        <label class="block-label">توافق درباره مانده ثمن، پرداخت نهایی و شروط پرداخت<textarea name="paymentTerms" rows="3" placeholder="از جمله ارتباط پرداخت با پیشرفت واقعی کار و اسناد قابل احراز"></textarea></label>
+      </section>
+      <section class="contract-section"><h3><span>ماده ۵</span> ـ مدت اجرا و برنامه پیشرفت</h3>
+        <div class="form-grid"><label>تاریخ شروع / وضعیت فعلی پروژه<input name="startDate" placeholder="تاریخ یا شرح وضعیت"></label><label>موعد تکمیل تعهدات ساختمانی<input name="completionDate" placeholder="روز / ماه / سال"></label><label>موعد آماده‌سازی برای تحویل<input name="handoverDate" placeholder="روز / ماه / سال"></label><label>مرجع / ناظر پروژه<input name="supervisor" placeholder="نام و مشخصات ناظر"></label></div>
+        <p>پیش‌فروشنده مکلف است عملیات موضوع قرارداد را مطابق پروانه، نقشه‌ها، مشخصات فنی و مقررات ایمنی و ساختمانی اجرا کند، امکان بازدید متعارف پیش‌خریدار را با هماهنگی قبلی فراهم آورد و بنا به درخواست متعارف، گزارش پیشرفت و مدارک مربوط را ارائه کند. بازدید نباید موجب اخلال در ایمنی یا کارگاه شود. برنامه مراحل و نقاط عطف ساخت در پیوست زمان‌بندی درج می‌شود.</p>
+      </section>
+      <section class="contract-section"><h3><span>ماده ۶</span> ـ تعهدات پیش‌فروشنده</h3>
+        <ol>
+          <li>ارائه مدارک هویتی، مالکیت یا اختیار قانونی پیش‌فروش، مجوزهای لازم و اطلاعات صحیح و قابل بررسی.</li>
+          <li>عدم واگذاری مجدد، پیش‌فروش معارض، ایجاد تعهد ناسازگار یا انتقال حقوق موضوع قرارداد به دیگری برخلاف حقوق پیش‌خریدار و الزامات قانونی.</li>
+          <li>احداث و تکمیل واحد و بخش‌های مشترک مربوط طبق اسناد امضاشده، ضوابط فنی، پروانه و مقررات لازم‌الاجرا.</li>
+          <li>پرداخت هزینه‌ها، عوارض، دیون و تعهداتی که طبق قانون یا این قرارداد بر عهده پیش‌فروشنده قرار گرفته است و ارائه مدارک تسویه لازم در موعد مقرر.</li>
+          <li>اعلام فوری هر مانع ثبتی، قضایی، اجرایی یا فنی که بر امکان تکمیل، تحویل یا انتقال رسمی اثر بگذارد و اقدام متعارف و قانونی برای رفع آن.</li>
+          <li>فراهم‌کردن مدارک لازم برای پایان کار، صورت‌مجلس تفکیکی و انتقال رسمی، در حدود تعهدات و مقررات قابل اعمال.</li>
+        </ol>
+      </section>
+      <section class="contract-section"><h3><span>ماده ۷</span> ـ تعهدات پیش‌خریدار</h3>
+        <ol>
+          <li>پرداخت ثمن در مبالغ و سررسیدهای معتبر مندرج در قرارداد و حفظ رسیدهای پرداخت.</li>
+          <li>ارائه مدارک هویتی و اطلاعات لازم برای تنظیم اسناد رسمی و حضور در موعدهای اعلام‌شده با اطلاع‌رسانی قابل اثبات.</li>
+          <li>خودداری از مداخله در عملیات ساختمانی یا توجيه تغییرات فنی خارج از سازوکار کتبی توافق‌شده.</li>
+          <li>پرداخت هزینه‌ها و عوارضی که صریحاً طبق قانون و این قرارداد بر عهده پیش‌خریدار قرار گرفته است؛ هیچ هزینه نامشخصی بدون مبنای قانونی یا توافق معتبر قابل مطالبه نیست.</li>
+        </ol>
+      </section>
+      <section class="contract-section"><h3><span>ماده ۸</span> ـ تغییر مساحت، نقشه و مشخصات</h3>
+        <p>ملاک نهایی مساحت و مشخصات ثبتی، اسناد رسمی و صورت‌مجلس تفکیکی معتبر و مقررات حاکم است. طرفین باید روش محاسبه هر اختلاف مساحت، نرخ هر مترمربع و سقف یا آثار تغییر را در کادر زیر روشن کنند. هیچ عبارت کلی، اختیار نامحدود برای تغییر یک‌جانبه ایجاد نمی‌کند.</p>
+        <label class="block-label">فرمول و آثار اختلاف مساحت / تغییرات مورد توافق<textarea name="areaFormula" rows="3" placeholder="فرمول دقیق، مرجع اندازه‌گیری، مهلت اعتراض و آثار مالی یا قراردادی"></textarea></label>
+        <p>هر تغییر در نقشه، محل واحد، پارکینگ، انباری، مشاعات، نوع کاربری یا کیفیت اساسی باید به‌صورت مکتوب، با تعیین آثار مالی و زمانی و با رعایت حقوق قانونی طرفین تصویب شود.</p>
+      </section>
+      <section class="contract-section"><h3><span>ماده ۹</span> ـ تحویل واحد و صورت‌جلسه</h3>
+        <p>تحویل باید در موعد مقرر و با تنظیم صورت‌جلسه کتبی انجام شود. صورت‌جلسه باید وضعیت تکمیل، کلیدها، تجهیزات، قرائت کنتورها، اقلام تحویلی، عیوب مشهود و مهلت رفع آن‌ها را مشخص کند. تحویل یا تصرف، به‌خودی‌خود اسقاط حقوق قانونی مربوط به عیوب پنهان یا تعهدات انجام‌نشده نیست.</p>
+        <label class="block-label">شرایط تکمیلی تحویل و فهرست مدارک / اقلام<textarea name="handoverTerms" rows="3" placeholder="وضعیت انشعابات، مشاعات، پایان کار، تجهیزات و موارد لازم"></textarea></label>
+      </section>
+      <section class="contract-section"><h3><span>ماده ۱۰</span> ـ انتقال رسمی و مدارک لازم</h3>
+        <div class="form-grid"><label>تاریخ / مهلت مراجعه برای انتقال رسمی<input name="deedDate" placeholder="روز / ماه / سال یا مهلت مشخص"></label><label>دفتر اسناد رسمی مورد توافق<input name="notary" placeholder="شماره دفترخانه و شهر"></label><label>مهلت ارائه مدارک تکمیلی<input name="documentsDeadline" placeholder="تاریخ / مدت"></label></div>
+        <p>طرفین متعهدند در موعد قانونی و مورد توافق، با رعایت تشریفات ثبت رسمی لازم برای پیش‌فروش و انتقال ملک، در مرجع صالح حاضر شوند و مدارک و وجوهی را که قانوناً بر عهده هر یک است فراهم کنند. انتقال رسمی نهایی حسب مورد منوط به تکمیل بنا، اخذ مجوزها و مدارک لازم، تعیین وضعیت ثبتی و انجام الزامات قانونی است. درج این تعهد در قرارداد خصوصی جایگزین ثبت رسمی الزامی یا مجوز قانونی محسوب نمی‌شود.</p>
+        <label class="block-label">مدارک و اقدامات مورد تعهد هر طرف<textarea name="deedTerms" rows="3" placeholder="مدارک مالکیت، پایان کار، تفکیکی، تسویه‌ها و سایر موارد"></textarea></label>
+      </section>
+      <section class="contract-section"><h3><span>ماده ۱۱</span> ـ هزینه‌ها، بیمه، عیوب و تضمین‌ها</h3>
+        <p>هزینه‌های قانونی تنظیم و ثبت اسناد، مالیات‌ها، عوارض، بدهی‌های پیشین، هزینه‌های مشترک و هزینه‌های اختصاصی باید طبق قانون و توافق روشن طرفین تعیین شوند. توافق قراردادی نمی‌تواند تکالیف آمره قانونی را از بین ببرد.</p>
+        <div class="form-grid"><label>هزینه‌های بر عهده پیش‌فروشنده<input name="sellerCosts" placeholder="موارد مشخص"></label><label>هزینه‌های بر عهده پیش‌خریدار<input name="buyerCosts" placeholder="موارد مشخص"></label><label>نوع و مبلغ تضمین‌ها<input name="guarantees" placeholder="ضمانت‌نامه / چک / سایر، با جزئیات"></label><label>بیمه‌های پروژه و مسئولیت<input name="insurance" placeholder="نوع بیمه، شرکت و مدت"></label></div>
+        <p>پیش‌فروشنده مسئول اجرای تعهدات ساختمانی و رفع عیوبی است که بر اساس قانون، مشخصات فنی و این قرارداد بر عهده اوست. عیوب و نواقص هنگام تحویل باید در صورت‌جلسه ثبت شود. وجود تضمین، در حدود متن و قوانین مربوط، مانع استفاده از سایر حقوق قانونی طرف زیان‌دیده نیست.</p>
+      </section>
+      <section class="contract-section"><h3><span>ماده ۱۲</span> ـ وجه التزام و خسارت تأخیر</h3>
+        <p>وجه التزام باید متناسب، روشن و قابل محاسبه باشد. طرفین مبالغ و شرایط را صریحاً تکمیل کنند؛ از درج مبلغ مبهم یا چند ضمانت اجرای متعارض خودداری شود.</p>
+        <div class="form-grid"><label>وجه التزام تأخیر در تحویل (مبلغ و مبنا)<input name="lateHandoverPenalty" placeholder="مثلاً مبلغ مشخص به ازای هر روز؛ پس از بررسی حقوقی"></label><label>وجه التزام تأخیر در انتقال رسمی<input name="lateDeedPenalty" placeholder="مبلغ / مبنا / شرایط"></label><label>وجه التزام تأخیر در پرداخت<input name="latePaymentPenalty" placeholder="مبلغ / مبنا / شرایط با رعایت قانون"></label><label>مهلت اخطار و جبران تخلف<input name="curePeriod" placeholder="مدت و روش ابلاغ"></label></div>
+        <p>وجه التزام فقط در صورت تحقق شرایط مندرج در قرارداد و با رعایت قوانین آمره قابل مطالبه است. تأخیر ناشی از مانع خارج از کنترل، قوه قاهره یا قصور طرف مقابل، حسب مورد و با احراز شرایط قانونی، بررسی می‌شود؛ طرف مدعی باید وقوع مانع و آثار آن را در مهلت متعارف مستند و به طرف دیگر اطلاع دهد.</p>
+      </section>
+      <section class="contract-section"><h3><span>ماده ۱۳</span> ـ فسخ، انحلال و آثار آن</h3>
+        <p>حق فسخ فقط در موارد قانونی یا مواردی که به‌طور معتبر و روشن در قرارداد پیش‌بینی شده باشد اعمال می‌شود. پیش از اعمال حق فسخ قراردادی، جز در مواردی که قانون یا قرارداد ترتیب دیگری مقرر کرده، طرف زیان‌دیده باید تخلف را با ذکر موضوع، مستندات و مهلت جبران به نشانی یا روش ابلاغ مورد توافق اعلام کند.</p>
+        <label class="block-label">موارد و تشریفات قراردادی فسخ، مهلت رفع تخلف و شیوه تسویه<textarea name="terminationTerms" rows="4" placeholder="موارد دقیق و قانونی، روش ابلاغ، استرداد وجوه، تحویل اسناد و محاسبه خسارات"></textarea></label>
+        <p>در صورت فسخ یا انحلال معتبر، طرفین مکلف‌اند آثار مالی و اسنادی آن را مطابق قانون و توافق معتبر تعیین کنند؛ از جمله استرداد وجوه قابل استرداد، تعیین تکلیف تضمین‌ها و جبران خسارات قابل مطالبه. هیچ‌یک از طرفین حق ندارد بدون مبنای قانونی، وجوه یا اسناد متعلق به دیگری را تملک یا از استرداد آن خودداری کند.</p>
+      </section>
+      <section class="contract-section"><h3><span>ماده ۱۴</span> ـ انتقال حقوق، فوت و قائم‌مقامی</h3>
+        <p>واگذاری حقوق و تعهدات ناشی از این قرارداد به شخص ثالث، تابع قوانین و تشریفات ثبتی و قراردادی قابل اعمال است و در موارد لازم به رضایت کتبی طرف دیگر و ثبت رسمی نیاز دارد. فوت، حجر، انحلال شخص حقوقی یا تغییر نماینده، تابع مقررات قانونی و حقوق قائم‌مقامان خواهد بود و به‌تنهایی مجوز نادیده‌گرفتن تعهدات معتبر نیست.</p>
+      </section>
+      <section class="contract-section"><h3><span>ماده ۱۵</span> ـ ابلاغ‌ها، اختلافات و قوه قاهره</h3>
+        <p>نشانی‌های درج‌شده در ماده ۱، نشانی ابلاغ طرفین است. تغییر نشانی یا شماره تماس باید به روش قابل اثبات به طرف دیگر اعلام شود. پیام یا مکاتبه الکترونیکی در حدود قوانین و با امکان احراز انتساب و وصول، می‌تواند دلیل ارتباط باشد؛ تشریفات رسمی ابلاغ که قانون مقرر کرده، به قوت خود باقی است.</p>
+        <label class="block-label">سازوکار مورد توافق برای مذاکره و حل اختلاف<textarea name="disputeTerms" rows="3" placeholder="مذاکره، میانجی‌گری یا مرجع صالح قانونی؛ از تعیین مرجع غیرمجاز خودداری شود."></textarea></label>
+        <p>در صورت بروز حادثه خارج از کنترل متعارف طرف متعهد که شرایط قانونی قوه قاهره را داشته باشد، آثار آن با توجه به میزان تأثیر، تکلیف اطلاع‌رسانی و اقدام برای کاهش زیان و قوانین حاکم تعیین می‌شود. دشواری معمول یا افزایش هزینه به‌تنهایی لزوماً قوه قاهره نیست.</p>
+      </section>
+      <section class="contract-section"><h3><span>ماده ۱۶</span> ـ اسناد پیوست، تمامیت قرارداد و اصلاحات</h3>
+        <p>اسناد زیر در صورت تکمیل، امضا و اتصال به قرارداد، جزء لاینفک آن هستند. هر اصلاح، الحاق یا توافق بعدی باید کتبی، دارای تاریخ و امضای اشخاص ذی‌ربط باشد و در موارد لازم به تشریفات رسمی قانونی پایبند بماند. حذف یا بی‌اعتباری یک شرط، در حدود قانون، موجب بی‌اعتباری خودکار سایر شروط مستقل نخواهد بود.</p>
+        <div class="checklist">
+          <label><input type="checkbox" name="annex[]" value="مدارک هویتی طرفین"> تصویر مدارک هویتی طرفین</label>
+          <label><input type="checkbox" name="annex[]" value="سند مالکیت و استعلام‌ها"> سند مالکیت و استعلام‌های مربوط</label>
+          <label><input type="checkbox" name="annex[]" value="پروانه و مجوزها"> پروانه ساختمانی و مجوزهای لازم</label>
+          <label><input type="checkbox" name="annex[]" value="نقشه و مشخصات فنی"> نقشه‌ها و مشخصات فنی امضاشده</label>
+          <label><input type="checkbox" name="annex[]" value="جدول پرداخت‌ها"> جدول زمان‌بندی و پرداخت‌ها</label>
+          <label><input type="checkbox" name="annex[]" value="زمان‌بندی ساخت"> برنامه مراحل ساخت و تحویل</label>
+          <label><input type="checkbox" name="annex[]" value="تضمین‌ها و بیمه"> مدارک تضمین و بیمه</label>
+          <label><input type="checkbox" name="annex[]" value="سایر پیوست‌ها"> سایر پیوست‌های امضاشده</label>
+        </div>
+        <label class="block-label">شرح پیوست‌های دیگر و تعداد برگ‌های هر پیوست<textarea name="otherAnnexes" rows="2" placeholder="عنوان، تعداد صفحات و شماره پیوست"></textarea></label>
+      </section>
+      <section class="contract-section"><h3><span>ماده ۱۷</span> ـ نسخه‌ها، مطالعه و امضا</h3>
+        <p>طرفین اعلام می‌کنند پیش از امضا فرصت مطالعه تمام مواد و پیوست‌ها را داشته‌اند، اطلاعات و توافقات مندرج را بررسی کرده‌اند و نسخه نهایی را با آگاهی از ضرورت رعایت تشریفات رسمی و قانونی مربوط امضا می‌کنند. هیچ جای خالی مؤثر نباید بدون خط‌زدن یا تکمیل آگاهانه باقی بماند. تعداد صفحات و پیوست‌ها باید پیش از امضا مشخص شود.</p>
+        <div class="form-grid"><label>تعداد صفحات متن<input name="pageCount" placeholder="عدد"></label><label>تعداد صفحات پیوست<input name="annexPageCount" placeholder="عدد"></label><label>تعداد نسخه‌های امضاشده<input name="copyCount" placeholder="عدد"></label><label>محل امضا<input name="signaturePlace" placeholder="شهر / محل"></label></div>
+      </section>
+      <section class="signature-area" id="signatures"><h3>امضا، اثر انگشت و گواهی شهود (در صورت حضور)</h3>
+        <div class="signature-grid">
+          <div class="signature-box"><h4>پیش‌فروشنده</h4><p>نام: <input name="sellerSignatureName" placeholder="نام و نام خانوادگی"></p><div class="sign-space">محل امضا</div><div class="finger-space">محل اثر انگشت</div></div>
+          <div class="signature-box"><h4>پیش‌خریدار</h4><p>نام: <input name="buyerSignatureName" placeholder="نام و نام خانوادگی"></p><div class="sign-space">محل امضا</div><div class="finger-space">محل اثر انگشت</div></div>
+        </div>
+        <div class="signature-grid witnesses">
+          <div class="signature-box"><h4>شاهد اول (اختیاری)</h4><p>نام و کد ملی: <input name="witnessOne" placeholder="مشخصات شاهد"></p><div class="sign-space">امضا</div></div>
+          <div class="signature-box"><h4>شاهد دوم (اختیاری)</h4><p>نام و کد ملی: <input name="witnessTwo" placeholder="مشخصات شاهد"></p><div class="sign-space">امضا</div></div>
+        </div>
+      </section>
+      <footer class="document-footer"><span>تنظیم‌کننده فرم: گروه تعاون ملک ایرانیان</span><span>تمام صفحات و پیوست‌ها باید پیش از امضا بررسی و پاراف شوند.</span></footer>
+    </article>
+  </div>
+  <section class="bottom-actions no-print"><div><strong>آماده‌سازی نسخه نهایی</strong><p>پیش از چاپ، همه اطلاعات، مبالغ، تاریخ‌ها و پیوست‌ها را بررسی کنید.</p></div><button type="button" class="btn btn-gold" id="printBottom">چاپ قرارداد / ذخیره PDF</button></section>
+  <dialog id="guideDialog"><div class="dialog-head"><h2>راهنمای تکمیل مبایعه‌نامه</h2><button type="button" id="closeGuide" class="close-btn" aria-label="بستن">×</button></div><ol><li>هویت طرفین را با اصل مدارک تطبیق دهید؛ اگر شرکت یا نماینده طرف قرارداد است، اختیار امضا را بررسی کنید.</li><li>مالکیت عرصه، پلاک ثبتی، رهن، بازداشت، پیش‌فروش قبلی و مجوزهای پروژه را از مراجع مربوط استعلام کنید.</li><li>نقشه، شماره واحد، پارکینگ، انباری، مساحت، سهم مشاعات و مشخصات فنی را دقیقاً در قرارداد و پیوست‌ها یکسان درج کنید.</li><li>ثمن را به عدد و حروف بنویسید؛ سررسید هر قسط، شرط پرداخت و مدرک دریافت وجه را روشن کنید.</li><li>مبلغ و مبنای وجه التزام، موعد تحویل، رفع عیب، مراجعه برای سند و آثار تخلف را بدون ابهام تکمیل کنید.</li><li>برای پیش‌فروش، الزامات قانون پیش‌فروش ساختمان و مقررات ثبت رسمی معاملات اموال غیرمنقول را بررسی کنید و پیش از استفاده واقعی از وکیل یا دفتر اسناد رسمی راهنمایی بگیرید.</li></ol><p class="guide-warning">این قالب ابزار آماده‌سازی پیش‌نویس است و تضمین نمی‌کند معامله با هر وضعیت ثبتی یا حقوقی سازگار باشد. چاپ آن جایگزین ثبت رسمی الزامی نیست.</p><button type="button" class="btn btn-gold" id="guidePrint">بازگشت به قرارداد و چاپ</button></dialog>
+</main>
+<script src="assets/js/app.js"></script>
 </body></html>
