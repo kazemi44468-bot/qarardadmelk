@@ -10,7 +10,7 @@
   @font-face{font-family:Vazirmatn;src:url('../assets/fonts/Vazirmatn-Medium.woff2') format('woff2');font-weight:500;font-display:swap}
   @font-face{font-family:Vazirmatn;src:url('../assets/fonts/Vazirmatn-Bold.woff2') format('woff2');font-weight:700;font-display:swap}
   @font-face{font-family:Vazirmatn;src:url('../assets/fonts/Vazirmatn-ExtraBold.woff2') format('woff2');font-weight:800 900;font-display:swap}
-  @font-face{font-family:Shekasteh;src:url('../assets/fonts/shekasteh%20v2.001.ttf') format('truetype');font-weight:400;font-display:swap}
+  @font-face{font-family:IranNastaliq;src:url('../assets/fonts/irannastaliq.woff') format('woff');font-weight:400;font-display:swap}
 </style>
 
 <style>
@@ -102,7 +102,9 @@
     font-weight:800; font-size:11.5px; color:var(--accent);
     white-space:nowrap;
   }
-  .page-header .brand span,.company-name-cover{font-family:Shekasteh,Vazirmatn,sans-serif;font-weight:400;}
+   .page-header .brand span,.company-name-cover{font-family:IranNastaliq,Vazirmatn,sans-serif;font-weight:400;}
+  .page-header .brand span{font-size:17px; line-height:1.7;}
+  .company-name-cover{font-size:29px; line-height:1.9; margin-bottom:5px;}
   .page-header .brand .logo{
     width:44px; height:44px; max-width:44px; max-height:44px;
     object-fit:contain; padding:3px; flex:0 0 auto;
@@ -132,10 +134,17 @@
     padding: 0 2mm;
   }
   .page-content p{ margin:0 0 4px; line-height:1.72; }
-  .page[data-page="4"] .page-content{font-size:10.4px;}
-  .page[data-page="4"] .page-content p{line-height:1.48;margin-bottom:2px;}
-  .page[data-page="4"] .page-content h3{font-size:11.2px;padding:3px 8px;margin:4px 0 3px;}
-  .page[data-page="4"] .page-content ol li{line-height:1.48;margin-bottom:1px;}
+  .page[data-page="3"] .page-content{font-size:12px;}
+  .page[data-page="3"] .page-content p{line-height:1.82;margin-bottom:5px;}
+  .page[data-page="3"] .page-content h3{margin:8px 0 6px;padding:6px 11px;}
+  .page:not(.cover) .page-inner{background:linear-gradient(135deg,rgba(243,234,217,.16),transparent 24%,transparent 76%,rgba(231,242,244,.2));}
+  .page:not(.cover) .page-inner::before{border-radius:3px;box-shadow:inset 0 0 0 2px rgba(255,255,255,.85),inset 0 0 0 4px rgba(176,141,87,.12);}
+  .page-content h3{background:linear-gradient(90deg,rgba(231,242,244,.96),rgba(243,234,217,.26) 72%,transparent);border-right-width:4px;}
+  .page-footer{border-top:1px solid rgba(176,141,87,.35);}
+   .page[data-page="4"] .page-content{font-size:10.1px;}
+   .page[data-page="4"] .page-content p{line-height:1.42;margin-bottom:1px;}
+   .page[data-page="4"] .page-content h3{font-size:10.8px;padding:3px 8px;margin:3px 0 2px;}
+   .page[data-page="4"] .page-content ol li{line-height:1.42;margin-bottom:1px;}
   .page-content h3{
     font-size:12px; color:var(--accent); font-weight:800;
     background:linear-gradient(90deg, var(--accent-soft), transparent);
@@ -306,11 +315,9 @@
   }
   .cover-top{ text-align:center; margin-bottom:6mm; }
   .cover-logo{
-    width:132px; height:104px; max-width:42%; object-fit:contain;
-    padding:8px; margin-bottom:10px;
-    background:radial-gradient(circle,#fff 35%,#fbf5e9 100%);
-    border:1px solid rgba(176,141,87,.55); border-radius:18px;
-    box-shadow:0 8px 22px rgba(27,36,48,.08), inset 0 0 0 4px rgba(255,255,255,.9);
+    display:block; width:118px; height:96px; max-width:42%; object-fit:contain;
+    padding:0; margin:0 auto 8px; background:transparent;
+    border:0; border-radius:0; box-shadow:none;
   }
   .company-name-cover {
     font-family:Shekasteh,Vazirmatn,sans-serif; font-size:23px; font-weight:400; color:var(--accent);
@@ -535,20 +542,28 @@
 
   /* ==== چاپ ==== */
   @page{ size:A4 portrait; margin:0; }
+  @page{size:A4 portrait;margin:0;}
   @media print{
     html,body{
       background:#fff !important; font-size:10.5px;
       -webkit-print-color-adjust:exact; print-color-adjust:exact;
     }
     .toolbar{ display:none !important; }
+    *{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important;}
     .page{
-      width:210mm; height:297mm; margin:0;
+      width:210mm; height:297mm; min-height:297mm; margin:0;
       box-shadow:none; border-radius:0;
       page-break-after:always;
     }
     .page:last-of-type{ page-break-after:auto; }
-    .page-inner { padding: 8mm 10mm 5mm; }
+    .page-inner { padding: 10mm 12mm 6mm; }
     .page::before{opacity:.035;background-size:95mm auto;}
+    .page-content{overflow:hidden;}
+    .page-content p{break-inside:avoid;}
+    .page-content h3{break-after:avoid;}
+    .page-content{overflow:hidden;}
+    .page-content p{break-inside:avoid;}
+    .page-content h3{break-after:avoid;}
     .page:not(.cover) .page-inner::before { inset: 4mm; }
     .page:not(.cover) .page-inner::after { inset: 5mm; }
   }
@@ -587,7 +602,7 @@
       <div class="cover-meta">
         <div class="item"><span>شماره سند:</span><span>۱۴۰۵S۸۹۱</span></div>
         <div class="item"><span>شناسه یکتای استعلام:</span><span>VDV-۱۴۰۵-۷K۴M-۹۲QX</span></div>
-        <div class="item"><span>تاریخ تنظیم:</span><span>۲۹/۰۷/۱۴۰۵</span></div>
+        <div class="item"><span>تاریخ تنظیم:</span><span>۱۴۰۵/۰۷/۲۹</span></div>
         <div class="item"><span>تعداد صفحات:</span><span>۶ صفحه</span></div>
         <div class="item"><span>شماره نسخه:</span><span>......... از ۳</span></div>
       </div>
@@ -653,7 +668,7 @@
       <h3><span class="no">ماده ۱</span> طرفین قرارداد</h3>
       <p>
         <span class="clause">۱-۱. مصالح:</span> آقای مهدی بازیار فرزند شعبانعلی،
-        شماره ملی <b>۴۵۴۰۰۰۹۳۴۶</b>، تاریخ تولد ۰۲/۰۶/۱۳۶۸،
+        شماره ملی <b>۴۵۴۰۰۰۹۳۴۶</b>، تاریخ تولد ۱۳۶۸/۰۶/۰۲،
         نشانی: تهران، میدان انقلاب، خیابان کارگر جنوبی، خیابان آذربایجان، کوچه امانی،
         پلاک ۲، واحد ۴، طبقه ۴ شمالی، کد پستی: ۱۳۱۸۸۹۶۱۶۹،
         تلفن همراه: <b>۰۹۱۲۴۷۸۸۴۶۴</b>.
@@ -681,7 +696,7 @@
         <li><b>تعاونی مرجع:</b> تعاونی مسکن شماره ۲ کارکنان نهاد نمایندگی مقام معظم رهبری در دانشگاه‌ها به شماره ثبت ۵۸۹۸۵۵.</li>
         <li><b>نشانی پروژه:</b> شهر تهران، منطقه ۲۱، محله ورداورد، بلوار اصلی، نبش بزرگراه تهران-کرج.</li>
         <li><b>پلاک ثبتی:</b> اصلی ۱۲۲۹۵، فرعی ۲، قطعه ۱۴۹۳۸۸۹۹۱۳.</li>
-        <li><b>مشخصات پروانه شهرداری:</b> شماره پرونده ۲۱۰۰۷۳۷۳۴، شماره پروانه ۲۱۰۰۱۴۶۱۱، تاریخ صدور ۳۰/۰۲/۱۴۰۵.</li>
+        <li><b>مشخصات پروانه شهرداری:</b> شماره پرونده ۲۱۰۰۷۳۷۳۴، شماره پروانه ۲۱۰۰۱۴۶۱۱، تاریخ صدور ۱۴۰۵/۰۲/۳۰.</li>
         <li><b>وضعیت فعلی پروژه:</b> در حال تکمیل کارگاه و بتن‌ریزی پی ساختمان.</li>
       </ol>
       <p>
@@ -777,7 +792,7 @@
       <h3><span class="no">ماده ۴</span> طریقه انتقال و پرداخت</h3>
       <p>
         <span class="clause">۴-۱.</span> با توافق طرفین مقرر گردید عین مبلغ ثمن معامله
-        حداکثر تا مورخ <b>یکشنبه ۰۳/۰۸/۱۴۰۵</b> به حساب بانکی مصالح به نام
+        حداکثر تا مورخ <b>یکشنبه ۱۴۰۵/۰۸/۰۳</b> به حساب بانکی مصالح به نام
         <b>مهدی بازیار</b> به شماره شبا
         <b style="direction:ltr; display:inline-block; font-family:monospace; letter-spacing:0.4px;">IR۸۳۰۵۶۰۶۱۱۸۲۸۰۰۵۱۰۶۱۶۲۸۰۱</b>
         واریز و رسید آن ضمیمه گردد.
