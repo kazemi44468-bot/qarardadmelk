@@ -25,6 +25,24 @@
   }
   $('#addPayment')?.addEventListener('click',addRow);
   tbody?.addEventListener('click',e=>{const b=e.target.closest('.remove-row');if(!b)return;if(tbody.rows.length>1){b.closest('tr').remove();renumber();updateSum()}});
+  // Editable obligations: add, edit in place, or remove individual clauses.
+  $('.contract-section').forEach(section=>{
+    const list=section.querySelector(':scope > ol');
+    const add=section.querySelector('.add-obligation');
+    if(!list||!add)return;
+    add.addEventListener('click',()=>{
+      const li=document.createElement('li');
+      li.innerHTML='<span class="obligation-text" contenteditable="true" role="textbox" aria-label="متن تعهد">متن تعهد جدید را اینجا وارد کنید.</span><button type="button" class="remove-obligation no-print" aria-label="حذف این تعهد" title="حذف تعهد">×</button>';
+      list.appendChild(li);
+      const text=li.querySelector('.obligation-text');
+      const range=document.createRange();range.selectNodeContents(text);
+      const selection=window.getSelection();selection.removeAllRanges();selection.addRange(range);text.focus();
+    });
+    list.addEventListener('click',e=>{
+      const remove=e.target.closest('.remove-obligation');
+      if(remove){remove.closest('li')?.remove();}
+    });
+  });
   function digitsToLatin(s){return String(s||'').replace(/[۰-۹]/g,d=>'۰۱۲۳۴۵۶۷۸۹'.indexOf(d)).replace(/[٠-٩]/g,d=>'٠١٢٣٤٥٦٧٨٩'.indexOf(d));}
   function moneyNum(s){const n=digitsToLatin(s).replace(/[^0-9]/g,'');return n?Number(n):0}
   function faNum(n){return new Intl.NumberFormat('fa-IR').format(n)}
