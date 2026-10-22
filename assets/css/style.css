@@ -9,6 +9,20 @@
 @media(max-width:900px){.workspace{grid-template-columns:1fr}.side-panel{position:static;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:3px}.side-panel h2,.side-note,.side-panel .btn{grid-column:1/-1}.side-panel h2{margin-bottom:5px}.contract{padding:28px}.intro{grid-template-columns:1fr 220px}}
 @media(max-width:600px){body{font-size:13px}.site-header{padding:12px 14px;flex-wrap:wrap}.brand-logo{width:42px;height:42px;flex-basis:42px}.brand-mark{width:36px;height:36px}.brand-copy strong{font-size:14px}.brand-copy span{font-size:10px}.header-actions{width:100%;margin-right:48px}.header-actions .btn{flex:1;padding:7px 8px}.page-wrap{padding:14px 10px 28px}.intro{grid-template-columns:1fr;padding:17px;gap:13px}.intro h1{font-size:21px}.intro-side{border-right:0;border-top:1px solid var(--line);padding:10px 0 0;grid-template-columns:1fr 1fr}.intro-side input{grid-column:span 1}.notice{font-size:11px}.contract{padding:20px 15px}.document-heading h2{font-size:19px}.doc-meta{gap:6px 12px}.form-grid{grid-template-columns:1fr;gap:8px}.form-grid .wide{grid-column:auto}.side-panel{padding:12px}.side-panel>a{font-size:11px}.checklist{grid-template-columns:1fr}.signature-grid{grid-template-columns:1fr}.payment-actions,.bottom-actions{align-items:stretch;flex-direction:column}.bottom-actions .btn{width:100%}.document-footer{flex-direction:column;gap:2px}.contract-section h3,.signature-area h3{font-size:14px}}
 @page{size:A4;margin:14mm 13mm}
+
+/* Editable commitment clauses */
+.contract-section ol li{position:relative;padding-left:2rem}
+.obligation-text{display:inline;min-width:2em;outline:none;border-radius:4px}
+.obligation-text:focus{background:#fff8df;box-shadow:0 0 0 2px #d6b76a}
+.remove-obligation{position:absolute;left:0;top:.15rem;border:1px solid #e5c7c2;background:#fff5f3;color:#9a3e32;border-radius:6px;width:25px;height:25px;cursor:pointer;font-size:18px;line-height:1}
+.obligation-actions{display:flex;align-items:center;gap:12px;margin:10px 0 18px}
+.obligation-actions>span{font-size:12px;color:#68766e}
+@media print{
+ .obligation-actions,.remove-obligation{display:none!important}
+ .contract-section ol li{padding-left:0}
+ .obligation-text{background:transparent!important;box-shadow:none!important}
+}
+
 @media print{body{background:white;color:#111;font-size:10pt;line-height:1.75}.no-print,.site-header,.intro,.notice,.side-panel,.bottom-actions,dialog,.payment-actions .btn,.remove-row{display:none!important}.page-wrap{max-width:none;padding:0;margin:0}.workspace{display:block}.contract{border:0;border-radius:0;box-shadow:none;padding:0;margin:0}.document-heading h2{font-size:18pt}.document-heading{break-after:avoid}.contract-section h3,.signature-area h3{font-size:12pt;break-after:avoid}.contract-section h3 span{background:#e9eee9!important;color:#183b32!important;border:1px solid #aab8ad;print-color-adjust:exact}.contract-section p,.contract-section li{text-align:justify;orphans:3;widows:3}.contract-section h4{break-after:avoid}.form-grid{gap:5px 10px}.form-grid label,.block-label{font-size:8.5pt;break-inside:avoid}input,textarea{border:0!important;border-bottom:1px dotted #999!important;border-radius:0!important;box-shadow:none!important;background:transparent!important;color:#111!important;padding:1px 2px!important;font-size:9pt!important;resize:none;overflow:visible}.form-grid input{min-height:18px}.form-grid textarea,.block-label textarea{border:1px solid #bbb!important;min-height:30px}.payment-table{min-width:0;font-size:8pt;break-inside:avoid}.payment-table th,.payment-table td{padding:3px}.payment-table th:last-child,.payment-table td:last-child{display:none}.payment-table td input{font-size:8pt!important}.checklist{grid-template-columns:repeat(2,minmax(0,1fr));break-inside:avoid}.signature-area,.signature-grid,.signature-box{break-inside:avoid}.signature-box{padding:8px}.sign-space{height:48px}.finger-space{height:40px}.document-footer{font-size:8pt}.contract-section{break-inside:auto}a{color:#111;text-decoration:none}.preamble{background:#f8f6ee!important;print-color-adjust:exact}.doc-meta input{display:inline-block;width:90px}}
 
 
