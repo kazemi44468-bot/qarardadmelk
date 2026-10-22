@@ -1,0 +1,1149 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>قرارداد صلح و واگذاری امتیاز پیش‌فروش — گروه تعاون ملک ایرانیان</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --ink:#1b2430;
+    --ink-soft:#4a5568;
+    --line:#d8dee9;
+    --gold:#b08d57;
+    --gold-soft:#f3ead9;
+    --bg:#e6ebf2;
+    --paper:#ffffff;
+    --accent:#0f4c5c;
+    --accent-soft:#e7f2f4;
+    --danger:#a33;
+  }
+  *{ box-sizing:border-box; }
+  html,body{
+    margin:0; padding:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Vazirmatn','IRANSans','Tahoma',sans-serif;
+    line-height:1.85;
+    font-size:12.5px;
+  }
+
+  .toolbar{
+    position:fixed; top:12px; left:50%; transform:translateX(-50%);
+    z-index:100; display:flex; gap:10px;
+    padding:10px 16px; background:rgba(27,36,48,.94);
+    border-radius:40px; box-shadow:0 6px 24px rgba(0,0,0,.25);
+    backdrop-filter:blur(8px);
+  }
+  .toolbar button{
+    font-family:inherit; font-size:12.5px; font-weight:700;
+    padding:9px 22px; border-radius:30px; border:1px solid var(--gold);
+    background:var(--gold); color:#1b2430; cursor:pointer; transition:.2s;
+  }
+  .toolbar button:hover{ background:#c9a56c; }
+
+  .page{
+    width:210mm; height:297mm;
+    margin:24px auto; background:var(--paper);
+    box-shadow:0 18px 50px rgba(20,30,45,.18);
+    position:relative; display:flex; flex-direction:column;
+    overflow:hidden;
+    page-break-after:always; break-after:page;
+    page-break-inside:avoid; break-inside:avoid;
+  }
+  .page:last-of-type{ page-break-after:auto; break-after:auto; }
+
+  .page-inner{
+    display:flex; flex-direction:column; height:100%;
+    padding:10mm 12mm 6mm; position:relative; z-index:1;
+  }
+
+  /* ==== قاب تزئینی دوتایی برای صفحات داخلی ==== */
+  .page:not(.cover) .page-inner::before {
+    content: "";
+    position: absolute;
+    inset: 5mm;
+    border: 1.5px solid rgba(176,141,87,.55);
+    border-radius: 8px;
+    pointer-events: none;
+    z-index: 0;
+    box-shadow:
+      inset 0 0 0 3px #fff,
+      inset 0 0 0 4px rgba(176,141,87,.18);
+  }
+  .page:not(.cover) .page-inner::after {
+    content: "";
+    position: absolute;
+    inset: 6mm;
+    border: 0.8px solid rgba(176,141,87,.25);
+    border-radius: 6px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ==== هدر و لوگو ==== */
+  .page-header{
+    display:flex; justify-content:space-between; align-items:center;
+    padding-bottom:8px; border-bottom:2px double var(--gold);
+    margin-bottom:10px; gap:10px;
+    position:relative; z-index:2;
+  }
+  .page-header .brand{
+    display:flex; align-items:center; gap:8px;
+    font-weight:800; font-size:11.5px; color:var(--accent);
+    white-space:nowrap;
+  }
+  .page-header .brand .logo{
+    max-height: 38px; max-width: 70px; object-fit: contain;
+  }
+  .page-header .doc-title{
+    font-weight:800; font-size:12.5px; color:var(--ink);
+    text-align:center; flex:1;
+  }
+  .page-header .doc-title small{
+    display:block; font-size:9.5px; color:var(--ink-soft);
+    font-weight:500; margin-top:2px;
+  }
+  .page-header .meta{
+    font-size:10px; color:var(--ink-soft);
+    text-align:left; line-height:1.6; white-space:nowrap;
+  }
+  .page-header .meta b{ color:var(--accent); }
+
+  /* ==== محتوا ==== */
+  .page-content{
+    flex:1; overflow:hidden;
+    font-size:11.5px; text-align:justify;
+    position:relative; z-index:2;
+    padding: 0 2mm;
+  }
+  .page-content p{ margin:0 0 7px; line-height:1.95; }
+  .page-content h3{
+    font-size:12px; color:var(--accent); font-weight:800;
+    background:linear-gradient(90deg, var(--accent-soft), transparent);
+    border-right:3px solid var(--accent);
+    border-radius:0 4px 4px 0;
+    padding:6px 12px; margin:10px 0 7px;
+    display:flex; align-items:center; gap:6px;
+    box-shadow: 0 1px 2px rgba(15,76,92,0.06);
+  }
+  .page-content h3 .no{
+    background:var(--accent); color:#fff; font-size:9.5px;
+    padding:1px 8px; border-radius:12px; font-weight:700;
+  }
+  .page-content ol{ margin:4px 0 8px; padding-right:20px; }
+  .page-content ol li{ margin-bottom:4px; line-height:1.95; }
+  .page-content .clause{ font-weight:700; color:var(--accent); }
+  .page-content .fill{
+    border-bottom:1.5px dotted #8c98a8;
+    display:inline-block; min-width:85px;
+  }
+  .page-content .fill.sm{ min-width:50px; }
+  .page-content .fill.lg{ min-width:140px; }
+
+  .note{
+    background:linear-gradient(180deg,#fbf8f2,#fdfcf9);
+    border:1px dashed var(--gold);
+    border-radius:5px; padding:6px 10px; font-size:10.5px;
+    margin:6px 0; text-align:justify;
+  }
+  .note b{ color:#7a5c22; }
+  .warn{
+    background:linear-gradient(180deg,#fdf3f3,#fefafa);
+    border:1px dashed #c96a6a;
+    border-radius:5px; padding:6px 10px; font-size:10.5px;
+    margin:6px 0;
+  }
+  .warn b{ color:var(--danger); }
+  .preamble{
+    background:linear-gradient(180deg,#fbf8f2,#fff);
+    border:1px solid var(--gold-soft);
+    border-right:3px solid var(--gold);
+    border-radius:5px; padding:8px 12px;
+    font-size:10.8px; text-align:justify; margin-bottom:8px;
+    line-height: 1.95;
+  }
+
+  /* ==== باکس امضا پایین هر صفحه ==== */
+  .sig-panel{
+    margin-top:8px;
+    border: 1px solid var(--gold-soft);
+    border-radius: 6px;
+    padding: 8px 10px 6px;
+    background: linear-gradient(180deg, #fdfbf7, #fff);
+    position: relative;
+    z-index: 2;
+    box-shadow: 0 2px 6px rgba(176,141,87,.06);
+  }
+  .sig-panel::before{
+    content: "امضای طرفین و شهود";
+    position: absolute;
+    top: -9px; right: 14px;
+    background: #fff;
+    padding: 0 8px;
+    font-size: 8.5px;
+    color: var(--gold);
+    font-weight: 700;
+    border-radius: 2px;
+    letter-spacing: 0.3px;
+  }
+  .sig-grid{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 6px;
+  }
+  .sig-person{
+    text-align: center;
+    font-size: 8.5px;
+    line-height: 1.35;
+    padding: 0 2px;
+  }
+  .sig-role{
+    font-weight: 700;
+    color: var(--accent);
+    font-size: 9px;
+    letter-spacing: 0.2px;
+  }
+  .sig-name{
+    font-weight: 600;
+    color: var(--ink);
+    font-size: 8.5px;
+    margin: 1px 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .sig-id{
+    font-size: 7.5px;
+    color: var(--ink-soft);
+    font-family: monospace;
+    letter-spacing: 0.3px;
+    direction: ltr;
+    display: inline-block;
+  }
+  .sig-line{
+    border-bottom: 1.2px solid #8c98a8;
+    height: 22px;
+    margin: 4px 2px 2px;
+  }
+  .sig-date{
+    font-size: 7px;
+    color: #b0b9c4;
+  }
+
+  /* ==== فوتر صفحه ==== */
+  .page-footer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 6px;
+    padding-top: 6px;
+    border-top: 1px dashed var(--gold-soft);
+    font-size: 8.5px;
+    color: var(--ink-soft);
+    z-index: 2;
+    position: relative;
+  }
+  .page-footer .fw-site{
+    display: flex; align-items: center; gap: 4px;
+    color: var(--gold);
+    font-weight: 700;
+    letter-spacing: 0.3px;
+  }
+  .page-footer .fw-site .dot{
+    width: 5px; height: 5px; border-radius: 50%;
+    background: var(--gold);
+    display: inline-block;
+  }
+  .page-footer .fw-left{
+    display: flex; align-items: center; gap: 10px;
+  }
+  .page-footer .fw-copy{
+    color: var(--ink-soft);
+    font-size: 8.5px;
+    border: 1px dashed #c8d0db;
+    border-radius: 10px;
+    padding: 1px 8px;
+  }
+  .page-badge{
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: var(--accent);
+    color: #fff;
+    border-radius: 10px;
+    padding: 2px 10px;
+    font-size: 8.5px;
+    font-weight: 700;
+    line-height: 1.4;
+  }
+  .page-badge b{ font-size: 10px; }
+
+  /* ==== جلد ==== */
+  .page.cover .page-inner{ padding:0; }
+  .cover-frame{
+    flex:1; margin:8mm; border:2px solid var(--gold);
+    border-radius:6px; padding:12mm 12mm 8mm;
+    position:relative; display:flex; flex-direction:column;
+    background:linear-gradient(180deg,#fffdf8 0%,#fff 40%,#fdfaf3 100%);
+  }
+  .cover-frame::before{
+    content:""; position:absolute; inset:6px;
+    border:1px solid rgba(176,141,87,.4);
+    border-radius:4px; pointer-events:none;
+  }
+  .cover-top{ text-align:center; margin-bottom:6mm; }
+  .cover-logo{
+    max-height: 80px; max-width: 150px; object-fit: contain; margin-bottom: 8px;
+  }
+  .company-name-cover {
+    font-size: 14px; font-weight: 800; color: var(--accent);
+    letter-spacing: 1px; margin-bottom: 10px;
+  }
+  .cover-seal{
+    width:60px; height:60px; margin:0 auto 8px;
+    border-radius:50%;
+    background:radial-gradient(circle at 30% 30%, #d9b878, #a57b3e 70%);
+    display:flex; align-items:center; justify-content:center;
+    color:#fff; font-size:22px; font-weight:900;
+    box-shadow:0 0 0 4px #fff, 0 0 0 6px var(--gold-soft), 0 8px 18px rgba(176,141,87,.35);
+  }
+  .cover-label{
+    font-size:10px; letter-spacing:3px; color:var(--gold);
+    font-weight:700; margin-bottom:4px;
+  }
+  .cover-title{
+    font-size:22px; font-weight:900; color:var(--accent);
+    line-height:1.45; margin:4px 0 6px;
+  }
+  .cover-sub{ font-size:12px; color:var(--ink-soft); font-weight:500; }
+  .cover-divider{
+    height:2px; width:80px; margin:10px auto;
+    background:linear-gradient(90deg,transparent,var(--gold),transparent);
+  }
+  .cover-meta{
+    display:grid; grid-template-columns:1fr 1fr; gap:8px 24px;
+    margin:5mm 0; padding:8px 16px;
+    background:rgba(243,234,217,.4);
+    border:1px solid var(--gold-soft); border-radius:6px;
+    font-size:11px;
+  }
+  .cover-meta .item{ display:flex; justify-content:space-between; gap:6px; }
+  .cover-meta .item span:first-child{ color:var(--ink-soft); }
+  .cover-meta .item span:last-child{ font-weight:700; color:var(--accent); }
+
+  .cover-parties{
+    display:grid; grid-template-columns:1fr 1fr; gap:10px;
+    margin:3mm 0;
+  }
+  .cover-party{
+    border:1px solid var(--line); border-radius:6px; padding:8px 12px;
+    background:#fff;
+  }
+  .cover-party .role{
+    font-size:10.5px; font-weight:700; padding-bottom:4px;
+    border-bottom:1px dashed var(--line); margin-bottom:4px;
+  }
+  .cover-party.seller .role{ color:#0f4c5c; }
+  .cover-party.buyer  .role{ color:#7a5c22; }
+  .cover-party .row{ font-size:10.5px; margin-bottom:2px; }
+  .cover-party .row b{ color:var(--ink); }
+
+  .cover-subject{
+    background: linear-gradient(180deg, #fdfaf3, #fff);
+    border: 1px dashed var(--gold);
+    border-radius: 6px;
+    padding: 8px 12px;
+    text-align: center;
+    font-size: 10.5px;
+    margin: 3mm 0;
+  }
+  .cover-subject b{ color: var(--accent); }
+
+  /* باکس خالی مهر و استعلام */
+  .cover-stamp-area {
+    margin-top: auto;
+    padding-top: 6mm;
+    display: flex;
+    justify-content: center;
+    gap: 8mm;
+  }
+  .stamp-box {
+    width: 55mm;
+    height: 24mm;
+    border: 1.5px dashed var(--gold);
+    border-radius: 6px;
+    background: rgba(243, 234, 217, 0.15);
+  }
+  .cover-footer-note {
+    text-align: center;
+    font-size: 9px;
+    color: var(--ink-soft);
+    padding-top: 4mm;
+    border-top: 1px dashed var(--gold-soft);
+    margin-top: 4mm;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .cover-footer-note .site {
+    color: var(--gold);
+    font-weight: 700;
+  }
+  .cover-footer-note .copy-num {
+    border: 1px dashed #c8d0db;
+    border-radius: 10px;
+    padding: 1px 10px;
+    font-size: 9px;
+  }
+
+  /* ==== صفحه امضای نهایی ==== */
+  .final-sig-title{
+    text-align:center; margin-top:6px; margin-bottom:10px;
+    padding-bottom:6px; border-bottom:2px solid var(--gold-soft);
+    font-size:13px; font-weight:800; color:var(--accent);
+    letter-spacing: 0.5px;
+  }
+  .final-sig{
+    display:grid; grid-template-columns:1fr 1fr; gap:12px;
+  }
+  .final-sig .box{
+    border:1.5px solid var(--line); border-radius:8px;
+    padding:10px 14px 55px; position:relative;
+    background:#fdfdfe; min-height:120px;
+  }
+  .final-sig .box.seller{ border-color:#0f4c5c; background:linear-gradient(180deg,#f9fdfe,#fff); }
+  .final-sig .box.buyer{ border-color:#b08d57; background:linear-gradient(180deg,#fffcf5,#fff); }
+  .final-sig .box .role{
+    font-size:11.5px; font-weight:800;
+    border-bottom:1px dashed var(--line);
+    padding-bottom:5px; margin-bottom:6px;
+  }
+  .final-sig .box.seller .role{ color:#0f4c5c; }
+  .final-sig .box.buyer .role{ color:#7a5c22; }
+  .final-sig .box p{
+    margin:0 0 4px; font-size:10.5px; color:var(--ink-soft);
+  }
+  .final-sig .box p b{ color:var(--ink); }
+  .final-sig .box .stamp{
+    position:absolute; left:12px; bottom:10px;
+    width:58px; height:58px;
+    border:1.5px dashed #c8d0db; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    font-size:8px; color:#aab3c0; text-align:center; line-height:1.3;
+    background: #fff;
+  }
+  .witnesses-final{
+    margin-top:12px; display:grid;
+    grid-template-columns:1fr 1fr; gap:12px;
+  }
+  .witnesses-final .box{
+    border:1px solid var(--line); border-radius:8px;
+    padding:9px 14px 45px; background:#fdfdfe; min-height:85px;
+    position: relative;
+  }
+  .witnesses-final .role{
+    font-size:11px; font-weight:700; color:var(--ink-soft);
+    border-bottom:1px dashed var(--line);
+    padding-bottom:4px; margin-bottom:5px;
+  }
+  .witnesses-final p{
+    margin:0 0 3px; font-size:10px; color:var(--ink-soft);
+  }
+
+  /* ==== پنل رسمی تنظیم و ثبت (پایین صفحه ۶) ==== */
+  .final-official-area {
+    margin-top: 12px;
+    border: 2px solid var(--gold);
+    border-radius: 8px;
+    padding: 8px;
+    background: linear-gradient(180deg, #fdfbf7, #fff);
+    page-break-inside: avoid;
+  }
+  .official-title {
+    text-align: center;
+    font-size: 10.5px;
+    font-weight: 800;
+    color: var(--gold);
+    margin-bottom: 6px;
+    letter-spacing: 0.5px;
+  }
+  .official-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr 1fr;
+    gap: 8px;
+  }
+  .official-box {
+    border: 1.5px dashed #c8d0db;
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    min-height: 70px;
+  }
+  .official-box.highlight {
+    border: 1.5px solid var(--gold);
+    background: var(--gold-soft);
+    box-shadow: 0 2px 8px rgba(176,141,87,.15);
+  }
+  .o-head {
+    font-size: 9.5px;
+    font-weight: 700;
+    text-align: center;
+    color: var(--accent);
+    border-bottom: 1px solid var(--line);
+    padding: 4px;
+    background: rgba(243, 234, 217, 0.3);
+    border-radius: 4px 4px 0 0;
+  }
+  .official-box.highlight .o-head {
+    background: rgba(176, 141, 87, 0.2);
+    color: #5c421c;
+  }
+  .o-body {
+    flex-grow: 1;
+    min-height: 30px;
+    display: flex; align-items: center; justify-content: center;
+    color: #d8dee9; font-size: 16px;
+  }
+  .o-foot {
+    font-size: 8.5px;
+    color: var(--ink-soft);
+    text-align: center;
+    padding: 4px;
+    border-top: 1px solid var(--line);
+    background: #fafbfc;
+    border-radius: 0 0 4px 4px;
+  }
+
+  /* ==== چاپ ==== */
+  @page{ size:A4; margin:0; }
+  @media print{
+    html,body{
+      background:#fff !important; font-size:10.5px;
+      -webkit-print-color-adjust:exact; print-color-adjust:exact;
+    }
+    .toolbar{ display:none !important; }
+    .page{
+      width:210mm; height:297mm; margin:0;
+      box-shadow:none; border-radius:0;
+      page-break-after:always;
+    }
+    .page:last-of-type{ page-break-after:auto; }
+    .page-inner { padding: 8mm 10mm 5mm; }
+    .page:not(.cover) .page-inner::before { inset: 4mm; }
+    .page:not(.cover) .page-inner::after { inset: 5mm; }
+  }
+
+  @media (max-width:820px){
+    .page{ width:96vw; height:auto; min-height:calc(96vw * 1.414); }
+    .cover-meta{ grid-template-columns:1fr; }
+    .cover-parties{ grid-template-columns:1fr; }
+    .sig-grid{ grid-template-columns:1fr 1fr; gap:8px; }
+    .official-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="toolbar">
+  <button onclick="window.print()">🖨️ چاپ دفترچه (A4)</button>
+</div>
+
+<!-- ═══════════ صفحه ۱ — جلد ═══════════ -->
+<div class="page cover" data-page="1">
+  <div class="page-inner">
+    <div class="cover-frame">
+      <div class="cover-top">
+        <img src="logo.png" alt="Logo" class="cover-logo">
+        <div class="company-name-cover">گروه تعاون ملک ایرانیان</div>
+        <div class="cover-seal">⚖</div>
+        <div class="cover-label">سند صلح و واگذاری — دفترچه قرارداد</div>
+        <h1 class="cover-title">قرارداد صلح حقوق و<br>واگذاری امتیاز پیش‌فروش</h1>
+        <div class="cover-divider"></div>
+        <div class="cover-sub">
+          پروژه مسکونی اساتید وردآورد<br>
+          تعاونی مسکن شماره ۲ کارکنان نهاد نمایندگی مقام معظم رهبری در دانشگاه‌ها
+        </div>
+      </div>
+
+      <div class="cover-meta">
+        <div class="item"><span>شماره سند:</span><span>1405S891</span></div>
+        <div class="item"><span>تاریخ تنظیم:</span><span>۲۹ / ۰۷ / ۱۴۰۵</span></div>
+        <div class="item"><span>تعداد صفحات:</span><span>۶ صفحه</span></div>
+        <div class="item"><span>شماره نسخه:</span><span>......... از ۳</span></div>
+      </div>
+
+      <div class="cover-parties">
+        <div class="cover-party seller">
+          <div class="role">فروشنده (مصالح)</div>
+          <div class="row">نام: <b>مهدی بازیار</b></div>
+          <div class="row">کد ملی: <b>۴۵۴۰۰۰۹۳۴۶</b></div>
+        </div>
+        <div class="cover-party buyer">
+          <div class="role">خریدار (متصالح)</div>
+          <div class="row">نام: <b>سید محمدرضا معافی مدنی</b></div>
+          <div class="row">کد ملی: <b>۰۳۷۰۰۸۹۹۰۱</b></div>
+        </div>
+      </div>
+
+      <div class="cover-subject">
+        موضوع: واگذاری <b>شش‌دانگ</b> امتیاز یک واحد مسکونی در پروژه اساتید وردآورد
+      </div>
+
+      <!-- جای خالی مهر -->
+      <div class="cover-stamp-area">
+        <div class="stamp-box"></div>
+        <div class="stamp-box"></div>
+      </div>
+
+      <div class="cover-footer-note">
+        <span class="site">گروه تعاون ملک ایرانیان — taavonmelk.ir</span>
+        <span class="copy-num">نسخه ......... از ۳</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ صفحه ۲ — مقدمه + ماده ۱ + ماده ۲ ═══════════ -->
+<div class="page" data-page="2">
+  <div class="page-inner">
+    <header class="page-header">
+      <div class="brand">
+        <img src="logo.png" alt="Logo" class="logo">
+        <span>گروه تعاون ملک ایرانیان</span>
+      </div>
+      <div class="doc-title">
+        قرارداد صلح حقوق و واگذاری امتیاز پیش‌فروش
+        <small>شماره سند: 1405S891</small>
+      </div>
+      <div class="meta">تاریخ: ۲۹/۰۷/۱۴۰۵<br><b>صفحه ۲ از ۶</b></div>
+    </header>
+
+    <div class="page-content">
+      <div class="preamble">
+        نظر به اینکه <b>آقای مهدی بازیار فرزند شعبانعلی به شماره ملی ۴۵۴۰۰۰۹۳۴۶</b> (که از این پس
+        <b>«مصالح»</b> یا <b>«واگذارکننده»</b> نامیده می‌شود) مالک و ذی‌حق امتیاز شش‌دانگ یک واحد
+        مسکونی در پروژه اساتید وردآورد می‌باشد، و نظر به اینکه
+        <b>آقای سید محمدرضا معافی مدنی فرزند سید محمد تقی به شماره ملی ۰۳۷۰۰۸۹۹۰۱</b>
+        (که از این پس <b>«متصالح»</b> یا <b>«واگذارگیرنده»</b> نامیده می‌شود) متقاضی تحصیل این
+        امتیاز است، طرفین با علم و آگاهی کامل و با رعایت <b>ماده ۱۰ قانون مدنی</b>،
+        <b>قانون پیش‌فروش ساختمان مصوب ۱۳۸۹ (اصلاحی ۱۴۰۱)</b> و <b>آیین‌نامه اجرایی آن</b>،
+        این قرارداد صلح را با شرایط و مواعد ذیل منعقد و امضا می‌نمایند.
+      </div>
+
+      <h3><span class="no">ماده ۱</span> طرفین قرارداد</h3>
+      <p>
+        <span class="clause">۱-۱. مصالح (فروشنده):</span> آقای مهدی بازیار فرزند شعبانعلی،
+        شماره ملی <b>۴۵۴۰۰۰۹۳۴۶</b>، تاریخ تولد ۱۳۶۸/۰۶/۰۲،
+        نشانی: تهران، میدان انقلاب، خیابان کارگر جنوبی، خیابان آذربایجان، کوچه امانی،
+        پلاک ۲، واحد ۴، طبقه ۴ شمالی، کد پستی: ۱۳۱۸۸۹۶۱۶۹،
+        تلفن همراه: <b>۰۹۱۲۴۷۸۸۴۶۴</b>.
+      </p>
+      <p>
+        <span class="clause">۱-۲. متصالح (خریدار):</span> آقای سید محمدرضا معافی مدنی فرزند
+        سید محمد تقی، شماره ملی <b>۰۳۷۰۰۸۹۹۰۱</b>،
+        نشانی: استان قم، ۴۵ متری عمار یاسر، کوچه یک، پلاک ۴۵،
+        تلفن همراه: <b>۰۹۳۸۱۴۴۸۷۷۱</b>.
+      </p>
+      <p>
+        <span class="clause">۱-۳. شهود:</span>
+        شاهد اول: <b>آقای نوذر ارشدی</b> به شماره ملی <b>۲۴۹۱۶۸۰۸۲۳</b>، تلفن: ۰۹۳۹۴۳۸۴۲۴۱؛
+        شاهد دوم: <b>خانم سارا یعقوبی پور فرد</b> به شماره ملی <b>۴۱۲۰۱۵۱۷۲۷</b>، تلفن: ۰۹۰۱۴۸۰۳۳۱۵.
+      </p>
+
+      <h3><span class="no">ماده ۲</span> موضوع صلح (مورد معامله)</h3>
+      <p>
+        <span class="clause">۲-۱.</span> موضوع این قرارداد عبارت است از <b>صلح و واگذاری
+        کلیه حقوق، امتیازات، منافع و تعهدات قابل انتقال</b> متعلق به مصالح، ناشی از
+        پیش‌فروش/پیش‌خرید <b>شش‌دانگ واحد مسکونی</b> در پروژه مسکونی <b>اساتید وردآورد</b>
+        با مشخصات ذیل:
+      </p>
+      <ol>
+        <li><b>تعاونی مرجع:</b> تعاونی مسکن شماره ۲ کارکنان نهاد نمایندگی مقام معظم رهبری در دانشگاه‌ها به شماره ثبت ۵۸۹۸۵۵.</li>
+        <li><b>نشانی پروژه:</b> شهر تهران، منطقه ۲۱، محله ورداورد، بلوار اصلی، نبش بزرگراه تهران-کرج.</li>
+        <li><b>پلاک ثبتی:</b> اصلی ۱۲۲۹۵، فرعی ۲، قطعه ۱۴۹۳۸۸۹۹۱۳.</li>
+        <li><b>مشخصات پروانه شهرداری:</b> شماره پرونده ۲۱۰۰۷۳۷۳۴، شماره پروانه ۲۱۰۰۱۴۶۱۱، تاریخ صدور ۱۴۰۵/۰۲/۳۰.</li>
+        <li><b>وضعیت فعلی پروژه:</b> در حال تکمیل کارگاه و بتن‌ریزی پی ساختمان.</li>
+      </ol>
+      <p>
+        <span class="clause">۲-۲.</span> تاریخ عقد این قرارداد <b>۲۹/۰۷/۱۴۰۵</b> می‌باشد.
+        کلیه حقوق و تعهدات مصالح نسبت به واحد مذکور از تاریخ این قرارداد به متصالح منتقل می‌گردد.
+      </p>
+    </div>
+
+    <!-- پنل امضا -->
+    <div class="sig-panel">
+      <div class="sig-grid">
+        <div class="sig-person">
+          <div class="sig-role">مصالح</div>
+          <div class="sig-name">مهدی بازیار</div>
+          <div class="sig-id">4540009346</div>
+          <div class="sig-line"></div>
+          <div class="sig-date">تاریخ: ...........</div>
+        </div>
+        <div class="sig-person">
+          <div class="sig-role">متصالح</div>
+          <div class="sig-name">سید محمدرضا معافی مدنی</div>
+          <div class="sig-id">0370089901</div>
+          <div class="sig-line"></div>
+          <div class="sig-date">تاریخ: ...........</div>
+        </div>
+        <div class="sig-person">
+          <div class="sig-role">شاهد اول</div>
+          <div class="sig-name">نوذر ارشدی</div>
+          <div class="sig-id">2491680823</div>
+          <div class="sig-line"></div>
+          <div class="sig-date">تاریخ: ...........</div>
+        </div>
+        <div class="sig-person">
+          <div class="sig-role">شاهد دوم</div>
+          <div class="sig-name">سارا یعقوبی پور فرد</div>
+          <div class="sig-id">4120151727</div>
+          <div class="sig-line"></div>
+          <div class="sig-date">تاریخ: ...........</div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="page-footer">
+      <span class="fw-site"><span class="dot"></span> taavonmelk.ir</span>
+      <span class="fw-left">
+        <span class="fw-copy">نسخه ......... از ۳</span>
+        <span class="page-badge"><b>۲</b> از <b>۶</b></span>
+      </span>
+    </footer>
+  </div>
+</div>
+
+<!-- ═══════════ صفحه ۳ — ماده ۳ + ماده ۴ + ماده ۵ (بخش اول) ═══════════ -->
+<div class="page" data-page="3">
+  <div class="page-inner">
+    <header class="page-header">
+      <div class="brand">
+        <img src="logo.png" alt="Logo" class="logo">
+        <span>گروه تعاون ملک ایرانیان</span>
+      </div>
+      <div class="doc-title">
+        قرارداد صلح حقوق و واگذاری امتیاز پیش‌فروش
+        <small>شماره سند: 1405S891</small>
+      </div>
+      <div class="meta">تاریخ: ۲۹/۰۷/۱۴۰۵<br><b>صفحه ۳ از ۶</b></div>
+    </header>
+
+    <div class="page-content">
+      <h3><span class="no">ماده ۳</span> وجه‌الصلح (بهای معامله)</h3>
+      <p>
+        <span class="clause">۳-۱.</span> بهای کل صلح موضوع این قرارداد، مبلغ
+        <b>۷۲,۰۰۰,۰۰۰,۰۰۰ ریال</b> معادل <b>هفت میلیارد و دویست میلیون تومان</b> وجه رایج
+        می‌باشد که به اقرار مصالح، تسلیم و تادیه گردیده است.
+      </p>
+      <p>
+        <span class="clause">۳-۲.</span> طرفین اقرار می‌نمایند که وجه‌الصلح به قیمت روز
+        و با رضایت کامل تعیین شده و <b>کلیه خیارات</b>، علی‌الخصوص <b>خیار غبن فاحش</b>،
+        از مصالح ساقط گردیده و وی حق هیچ‌گونه ادعا یا اعتراضی نسبت به آن را نخواهد داشت.
+      </p>
+      <div class="note">
+        <b>تبصره:</b> مبلغ وجه‌الصلح در صورت اختلاف بین عدد و حروف، <b>عدد حروفی</b>
+        (هفت میلیارد و دویست میلیون تومان) ملاک عمل خواهد بود.
+      </div>
+
+      <h3><span class="no">ماده ۴</span> طریقه انتقال و پرداخت</h3>
+      <p>
+        <span class="clause">۴-۱.</span> با توافق طرفین مقرر گردید عین مبلغ ثمن معامله
+        حداکثر تا مورخ <b>یکشنبه ۰۳/۰۸/۱۴۰۵</b> به حساب بانکی فروشنده به نام
+        <b>مهدی بازیار</b> به شماره شبا
+        <b style="direction:ltr; display:inline-block; font-family:monospace; letter-spacing:0.4px;">IR830560611828005106162801</b>
+        واریز و رسید آن ضمیمه گردد.
+      </p>
+      <p>
+        <span class="clause">۴-۲.</span> مصالح اقرار می‌نماید که مبلغ وجه‌الصلح را دریافت
+        نموده و هیچ‌گونه مطالبه دیگری نسبت به مورد صلح یا متصالح ندارد.
+      </p>
+      <div class="warn">
+        <b>هشدار:</b> در صورت عدم پرداخت به‌موقع وجه‌الصلح توسط متصالح در تاریخ مقرر،
+        وی متعهد است به ازای <b>هر روز تأخیر</b>، مبلغ <b>۵۰,۰۰۰,۰۰۰ ریال</b> به‌عنوان
+        <b>وجه التزام</b> به مصالح پرداخت نماید. این مبلغ علاوه بر خسارات واقعی و حق فسخ
+        مصالح است.
+      </div>
+
+      <h3><span class="no">ماده ۵</span> شرایط قرارداد صلح (بخش اول)</h3>
+      <p>
+        <span class="clause">۵-۱.</span> مصالح به موجب این صلح‌نامه، کلیه حقوق ناشی از
+        مالکیت خود را به طرف دیگر (متصالح) صلح نموده و هیچ‌گونه ادعایی در این خصوص نخواهد داشت.
+      </p>
+      <p>
+        <span class="clause">۵-۲.</span> چنانچه در این قرارداد امکانات وام و خدمات مالی
+        حمایتی و کمکی به منظور تأمین مسکن متصالح از طرف تعاونی مربوطه در نظر گرفته شود،
+        این حق برای متصالح محفوظ بوده و در صورت توافق جداگانه امکان انتقال به متصالح را دارد.
+      </p>
+      <p>
+        <span class="clause">۵-۳.</span> تمامی حقوق، حق و حقوق و مالکیت پروژه مورد قرارداد
+        به خریدار واگذار می‌گردد. از من بعد (از این پس)، فروشنده تنها نماینده پیگیری و انجام
+        امورات اداری از طرف خریدار می‌باشد تا زمانی که دفتر فروش و نقل و انتقال رسمی از
+        طرف تعاونی ایجاد و به نام خریدار زده شود.
+      </p>
+    </div>
+
+    <div class="sig-panel">
+      <div class="sig-grid">
+        <div class="sig-person">
+          <div class="sig-role">مصالح</div>
+          <div class="sig-name">مهدی بازیار</div>
+          <div class="sig-id">4540009346</div>
+          <div class="sig-line"></div>
+          <div class="sig-date">تاریخ: ...........</div>
+        </div>
+        <div class="sig-person">
+          <div class="sig-role">متصالح</div>
+          <div class="sig-name">سید محمدرضا معافی مدنی</div>
+          <div class="sig-id">0370089901</div>
+          <div class="sig-line"></div>
+          <div class="sig-date">تاریخ: ...........</div>
+        </div>
+        <div class="sig-person">
+          <div class="sig-role">شاهد اول</div>
+          <div class="sig-name">نوذر ارشدی</div>
+          <div class="sig-id">2491680823</div>
+          <div class="sig-line"></div>
+          <div class="sig-date">تاریخ: ...........</div>
+        </div>
+        <div class="sig-person">
+          <div class="sig-role">شاهد دوم</div>
+          <div class="sig-name">سارا یعقوبی پور فرد</div>
+          <div class="sig-id">4120151727</div>
+          <div class="sig-line"></div>
+          <div class="sig-date">تاریخ: ...........</div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="page-footer">
+      <span class="fw-site"><span class="dot"></span> taavonmelk.ir</span>
+      <span class="fw-left">
+        <span class="fw-copy">نسخه ......... از ۳</span>
+        <span class="page-badge"><b>۳</b> از <b>۶</b></span>
+      </span>
+    </footer>
+  </div>
+</div>
+
+<!-- ═══════════ صفحه ۴ — ماده ۵ (بخش دوم) + ماده ۶ ═══════════ -->
+<div class="page" data-page="4">
+  <div class="page-inner">
+    <header class="page-header">
+      <div class="brand">
+        <img src="logo.png" alt="Logo" class="logo">
+        <span>گروه تعاون ملک ایرانیان</span>
+      </div>
+      <div class="doc-title">
+        قرارداد صلح حقوق و واگذاری امتیاز پیش‌فروش
+        <small>شماره سند: 1405S891</small>
+      </div>
+      <div class="meta">تاریخ: ۲۹/۰۷/۱۴۰۵<br><b>صفحه ۴ از ۶</b></div>
+    </header>
+
+    <div class="page-content">
+      <h3><span class="no">ماده ۵</span> شرایط قرارداد صلح (بخش دوم)</h3>
+      <p>
+        <span class="clause">۵-۴.</span> مصالح متعهد است در اولین فرصت ممکن از تاریخ
+        قطعیت خرید این صلح‌نامه، اقدام به <b>اعطای مالکیت رسمی و وکالت بلاعزل</b> به
+        متصالح با اختیارات تام برای نقل و انتقال امتیاز مورد معامله نماید. این اختیارات
+        شامل انجام هرگونه عمل حقوقی و بانکی و هر نوع معامله تحت هر عنوان نسبت به مورد
+        صلح‌نامه و اموال آن، به نام هر شخصی (حتی خود مصالح) و به هر مبلغ می‌باشد.
+      </p>
+      <p>
+        <span class="clause">۵-۵.</span> مصالح اعلام و اقرار می‌نماید که <b>جزو اشخاص
+        ممنوع‌المعامله نمی‌باشد</b> و در صورتی که خلاف آن هویدا شود، به صورت
+        <b>تضامنی</b> مسئولیت جبران خسارت را بر عهده خواهد داشت.
+      </p>
+      <p>
+        <span class="clause">۵-۶.</span> مصالح متعهد است در صورت نیاز و درخواست متصالح،
+        حداکثر در مدت <b>۲ روز کاری</b> از زمانی که متصالح اعلام نماید، تمامی همکاری
+        لازم به منظور واگذاری مفاد صلح‌نامه به اشخاص دیگری که متصالح اعلام می‌دارد،
+        اقدام نماید.
+      </p>
+      <p>
+        <span class="clause">۵-۷.</span> مصالح متعهد می‌گردد چنانچه قبل از انتقال مالکیت
+        تمام و کمال مفاد صلح‌نامه به متصالح <b>فوت</b> کند، اختیار قرارداد به متصالح
+        واگذار گردد و <b>ورثه مصالح حق هیچ‌گونه اعتراضی را ندارند</b>.
+      </p>
+      <p>
+        <span class="clause">۵-۸.</span> مصالح متعهد می‌گردد چنانچه متصالح قبل از انتقال
+        مالکیت تمام و کمال مفاد صلح‌نامه (به انضمام هر نفع انتفاعی مادی و معنوی) <b>فوت</b>
+        کند، اختیار هرگونه عمل حقوقی و بانکی و هر نوع معامله تحت هر عنوان نسبت به مورد
+        صلح‌نامه، به <b>همسر متصالح متوفی</b> و در صورت عدم وجود همسر یا فوت ایشان به
+        <b>ورثه</b> منتقل گردیده و در قبال آن هیچ ادعا و اعتراضی نداشته باشد.
+      </p>
+      <p>
+        <span class="clause">۵-۹.</span> مصالح متعهد می‌گردد در صورتی که تعاونی مسکن
+        شماره ۲ نهاد نمایندگی مقام معظم رهبری در دانشگاه‌ها به هر دلیلی از انجام تعهدات
+        خود تخطی کند و نیاز به طرح دعوا از جانب مصالح باشد، <b>متصالح وکیل تام‌الاختیار
+        جهت طرح دعوا</b> را از جانب مصالح دارا می‌باشد.
+      </p>
+
+      <h3><span class="no">ماده ۶</span> تضامین و وجه التزام</h3>
+      <p>
+        <span class="clause">۶-۱.</span> در صورت <b>نقض تعهدات اساسی</b> هر یک از طرفین
+        (از جمله کشف معامله معارض توسط مصالح یا عدم پرداخت وجه‌الصلح توسط متصالح)،
+        طرف ناقض متعهد به پرداخت <b>معادل ۲۰٪ (بیست درصد) از کل وجه‌الصلح</b> به‌عنوان
+        <b>وجه التزام</b> به طرف غیرناقض خواهد بود، علاوه بر استرداد وجوه دریافتی و
+        جبران خسارات مازاد.
+      </p>
+      <p>
+        <span class="clause">۶-۲.</span> در صورت <b>فوت مصالح</b> پیش از تنظیم سند رسمی،
+        کلیه تعهدات و حقوق ناشی از این قرارداد به وراث قانونی وی منتقل شده و وراث مکلف
+        به ایفای تعهدات متوفی می‌باشند و حق اعتراض یا ادعا نسبت به مفاد این قرارداد را
+        نخواهند داشت.
+      </p>
+    </div>
+
+    <div class="sig-panel">
+      <div class="sig-grid">
+        <div class="sig-person">
+          <div class="sig-role">مصالح</div>
+          <div class="sig-name">مهدی بازیار</div>
+          <div class="sig-id">4540009346</div>
+          <div class="sig-line"></div>
+          <div class="sig-date">تاریخ: ...........</div>
+        </div>
+        <div class="sig-person">
+          <div class="sig-role">متصالح</div>
+          <div class="sig-name">سید محمدرضا معافی مدنی</div>
+          <div class="sig-id">0370089901</div>
+          <div class="sig-line"></div>
+          <div class="sig-date">تاریخ: ...........</div>
+        </div>
+        <div class="sig-person">
+          <div class="sig-role">شاهد اول</div>
+          <div class="sig-name">نوذر ارشدی</div>
+          <div class="sig-id">2491680823</div>
+          <div class="sig-line"></div>
+          <div class="sig-date">تاریخ: ...........</div>
+        </div>
+        <div class="sig-person">
+          <div class="sig-role">شاهد دوم</div>
+          <div class="sig-name">سارا یعقوبی پور فرد</div>
+          <div class="sig-id">4120151727</div>
+          <div class="sig-line"></div>
+          <div class="sig-date">تاریخ: ...........</div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="page-footer">
+      <span class="fw-site"><span class="dot"></span> taavonmelk.ir</span>
+      <span class="fw-left">
+        <span class="fw-copy">نسخه ......... از ۳</span>
+        <span class="page-badge"><b>۴</b> از <b>۶</b></span>
+      </span>
+    </footer>
+  </div>
+</div>
+
+<!-- ═══════════ صفحه ۵ — ماده ۷ + ماده ۸ + ماده ۹ ═══════════ -->
+<div class="page" data-page="5">
+  <div class="page-inner">
+    <header class="page-header">
+      <div class="brand">
+        <img src="logo.png" alt="Logo" class="logo">
+        <span>گروه تعاون ملک ایرانیان</span>
+      </div>
+      <div class="doc-title">
+        قرارداد صلح حقوق و واگذاری امتیاز پیش‌فروش
+        <small>شماره سند: 1405S891</small>
+      </div>
+      <div class="meta">تاریخ: ۲۹/۰۷/۱۴۰۵<br><b>صفحه ۵ از ۶</b></div>
+    </header>
+
+    <div class="page-content">
+      <h3><span class="no">ماده ۷</span> حل اختلاف</h3>
+      <p>
+        <span class="clause">۷-۱.</span> هرگاه در اجرا، تعبیر یا تفسیر هر یک از مواد این
+        قرارداد صلح اختلافی حادث گردد، مصالح و متصالح مکلف هستند بدواً موضوع را از طریق
+        <b>مذاکرات مسالمت‌آمیز</b> حل و فصل نمایند.
+      </p>
+      <p>
+        <span class="clause">۷-۲.</span> در صورتی که مذاکرات ظرف مدت <b>یک هفته کاری</b>
+        از تاریخ حدوث اختلاف منتج به حل اختلاف نگردید، یا طرف دیگر حداکثر ظرف مدت
+        <b>۵ روز</b> از تاریخ دعوت، حاضر به مذاکره نگردد، موضوع به <b>مراجع قضایی صالح</b>
+        (دادگاه عمومی حقوقی محل وقوع ملک یا محل اقامت خوانده) ارجاع و مطرح می‌گردد.
+      </p>
+
+      <h3><span class="no">ماده ۸</span> فورس ماژور (حوادث قهریه)</h3>
+      <p>
+        <span class="clause">۸-۱.</span> هیچ‌یک از طرفین در قبال <b>عدم اجرا یا تأخیر
+        در اجرای تعهدات</b> ناشی از <b>حوادث قهریه</b> (مانند جنگ، زلزله، سیل، آتش‌سوزی،
+        اعتصاب سراسری، انقلاب، تصمیمات حاکمیتی غیرقابل پیش‌بینی و امثال آن) که خارج از
+        کنترل متعارف طرف بوده و مانع اجرای تعهد گردد، مسئولیتی نخواهد داشت.
+      </p>
+      <p>
+        <span class="clause">۸-۲.</span> طرفی که با حادثه قهریه مواجه شده، مکلف است
+        <b>ظرف ۱۰ روز</b> از تاریخ وقوع، مراتب را <b>کتباً</b> به طرف دیگر اطلاع دهد.
+        در صورت تداوم حادثه قهریه بیش از <b>۳ ماه</b>، طرفین مکلف به مذاکره برای تعدیل
+        یا خاتمه قرارداد خواهند بود.
+      </p>
+
+      <h3><span class="no">ماده ۹</span> نسخ قرارداد و اعتبار آن</h3>
+      <p>
+        <span class="clause">۹-۱.</span> این قرارداد صلح مطابق مقررات و قوانین کشور
+        جمهوری اسلامی ایران در <b>۹ ماده و ۳ تبصره</b>، در <b>۳ نسخه متحدالمتن</b> که
+        همه نسخه‌ها دارای <b>اعتبار واحد</b> می‌باشند، تنظیم، امضا و مبادله گردید و
+        برای طرفین <b>لازم‌الاجرا</b> است.
+      </p>
+      <p>
+        <span class="clause">۹-۲.</span> این قرارداد فی‌مابین مصالح و متصالح در کمال
+        <b>صحّت عقل و سلامت و اراده و بدون اجبار و اکراه</b> تنظیم گردیده است.
+      </p>
+      <p>
+        <span class="clause">۹-۳.</span> کلیه <b>معاملات و قراردادهای مغایر</b> با متن
+        این صلح‌نامه بین مصالح با افراد دیگر، <b>باطل و بی‌اعتبار</b> بوده و فاقد اثر
+        است. مصالح تعهد نموده و اقرار می‌نماید که هیچ‌گونه معامله و عقد تملیکی مغایر
+        این صلح‌نامه منعقد ننموده است. در صورت وجود هرگونه عقد قبل یا بعد از این قرارداد،
+        عقد مذکور بی‌اعتبار است و متصالح حق هرگونه شکایت را علیه مصالح دارد و مصالح
+        می‌بایست <b>تمام مبلغ قرارداد را به روز محاسبه کرده و به متصالح پرداخت نماید</b>.
+      </p>
+      <div class="note">
+        <b>تبصره نهایی:</b> کلیه مشخصات دست‌نویس، امضاها، اثر انگشت و شماره‌های درج‌شده
+        به‌صورت دستی در متن این قرارداد و پیوست‌های آن، مورد تایید و پذیرش طرفین است.
+      </div>
+    </div>
+
+    <div class="sig-panel">
+      <div class="sig-grid">
+        <div class="sig-person">
+          <div class="sig-role">مصالح</div>
+          <div class="sig-name">مهدی بازیار</div>
+          <div class="sig-id">4540009346</div>
+          <div class="sig-line"></div>
+          <div class="sig-date">تاریخ: ...........</div>
+        </div>
+        <div class="sig-person">
+          <div class="sig-role">متصالح</div>
+          <div class="sig-name">سید محمدرضا معافی مدنی</div>
+          <div class="sig-id">0370089901</div>
+          <div class="sig-line"></div>
+          <div class="sig-date">تاریخ: ...........</div>
+        </div>
+        <div class="sig-person">
+          <div class="sig-role">شاهد اول</div>
+          <div class="sig-name">نوذر ارشدی</div>
+          <div class="sig-id">2491680823</div>
+          <div class="sig-line"></div>
+          <div class="sig-date">تاریخ: ...........</div>
+        </div>
+        <div class="sig-person">
+          <div class="sig-role">شاهد دوم</div>
+          <div class="sig-name">سارا یعقوبی پور فرد</div>
+          <div class="sig-id">4120151727</div>
+          <div class="sig-line"></div>
+          <div class="sig-date">تاریخ: ...........</div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="page-footer">
+      <span class="fw-site"><span class="dot"></span> taavonmelk.ir</span>
+      <span class="fw-left">
+        <span class="fw-copy">نسخه ......... از ۳</span>
+        <span class="page-badge"><b>۵</b> از <b>۶</b></span>
+      </span>
+    </footer>
+  </div>
+</div>
+
+<!-- ═══════════ صفحه ۶ — امضای نهایی ═══════════ -->
+<div class="page" data-page="6">
+  <div class="page-inner">
+    <header class="page-header">
+      <div class="brand">
+        <img src="logo.png" alt="Logo" class="logo">
+        <span>گروه تعاون ملک ایرانیان</span>
+      </div>
+      <div class="doc-title">
+        قرارداد صلح حقوق و واگذاری امتیاز پیش‌فروش
+        <small>شماره سند: 1405S891</small>
+      </div>
+      <div class="meta">تاریخ: ۲۹/۰۷/۱۴۰۵<br><b>صفحه ۶ از ۶</b></div>
+    </header>
+
+    <div class="page-content">
+      <div class="final-sig-title">امضا و تعهد نهایی طرفین</div>
+
+      <div class="final-sig">
+        <div class="box seller">
+          <div class="role">مصالح (فروشنده)</div>
+          <p><b>نام و نام خانوادگی:</b> مهدی بازیار</p>
+          <p><b>فرزند:</b> شعبانعلی</p>
+          <p><b>شماره ملی:</b> ۴۵۴۰۰۰۹۳۴۶</p>
+          <p><b>تاریخ:</b> ................................</p>
+          <div class="stamp">محل مهر و<br>اثر انگشت</div>
+        </div>
+        <div class="box buyer">
+          <div class="role">متصالح (خریدار)</div>
+          <p><b>نام و نام خانوادگی:</b> سید محمدرضا معافی مدنی</p>
+          <p><b>فرزند:</b> سید محمد تقی</p>
+          <p><b>شماره ملی:</b> ۰۳۷۰۰۸۹۹۰۱</p>
+          <p><b>تاریخ:</b> ................................</p>
+          <div class="stamp">محل مهر و<br>اثر انگشت</div>
+        </div>
+      </div>
+
+      <div class="witnesses-final">
+        <div class="box">
+          <div class="role">شاهد اول</div>
+          <p><b>نام و نام خانوادگی:</b> نوذر ارشدی</p>
+          <p><b>شماره ملی:</b> ۲۴۹۱۶۸۰۸۲۳</p>
+          <p><b>امضا:</b> ................................</p>
+        </div>
+        <div class="box">
+          <div class="role">شاهد دوم</div>
+          <p><b>نام و نام خانوادگی:</b> سارا یعقوبی پور فرد</p>
+          <p><b>شماره ملی:</b> ۴۱۲۰۱۵۱۷۲۷</p>
+          <p><b>امضا:</b> ................................</p>
+        </div>
+      </div>
+
+      <!-- پنل رسمی تنظیم و ثبت -->
+      <div class="final-official-area">
+        <div class="official-title">بخش تنظیم، تأیید و ثبت رسمی سند</div>
+        <div class="official-grid">
+          <div class="official-box">
+            <div class="o-head">تنظیم‌کننده سند / مشاور حقوقی</div>
+            <div class="o-body"></div>
+            <div class="o-foot">نام و امضا: .......................</div>
+          </div>
+          <div class="official-box highlight">
+            <div class="o-head">مهر و امضای گروه تعاون ملک ایرانیان</div>
+            <div class="o-body">(محل مهر)</div>
+            <div class="o-foot">شماره ثبت: .......................</div>
+          </div>
+          <div class="official-box">
+            <div class="o-head">تأیید و مهر دفتر اسناد رسمی</div>
+            <div class="o-body">(محل مهر)</div>
+            <div class="o-foot">شماره ثبت: .......................</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="note" style="margin-top:10px; text-align:center; font-size:10px;">
+        این سند در <b>۳ نسخه متحدالمتن</b> تنظیم و هر نسخه دارای <b>اعتبار یکسان</b> است.
+      </div>
+    </div>
+
+    <footer class="page-footer">
+      <span class="fw-site"><span class="dot"></span> taavonmelk.ir</span>
+      <span class="fw-left">
+        <span class="fw-copy">نسخه ......... از ۳</span>
+        <span class="page-badge"><b>۶</b> از <b>۶</b></span>
+      </span>
+    </footer>
+  </div>
+</div>
+
+</body>
+</html>
