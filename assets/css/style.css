@@ -103,3 +103,9 @@ button,input,textarea,select{font-family:VazirmatnLocal,sans-serif}
  a{color:#111!important;text-decoration:none}
  .preamble,.checklist,.payment-table th{-webkit-print-color-adjust:exact;print-color-adjust:exact}
 }
+
+
+/* پس‌زمینه سایت از تصاویر موجود در مخزن */
+body{background:#edf1ed url('../images/bac2.png') center top/cover fixed!important}
+@media(max-width:700px){body{background-attachment:scroll!important;background-position:center top;background-size:auto 100vh}}
+@media print{body,html{background:#fff!important}}
