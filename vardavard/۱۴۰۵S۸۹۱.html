@@ -134,12 +134,12 @@
     padding: 0 2mm;
   }
   .page-content p{ margin:0 0 2px; line-height:1.55; }
-  /* تنظیمات متناسب با توزیع جدید مواد در صفحات ۳ و ۴ */
-  .page[data-page="3"] .page-content{font-size:11.2px;}
-  .page[data-page="3"] .page-content p{line-height:1.58;margin-bottom:3px;}
-  .page[data-page="3"] .page-content h3{font-size:11.5px;padding:4px 9px;margin:5px 0 3px;}
-  .page[data-page="3"] .page-content ol li{line-height:1.58;margin-bottom:2px;}
-  .page[data-page="4"] .page-content{font-size:12px;}
+  /* تنظیمات فشرده برای صفحات داخلی و چاپ A4 */
+  .page[data-page="3"] .page-content{font-size:10.8px;}
+  .page[data-page="3"] .page-content p{line-height:1.48;margin-bottom:2px;}
+  .page[data-page="3"] .page-content h3{font-size:11px;padding:3px 8px;margin:3px 0 2px;}
+  .page[data-page="3"] .page-content ol li{line-height:1.48;margin-bottom:1px;}
+  .page[data-page="4"] .page-content{font-size:11.5px;}
   .page[data-page="4"] .page-content p{line-height:1.58;margin-bottom:2px;}
   .page[data-page="4"] .page-content h3{margin:4px 0 3px;padding:4px 8px;}
   .page:not(.cover) .page-inner{background:linear-gradient(135deg,rgba(243,234,217,.16),transparent 24%,transparent 76%,rgba(231,242,244,.2));}
@@ -242,6 +242,18 @@
     font-size: 7px;
     color: #8b929b;
   }
+
+  .page-signatures{
+    display:grid; grid-template-columns:1fr 1fr; gap:10px;
+    margin-top:7px; padding:5px 2px 4px;
+    border-top:1px solid rgba(176,141,87,.42);
+    color:var(--ink-soft); font-size:8.5px; line-height:1.4;
+    position:relative; z-index:2;
+  }
+  .page-signatures div{white-space:nowrap;}
+  .page-signatures b{color:var(--accent);}
+  .page-signatures span{display:block; margin-top:2px; color:var(--ink-soft); font-size:8px;}
+  @media print { .page-signatures { break-inside:avoid; page-break-inside:avoid; } }
 
   /* ==== فوتر صفحه ==== */
   .page-footer{
@@ -476,71 +488,6 @@
     margin:0 0 3px; font-size:10px; color:var(--ink-soft);
   }
 
-  /* ==== بخش امضا و مهر گروه تعاون ملک ایرانیان ==== */
-  .final-official-area {
-    margin-top: 12px;
-    border: 2px solid var(--gold);
-    border-radius: 8px;
-    padding: 8px;
-    background: linear-gradient(180deg, #fdfbf7, #fff);
-    page-break-inside: avoid;
-  }
-  .official-title {
-    text-align: center;
-    font-size: 10.5px;
-    font-weight: 800;
-    color: var(--gold);
-    margin-bottom: 6px;
-    letter-spacing: 0.5px;
-  }
-  .official-grid {
-    display: grid;
-    grid-template-columns: 1fr 1.2fr 1fr;
-    gap: 8px;
-  }
-  .official-box {
-    border: 1.5px dashed #c8d0db;
-    border-radius: 6px;
-    display: flex;
-    flex-direction: column;
-    background: #fff;
-    min-height: 70px;
-  }
-  .official-box.highlight {
-    border: 1.5px solid var(--gold);
-    background: var(--gold-soft);
-    box-shadow: 0 2px 8px rgba(176,141,87,.15);
-  }
-  .o-head {
-    font-size: 9.5px;
-    font-weight: 700;
-    text-align: center;
-    color: var(--accent);
-    border-bottom: 1px solid var(--line);
-    padding: 4px;
-    background: rgba(243, 234, 217, 0.3);
-    border-radius: 4px 4px 0 0;
-  }
-  .official-box.highlight .o-head {
-    background: rgba(176, 141, 87, 0.2);
-    color: #5c421c;
-  }
-  .o-body {
-    flex-grow: 1;
-    min-height: 30px;
-    display: flex; align-items: center; justify-content: center;
-    color: #d8dee9; font-size: 16px;
-  }
-  .o-foot {
-    font-size: 8.5px;
-    color: var(--ink-soft);
-    text-align: center;
-    padding: 4px;
-    border-top: 1px solid var(--line);
-    background: #fafbfc;
-    border-radius: 0 0 4px 4px;
-  }
-
   /* ==== چاپ دقیق A4 ==== */
   @page { size: A4 portrait; margin: 0; }
   @media print {
@@ -642,7 +589,7 @@
         <div class="item"><span>شماره سند:</span><span>۱۴۰۵S۸۹۱</span></div>
         <div class="item"><span>شناسه یکتای استعلام:</span><span>VDV-۱۴۰۵-۷K۴M-۹۲QX</span></div>
         <div class="item"><span>تاریخ تنظیم:</span><span>۱۴۰۵/۰۷/۲۹</span></div>
-        <div class="item"><span>تعداد صفحات:</span><span>۶ صفحه</span></div>
+        <div class="item"><span>تعداد صفحات:</span><span>۵ صفحه</span></div>
         <div class="item"><span>شماره نسخه:</span><span>......... از ۳</span></div>
       </div>
 
@@ -767,21 +714,28 @@
         (هفت میلیارد و دویست میلیون تومان) ملاک عمل خواهد بود.
       </div>
 
-      <h3><span class="no">ماده ۴</span> طریقه انتقال و پرداخت</h3>
+        <h3><span class="no">ماده ۷</span> حل اختلاف</h3>
       <p>
-        <span class="clause">۴-۱.</span> با توافق طرفین مقرر گردید عین مبلغ ثمن معامله
-        حداکثر تا مورخ <b>یکشنبه ۱۴۰۵/۰۸/۰۳</b> به حساب بانکی مصالح به نام
-        <b>مهدی بازیار</b> به شماره شبا
-        <b style="direction:ltr; display:inline-block; font-family:monospace; letter-spacing:0.4px;">IR۸۳۰۵۶۰۶۱۱۸۲۸۰۰۵۱۰۶۱۶۲۸۰۱</b>
-        واریز و رسید آن ضمیمه گردد.
+        <span class="clause">۷-۱.</span> هرگاه در اجرا، تعبیر یا تفسیر هر یک از مواد این
+        قرارداد صلح اختلافی حادث گردد، مصالح و متصالح مکلف هستند بدواً موضوع را از طریق
+        <b>مذاکرات مسالمت‌آمیز</b> حل و فصل نمایند.
       </p>
       <p>
-        <span class="clause">۴-۲.</span> مصالح اقرار می‌نماید که مبلغ وجه‌الصلح را دریافت
-        نموده و هیچ‌گونه مطالبه دیگری نسبت به مورد صلح یا متصالح ندارد.
+        <span class="clause">۷-۲.</span> در صورتی که مذاکرات ظرف مدت <b>یک هفته کاری</b>
+        از تاریخ حدوث اختلاف منتج به حل اختلاف نگردید، یا طرف دیگر حداکثر ظرف مدت
+        <b>۵ روز</b> از تاریخ دعوت، حاضر به مذاکره نگردد، موضوع به <b>مراجع قضایی صالح</b>
+        (دادگاه عمومی حقوقی محل وقوع ملک یا محل اقامت خوانده) ارجاع و مطرح می‌گردد.
       </p>
-      </div>
+
+
+    </div>
 
     <!-- پنل امضا -->
+    <div class="page-signatures" aria-label="نام و امضای طرفین">
+      <div><b>مصالح:</b> مهدی بازیار <span>امضا: ........................</span></div>
+      <div><b>متصالح:</b> سید محمدرضا معافی مدنی <span>امضا: ........................</span></div>
+    </div>
+
     <footer class="page-footer">
       <span class="fw-site"><span class="dot"></span> taavonmelk.ir</span>
       <span class="fw-left">
@@ -792,7 +746,7 @@
   </div>
 </div>
 
-<!-- ═══════════ صفحه ۳ — ماده ۵ + ماده ۶ ═══════════ -->
+<!-- ═══════════ صفحه ۳ — مواد ۴ تا ۷ ═══════════ -->
 <div class="page" data-page="3">
   <div class="page-inner">
     <header class="page-header">
@@ -808,6 +762,20 @@
     </header>
 
     <div class="page-content">
+      <h3><span class="no">ماده ۴</span> طریقه انتقال و پرداخت</h3>
+      <p>
+        <span class="clause">۴-۱.</span> با توافق طرفین مقرر گردید عین مبلغ ثمن معامله
+        حداکثر تا مورخ <b>یکشنبه ۱۴۰۵/۰۸/۰۳</b> به حساب بانکی مصالح به نام
+        <b>مهدی بازیار</b> به شماره شبا
+        <b style="direction:ltr; display:inline-block; font-family:monospace; letter-spacing:0.4px;">IR۸۳۰۵۶۰۶۱۱۸۲۸۰۰۵۱۰۶۱۶۲۸۰۱</b>
+        واریز و رسید آن ضمیمه گردد.
+      </p>
+      <p>
+        <span class="clause">۴-۲.</span> مصالح اقرار می‌نماید که مبلغ وجه‌الصلح را دریافت
+        نموده و هیچ‌گونه مطالبه دیگری نسبت به مورد صلح یا متصالح ندارد.
+      </p>
+
+
       <h3><span class="no">ماده ۵</span> شرایط قرارداد صلح</h3>
       <p>
         <span class="clause">۵-۱.</span> مصالح به موجب این صلح‌نامه، کلیه حقوق ناشی از
@@ -878,6 +846,11 @@
       </p>
     </div>
 
+    <div class="page-signatures" aria-label="نام و امضای طرفین">
+      <div><b>مصالح:</b> مهدی بازیار <span>امضا: ........................</span></div>
+      <div><b>متصالح:</b> سید محمدرضا معافی مدنی <span>امضا: ........................</span></div>
+    </div>
+
     <footer class="page-footer">
       <span class="fw-site"><span class="dot"></span> taavonmelk.ir</span>
       <span class="fw-left">
@@ -888,7 +861,7 @@
   </div>
 </div>
 
-<!-- ═══════════ صفحه ۴ — ماده ۷ + ماده ۸ + ماده ۹ ═══════════ -->
+<!-- ═══════════ صفحه ۴ — مواد ۸ و ۹ ═══════════ -->
 <div class="page" data-page="4">
   <div class="page-inner">
     <header class="page-header">
@@ -904,19 +877,6 @@
     </header>
 
     <div class="page-content">
-      <h3><span class="no">ماده ۷</span> حل اختلاف</h3>
-      <p>
-        <span class="clause">۷-۱.</span> هرگاه در اجرا، تعبیر یا تفسیر هر یک از مواد این
-        قرارداد صلح اختلافی حادث گردد، مصالح و متصالح مکلف هستند بدواً موضوع را از طریق
-        <b>مذاکرات مسالمت‌آمیز</b> حل و فصل نمایند.
-      </p>
-      <p>
-        <span class="clause">۷-۲.</span> در صورتی که مذاکرات ظرف مدت <b>یک هفته کاری</b>
-        از تاریخ حدوث اختلاف منتج به حل اختلاف نگردید، یا طرف دیگر حداکثر ظرف مدت
-        <b>۵ روز</b> از تاریخ دعوت، حاضر به مذاکره نگردد، موضوع به <b>مراجع قضایی صالح</b>
-        (دادگاه عمومی حقوقی محل وقوع ملک یا محل اقامت خوانده) ارجاع و مطرح می‌گردد.
-      </p>
-
       <h3><span class="no">ماده ۸</span> فورس ماژور (حوادث قهریه)</h3>
       <p>
         <span class="clause">۸-۱.</span> هیچ‌یک از طرفین در قبال <b>عدم اجرا یا تأخیر
@@ -954,6 +914,11 @@
         <b>تبصره نهایی:</b> کلیه مشخصات دست‌نویس، امضاها، اثر انگشت و شماره‌های درج‌شده
         به‌صورت دستی در متن این قرارداد و پیوست‌های آن، مورد تایید و پذیرش طرفین است.
       </div>
+    </div>
+
+    <div class="page-signatures" aria-label="نام و امضای طرفین">
+      <div><b>مصالح:</b> مهدی بازیار <span>امضا: ........................</span></div>
+      <div><b>متصالح:</b> سید محمدرضا معافی مدنی <span>امضا: ........................</span></div>
     </div>
 
     <footer class="page-footer">
@@ -1015,18 +980,6 @@
           <p><b>نام و نام خانوادگی:</b> سارا یعقوبی پور فرد</p>
           <p><b>شماره ملی:</b> ۴۱۲۰۱۵۱۷۲۷</p>
           <p><b>امضا:</b> ................................</p>
-        </div>
-      </div>
-
-      <!-- پنل رسمی تنظیم و ثبت -->
-      <div class="final-official-area">
-        <div class="official-title">امضا و مهر گروه تعاون ملک ایرانیان</div>
-        <div class="official-grid" style="grid-template-columns:1fr;">
-          <div class="official-box highlight">
-            <div class="o-head">نماینده مجاز گروه تعاون ملک ایرانیان</div>
-            <div class="o-body" style="color:var(--ink-soft);font-size:10px;">نام و سمت نماینده: ................................</div>
-            <div class="o-foot">امضا و مهر گروه تعاون ملک ایرانیان</div>
-          </div>
         </div>
       </div>
 
