@@ -26,6 +26,30 @@
 .attachment-page[data-page="6"] .attachment-item{grid-column:span 6;grid-row:span 2;}
 .attachment-page[data-page="7"] .attachment-item{grid-column:span 3;grid-row:span 3;}
 @media print{.attachment-page .attachment-grid,.attachment-page .attachment-item{break-inside:avoid;page-break-inside:avoid;}}
+.receipt-certificate{
+    margin-top:10px; padding:8px 10px; border:1.2px solid var(--gold);
+    border-right:4px solid var(--accent); border-radius:6px;
+    background:linear-gradient(180deg,#fffdf8,#fff);
+    font-size:9.5px; line-height:1.55; break-inside:avoid; page-break-inside:avoid;
+  }
+  .receipt-heading{text-align:center;font-size:11px;font-weight:800;color:var(--accent);margin-bottom:4px;}
+  .receipt-certificate p{margin:2px 0;}
+  .receipt-number{direction:ltr;display:inline-block;font-family:monospace;letter-spacing:.2px;font-weight:700;}
+  .receipt-note{font-size:8.5px;color:var(--ink-soft);}
+  .receipt-signatures{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:7px;}
+  .receipt-signatures>div{border-top:1px dashed var(--gold);padding-top:4px;display:flex;flex-direction:column;gap:2px;font-size:8.5px;}
+  .receipt-signatures b{color:var(--accent);}
+
+  
+/* لبه تزئینی و گوشه‌های گرد روی خود تصویر، بدون باکس جداگانه */
+.attachment-page .attachment-item img{
+  border:3px double #b08d57!important;
+  border-radius:12px!important;
+  padding:3px!important;
+  background:#fff!important;
+  box-shadow:inset 0 0 0 1px rgba(176,141,87,.28);
+}
+
 </style>
 
 <style>
@@ -1057,6 +1081,21 @@
         </div>
       </div>
 
+      <div class="note" style="margin-top:10px; text-align:center; font-size:10px;">
+        این سند در <b>۳ نسخه متحدالمتن</b> تنظیم و هر نسخه دارای <b>اعتبار یکسان</b> است.
+      </div>
+
+<section class="receipt-certificate" aria-label="گواهی دریافت چک">
+        <div class="receipt-heading">گواهی دریافت چک صیادی</div>
+        <p>اینجانب <b>مهدی بازیار</b>، دریافت یک فقره چک صیادی بابت ثمن معامله موضوع این قرارداد را با مشخصات زیر تأیید می‌نمایم:</p>
+        <p><b>شماره سریال چک:</b> <span class="receipt-number">۷۲۳۱۰۳۰۱۹۵۱۶۴۸۵۸</span>　 <b>در وجه:</b> مهدی بازیار</p>
+        <p><b>تاریخ سررسید:</b> یکشنبه، سوم آبان‌ماه یک‌هزار و چهارصد و پنج (۰۳/۰۸/۱۴۰۵).</p>
+        <p class="receipt-note">امضای این گواهی صرفاً تأیید دریافت چک است و به‌منزله وصول وجه آن نیست؛ وصول و تسویه مطابق بند ۴-۲ قرارداد خواهد بود.</p>
+        <div class="receipt-signatures">
+          <div><b>امضا و اثر انگشت دریافت‌کننده (مصالح)</b><span>نام: مهدی بازیار</span><span>تاریخ: ........................</span></div>
+          <div><b>امضای تحویل‌دهنده (متصالح)</b><span>نام: سید محمدرضا معافی مدنی</span><span>تاریخ: ........................</span></div>
+        </div>
+      </section>
     </div>
     <footer class="page-footer">
       <span class="fw-site"><span class="dot"></span> taavonmelk.ir</span>
