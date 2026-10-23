@@ -14,15 +14,14 @@
 
   
 
-/* پیوست‌ها در دو صفحه با شبکه منظم و بدون قاب دوتایی */
-.attachment-page .page-inner::after{content:none!important;display:none!important;}
-.attachment-page .attachment-heading{margin:1mm 0 4mm;padding:2mm 0;text-align:center;color:var(--accent);font-weight:800;font-size:13px;border-bottom:1px solid rgba(176,141,87,.55);}
-.attachment-page .attachment-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-template-rows:repeat(2,minmax(0,1fr));gap:4mm;flex:1;min-height:0;align-content:stretch;}
-.attachment-page .attachment-item{margin:0;min-width:0;min-height:0;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;border:0;background:transparent;padding:1mm;}
-.attachment-page .attachment-item img{display:block;width:100%;height:100%;max-height:100%;min-height:0;object-fit:contain;object-position:center;border:1px solid rgba(176,141,87,.75);border-radius:2px;padding:1.5mm;background:#fff;box-sizing:border-box;flex:1 1 auto;}
-.attachment-page .attachment-item figcaption{font-size:9px;line-height:1.2;text-align:center;color:var(--ink-soft);padding-top:2mm;flex:0 0 auto;}
+.attachment-page .page-inner{padding:5mm 7mm 3mm;}.attachment-page .page-inner::after{display:none!important;content:none!important;}.attachment-page .page-header{margin-bottom:1mm;}.attachment-page .attachment-heading{margin:0 0 1mm;padding:1mm 0;font-size:10px;}
+.attachment-page .attachment-grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));grid-template-rows:repeat(6,minmax(0,1fr));gap:1mm;flex:1;min-height:0;align-content:stretch;}
+.attachment-page .attachment-item{margin:0;min-width:0;min-height:0;display:flex;align-items:center;justify-content:center;overflow:hidden;border:0!important;background:transparent!important;padding:0!important;}
+.attachment-page .attachment-item img{display:block;width:100%;height:100%;object-fit:contain;border:0!important;border-radius:0!important;padding:0!important;background:transparent!important;}
+.attachment-page .attachment-item figcaption{font-size:8px;text-align:center;padding-top:1mm;}
+.attachment-page[data-page="6"] .attachment-item:nth-child(1){grid-column:span 6;grid-row:span 3;}.attachment-page[data-page="6"] .attachment-item:nth-child(n+2){grid-column:span 6;grid-row:span 2;}
+.attachment-page[data-page="7"] .attachment-item:nth-child(-n+6){grid-column:span 3;grid-row:span 3;}.attachment-page[data-page="7"] .attachment-item:nth-child(n+7){grid-column:span 6;grid-row:span 3;}
 @media print{.attachment-page .attachment-grid,.attachment-page .attachment-item{break-inside:avoid;page-break-inside:avoid;}}
-
 </style>
 
 <style>
