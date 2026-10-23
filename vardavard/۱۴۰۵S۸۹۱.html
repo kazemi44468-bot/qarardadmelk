@@ -508,6 +508,29 @@
     margin:0 0 3px; font-size:10px; color:var(--ink-soft);
   }
 
+
+  /* پیوست‌های تصویری */
+  .attachment-page .page-inner{padding:10mm 12mm 6mm;}
+  .attachment-title{margin:2mm 0 5mm;padding:7px 12px;text-align:center;color:var(--accent);font-size:15px;font-weight:800;border:1px solid rgba(176,141,87,.55);border-right:5px solid var(--accent);border-radius:5px;background:linear-gradient(90deg,#fffdf8,#e7f2f4);}
+  .attachment-subtitle{text-align:center;color:var(--ink-soft);font-size:9.5px;margin:-2mm 0 4mm;}
+  .attachment-photo{border:1px solid rgba(176,141,87,.72);border-radius:7px;background:#fff;padding:5px;box-shadow:0 2px 7px rgba(27,36,48,.07);break-inside:avoid;page-break-inside:avoid;min-width:0;min-height:0;}
+  .attachment-photo img{display:block;width:100%;height:100%;object-fit:contain;border-radius:3px;min-height:0;}
+  .attachment-caption{font-size:9px;font-weight:700;color:var(--accent);text-align:center;padding:5px 2px 1px;}
+  .cheque-frame{width:100%;height:205mm;padding:8px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#fffdf8,#fff 55%,#f7f3ea);}
+  .cheque-frame img{max-height:100%;max-width:100%;object-fit:contain;}
+  .building-grid-three{display:grid;grid-template-rows:repeat(3,minmax(0,1fr));gap:5mm;flex:1;min-height:0;}
+  .building-grid-three .attachment-photo{display:flex;flex-direction:column;}
+  .building-grid-three .attachment-photo img{flex:1;}
+  .building-grid-two{display:grid;grid-template-columns:1fr 1fr;gap:7mm;height:215mm;align-content:center;}
+  .building-grid-two .attachment-photo{height:150mm;display:flex;flex-direction:column;}
+  .building-grid-two .attachment-photo img{flex:1;}
+  .municipal-stack{display:grid;grid-template-rows:1fr 1fr;gap:6mm;flex:1;min-height:0;}
+  .municipal-stack .attachment-photo{display:flex;flex-direction:column;min-height:0;padding:4px;}
+  .municipal-stack .attachment-photo img{flex:1;}
+  .attachment-page .page-footer{margin-top:5px;}
+  @media print{.attachment-page .page-inner{height:100%;}.attachment-photo,.attachment-title,.municipal-stack{break-inside:avoid;page-break-inside:avoid;}}
+
+
   /* ==== چاپ دقیق A4 ==== */
   @page { size: A4 portrait; margin: 0; }
   @media print {
@@ -756,7 +779,7 @@
       <span class="fw-site"><span class="dot"></span> taavonmelk.ir</span>
       <span class="fw-left">
         <span class="fw-copy">نسخه ......... از ۳</span>
-        <span class="page-badge"><b>۲</b> از <b>۵</b></span>
+        <span class="page-badge"><b>۲</b> از <b>۱۱</b></span>
       </span>
     </footer>
   </div>
@@ -887,7 +910,7 @@
       <span class="fw-site"><span class="dot"></span> taavonmelk.ir</span>
       <span class="fw-left">
         <span class="fw-copy">نسخه ......... از ۳</span>
-        <span class="page-badge"><b>۳</b> از <b>۵</b></span>
+        <span class="page-badge"><b>۳</b> از <b>۱۱</b></span>
       </span>
     </footer>
   </div>
@@ -961,7 +984,7 @@
       <span class="fw-site"><span class="dot"></span> taavonmelk.ir</span>
       <span class="fw-left">
         <span class="fw-copy">نسخه ......... از ۳</span>
-        <span class="page-badge"><b>۴</b> از <b>۵</b></span>
+        <span class="page-badge"><b>۴</b> از <b>۱۱</b></span>
       </span>
     </footer>
   </div>
@@ -1040,11 +1063,17 @@
       <span class="fw-site"><span class="dot"></span> taavonmelk.ir</span>
       <span class="fw-left">
         <span class="fw-copy">نسخه ......... از ۳</span>
-        <span class="page-badge"><b>۵</b> از <b>۵</b></span>
+        <span class="page-badge"><b>۵</b> از <b>۱۱</b></span>
       </span>
     </footer>
   </div>
 </div>
 
+<div class="page attachment-page" data-page="6"><div class="page-inner"><header class="page-header"><div class="brand"><img src="../assets/images/logo.png" alt="لوگو" class="logo"><span>گروه تعاون ملک ایرانیان</span></div><div class="doc-title">پیوست تصویری قرارداد<small>شماره سند: ۱۴۰۵S۸۹۱</small></div><div class="meta">پیوست ۱</div></header><div class="attachment-title">پیوست شماره ۱ ـ تصویر چک صیادی</div><div class="attachment-subtitle">تصویر چک مرتبط با بند ۴ قرارداد؛ جهت تطبیق مشخصات سند</div><div class="attachment-photo cheque-frame"><img src="../assets/attach/چک.jpg" alt="تصویر چک صیادی"></div><footer class="page-footer"><span class="fw-site"><span class="dot"></span> taavonmelk.ir</span><span class="fw-left"><span class="fw-copy">پیوست قرارداد</span><span class="page-badge"><b>۶</b> از <b>۱۱</b></span></span></footer></div></div>
+<div class="page attachment-page" data-page="7"><div class="page-inner"><header class="page-header"><div class="brand"><img src="../assets/images/logo.png" alt="لوگو" class="logo"><span>گروه تعاون ملک ایرانیان</span></div><div class="doc-title">پیوست تصویری قرارداد<small>شماره سند: ۱۴۰۵S۸۹۱</small></div><div class="meta">پیوست ۲</div></header><div class="attachment-title">پیوست شماره ۲ ـ تصاویر ساختمان</div><div class="attachment-subtitle">تصاویر نمای ساختمان و وضعیت ظاهری پروژه</div><div class="building-grid-three"><div class="attachment-photo"><img src="../assets/attach/نما.jpg" alt="نمای ساختمان، تصویر اول"><div class="attachment-caption">نمای ساختمان ـ تصویر ۱</div></div><div class="attachment-photo"><img src="../assets/attach/نما2.jpg" alt="نمای ساختمان، تصویر دوم"><div class="attachment-caption">نمای ساختمان ـ تصویر ۲</div></div><div class="attachment-photo"><img src="../assets/attach/نما3.jpg" alt="نمای ساختمان، تصویر سوم"><div class="attachment-caption">نمای ساختمان ـ تصویر ۳</div></div></div><footer class="page-footer"><span class="fw-site"><span class="dot"></span> taavonmelk.ir</span><span class="fw-left"><span class="fw-copy">پیوست قرارداد</span><span class="page-badge"><b>۷</b> از <b>۱۱</b></span></span></footer></div></div>
+<div class="page attachment-page" data-page="8"><div class="page-inner"><header class="page-header"><div class="brand"><img src="../assets/images/logo.png" alt="لوگو" class="logo"><span>گروه تعاون ملک ایرانیان</span></div><div class="doc-title">پیوست تصویری قرارداد<small>شماره سند: ۱۴۰۵S۸۹۱</small></div><div class="meta">پیوست ۲ ـ ادامه</div></header><div class="attachment-title">پیوست شماره ۲ ـ تصاویر ساختمان</div><div class="attachment-subtitle">ادامه تصاویر نمای ساختمان</div><div class="building-grid-two"><div class="attachment-photo"><img src="../assets/attach/نما4.jpg" alt="نمای ساختمان، تصویر چهارم"><div class="attachment-caption">نمای ساختمان ـ تصویر ۴</div></div><div class="attachment-photo"><img src="../assets/attach/نما5.jpg" alt="نمای ساختمان، تصویر پنجم"><div class="attachment-caption">نمای ساختمان ـ تصویر ۵</div></div></div><footer class="page-footer"><span class="fw-site"><span class="dot"></span> taavonmelk.ir</span><span class="fw-left"><span class="fw-copy">پیوست قرارداد</span><span class="page-badge"><b>۸</b> از <b>۱۱</b></span></span></footer></div></div>
+<div class="page attachment-page" data-page="9"><div class="page-inner"><header class="page-header"><div class="brand"><img src="../assets/images/logo.png" alt="لوگو" class="logo"><span>گروه تعاون ملک ایرانیان</span></div><div class="doc-title">پیوست تصویری قرارداد<small>شماره سند: ۱۴۰۵S۸۹۱</small></div><div class="meta">مدارک شهرداری</div></header><div class="attachment-title">پیوست شماره ۳ ـ مدارک و مکاتبات شهرداری</div><div class="attachment-subtitle">تصاویر اسناد مربوط به پروژه؛ اصل تصاویر بدون برش درج شده‌اند.</div><div class="municipal-stack"><div class="attachment-photo"><img src="../assets/attach/شهرداری1.jpg" alt="مدرک شهرداری ـ ۱"><div class="attachment-caption">مدرک شهرداری ـ ۱</div></div><div class="attachment-photo"><img src="../assets/attach/شهرداری2.jpg" alt="مدرک شهرداری ـ ۲"><div class="attachment-caption">مدرک شهرداری ـ ۲</div></div></div><footer class="page-footer"><span class="fw-site"><span class="dot"></span> taavonmelk.ir</span><span class="fw-left"><span class="fw-copy">پیوست قرارداد</span><span class="page-badge"><b>9</b> از <b>۱۱</b></span></span></footer></div></div>
+<div class="page attachment-page" data-page="10"><div class="page-inner"><header class="page-header"><div class="brand"><img src="../assets/images/logo.png" alt="لوگو" class="logo"><span>گروه تعاون ملک ایرانیان</span></div><div class="doc-title">پیوست تصویری قرارداد<small>شماره سند: ۱۴۰۵S۸۹۱</small></div><div class="meta">مدارک شهرداری</div></header><div class="attachment-title">پیوست شماره ۳ ـ مدارک و مکاتبات شهرداری</div><div class="attachment-subtitle">تصاویر اسناد مربوط به پروژه؛ اصل تصاویر بدون برش درج شده‌اند.</div><div class="municipal-stack"><div class="attachment-photo"><img src="../assets/attach/شهرداری3.jpg" alt="مدرک شهرداری ـ ۳"><div class="attachment-caption">مدرک شهرداری ـ ۳</div></div><div class="attachment-photo"><img src="../assets/attach/شهرداری4.jpg" alt="مدرک شهرداری ـ ۴"><div class="attachment-caption">مدرک شهرداری ـ ۴</div></div></div><footer class="page-footer"><span class="fw-site"><span class="dot"></span> taavonmelk.ir</span><span class="fw-left"><span class="fw-copy">پیوست قرارداد</span><span class="page-badge"><b>10</b> از <b>۱۱</b></span></span></footer></div></div>
+<div class="page attachment-page" data-page="11"><div class="page-inner"><header class="page-header"><div class="brand"><img src="../assets/images/logo.png" alt="لوگو" class="logo"><span>گروه تعاون ملک ایرانیان</span></div><div class="doc-title">پیوست تصویری قرارداد<small>شماره سند: ۱۴۰۵S۸۹۱</small></div><div class="meta">مدارک شهرداری</div></header><div class="attachment-title">پیوست شماره ۳ ـ مدارک و مکاتبات شهرداری</div><div class="attachment-subtitle">تصاویر اسناد مربوط به پروژه؛ اصل تصاویر بدون برش درج شده‌اند.</div><div class="municipal-stack"><div class="attachment-photo"><img src="../assets/attach/شهرداری5.jpg" alt="مدرک شهرداری ـ ۵"><div class="attachment-caption">مدرک شهرداری ـ ۵</div></div><div class="attachment-photo"><img src="../assets/attach/شهرداری6.jpg" alt="مدرک شهرداری ـ ۶"><div class="attachment-caption">مدرک شهرداری ـ ۶</div></div></div><footer class="page-footer"><span class="fw-site"><span class="dot"></span> taavonmelk.ir</span><span class="fw-left"><span class="fw-copy">پیوست قرارداد</span><span class="page-badge"><b>11</b> از <b>۱۱</b></span></span></footer></div></div>
 </body>
 </html>
