@@ -13,12 +13,15 @@
   @font-face{font-family:IranNastaliq;src:url('../assets/fonts/irannastaliq.woff') format('woff');font-weight:400;font-display:swap}
 
   
-/* تصاویر مستندات درون صفحات اصلی قرارداد؛ بدون قاب مستقل پیوست */
-.contract-photo-strip{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:2mm;align-items:stretch;margin:2mm 0 1mm;min-height:0;break-inside:avoid;page-break-inside:avoid;}
-.contract-photo{margin:0;min-width:0;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;}
-.contract-photo img{display:block;width:100%;height:19mm;max-height:19mm;object-fit:contain;object-position:center;border:1px solid rgba(176,141,87,.72);border-radius:2px;padding:1px;background:#fff;box-sizing:border-box;}
-.contract-photo figcaption{font-size:7px;line-height:1.1;text-align:center;color:var(--ink-soft);padding-top:1px;max-width:100%;overflow:hidden;}
-@media print{.contract-photo-strip,.contract-photo{break-inside:avoid;page-break-inside:avoid;}}
+
+/* پیوست‌ها در دو صفحه با شبکه منظم و بدون قاب دوتایی */
+.attachment-page .page-inner::after{content:none!important;display:none!important;}
+.attachment-page .attachment-heading{margin:1mm 0 4mm;padding:2mm 0;text-align:center;color:var(--accent);font-weight:800;font-size:13px;border-bottom:1px solid rgba(176,141,87,.55);}
+.attachment-page .attachment-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-template-rows:repeat(2,minmax(0,1fr));gap:4mm;flex:1;min-height:0;align-content:stretch;}
+.attachment-page .attachment-item{margin:0;min-width:0;min-height:0;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;border:0;background:transparent;padding:1mm;}
+.attachment-page .attachment-item img{display:block;width:100%;height:100%;max-height:100%;min-height:0;object-fit:contain;object-position:center;border:1px solid rgba(176,141,87,.75);border-radius:2px;padding:1.5mm;background:#fff;box-sizing:border-box;flex:1 1 auto;}
+.attachment-page .attachment-item figcaption{font-size:9px;line-height:1.2;text-align:center;color:var(--ink-soft);padding-top:2mm;flex:0 0 auto;}
+@media print{.attachment-page .attachment-grid,.attachment-page .attachment-item{break-inside:avoid;page-break-inside:avoid;}}
 
 </style>
 
@@ -648,7 +651,7 @@
         <div class="item"><span>شماره سند:</span><span>۱۴۰۵S۸۹۱</span></div>
         <div class="item"><span>شناسه یکتای استعلام:</span><span>VDV-۱۴۰۵-۷K۴M-۹۲QX</span></div>
         <div class="item"><span>تاریخ تنظیم:</span><span>۱۴۰۵/۰۷/۲۹</span></div>
-        <div class="item"><span>تعداد صفحات:</span><span>۵ صفحه</span></div>
+        <div class="item"><span>تعداد صفحات:</span><span>۷ صفحه (۵ صفحه قرارداد + ۲ صفحه پیوست)</span></div>
         <div class="item"><span>شماره نسخه:</span><span>......... از ۳</span></div>
       </div>
 
@@ -777,14 +780,7 @@
     </div>
 
     <!-- پنل امضا -->
-    
-    <div class="contract-photo-strip" aria-label="تصاویر مستندات قرارداد، صفحه 2">
-      <figure class="contract-photo"><img src="../assets/attach/چک.jpg" alt="تصویر چک صیادی"><figcaption>تصویر چک صیادی</figcaption></figure>
-      <figure class="contract-photo"><img src="../assets/attach/نما.jpg" alt="نمای ساختمان ۱"><figcaption>نمای ساختمان ۱</figcaption></figure>
-      <figure class="contract-photo"><img src="../assets/attach/نما2.jpg" alt="نمای ساختمان ۲"><figcaption>نمای ساختمان ۲</figcaption></figure>
-      <figure class="contract-photo"><img src="../assets/attach/نما3.jpg" alt="نمای ساختمان ۳"><figcaption>نمای ساختمان ۳</figcaption></figure>
-    </div>
-<div class="sig-panel" aria-label="محل امضا و تأیید طرفین و شهود">
+    <div class="sig-panel" aria-label="محل امضا و تأیید طرفین و شهود">
       <div class="sig-grid">
         <div class="sig-person"><div class="sig-role">مصالح</div><div class="sig-name">مهدی بازیار</div><div class="sig-national-id">کد ملی: ۴۵۴۰۰۰۹۳۴۶</div><div class="sig-line">امضا: ........................</div></div>
         <div class="sig-person"><div class="sig-role">متصالح</div><div class="sig-name">سید محمدرضا معافی مدنی</div><div class="sig-national-id">کد ملی: ۰۳۷۰۰۸۹۹۰۱</div><div class="sig-line">امضا: ........................</div></div>
@@ -797,7 +793,7 @@
       <span class="fw-site"><span class="dot"></span> taavonmelk.ir</span>
       <span class="fw-left">
         <span class="fw-copy">نسخه ......... از ۳</span>
-        <span class="page-badge"><b>۲</b> از <b>۵</b></span>
+        <span class="page-badge"><b>۲</b> از <b>۷</b></span>
       </span>
     </footer>
   </div>
@@ -914,15 +910,7 @@
         (دادگاه عمومی حقوقی محل وقوع ملک یا محل اقامت خوانده) ارجاع و مطرح می‌گردد.
       </p>
     </div>
-
-    
-    <div class="contract-photo-strip" aria-label="تصاویر مستندات قرارداد، صفحه 3">
-      <figure class="contract-photo"><img src="../assets/attach/نما4.jpg" alt="نمای ساختمان ۴"><figcaption>نمای ساختمان ۴</figcaption></figure>
-      <figure class="contract-photo"><img src="../assets/attach/نما5.jpg" alt="نمای ساختمان ۵"><figcaption>نمای ساختمان ۵</figcaption></figure>
-      <figure class="contract-photo"><img src="../assets/attach/شهرداری1.jpg" alt="مدرک شهرداری ۱"><figcaption>مدرک شهرداری ۱</figcaption></figure>
-      <figure class="contract-photo"><img src="../assets/attach/شهرداری2.jpg" alt="مدرک شهرداری ۲"><figcaption>مدرک شهرداری ۲</figcaption></figure>
-    </div>
-<div class="sig-panel" aria-label="محل امضا و تأیید طرفین و شهود">
+    <div class="sig-panel" aria-label="محل امضا و تأیید طرفین و شهود">
       <div class="sig-grid">
         <div class="sig-person"><div class="sig-role">مصالح</div><div class="sig-name">مهدی بازیار</div><div class="sig-national-id">کد ملی: ۴۵۴۰۰۰۹۳۴۶</div><div class="sig-line">امضا: ........................</div></div>
         <div class="sig-person"><div class="sig-role">متصالح</div><div class="sig-name">سید محمدرضا معافی مدنی</div><div class="sig-national-id">کد ملی: ۰۳۷۰۰۸۹۹۰۱</div><div class="sig-line">امضا: ........................</div></div>
@@ -935,7 +923,7 @@
       <span class="fw-site"><span class="dot"></span> taavonmelk.ir</span>
       <span class="fw-left">
         <span class="fw-copy">نسخه ......... از ۳</span>
-        <span class="page-badge"><b>۳</b> از <b>۵</b></span>
+        <span class="page-badge"><b>۳</b> از <b>۷</b></span>
       </span>
     </footer>
   </div>
@@ -995,15 +983,7 @@
         به‌صورت دستی در متن این قرارداد و پیوست‌های آن، مورد تایید و پذیرش طرفین است.
       </div>
     </div>
-
-    
-    <div class="contract-photo-strip" aria-label="تصاویر مستندات قرارداد، صفحه 4">
-      <figure class="contract-photo"><img src="../assets/attach/شهرداری3.jpg" alt="مدرک شهرداری ۳"><figcaption>مدرک شهرداری ۳</figcaption></figure>
-      <figure class="contract-photo"><img src="../assets/attach/شهرداری4.jpg" alt="مدرک شهرداری ۴"><figcaption>مدرک شهرداری ۴</figcaption></figure>
-      <figure class="contract-photo"><img src="../assets/attach/شهرداری5.jpg" alt="مدرک شهرداری ۵"><figcaption>مدرک شهرداری ۵</figcaption></figure>
-      <figure class="contract-photo"><img src="../assets/attach/شهرداری6.jpg" alt="مدرک شهرداری ۶"><figcaption>مدرک شهرداری ۶</figcaption></figure>
-    </div>
-<div class="sig-panel" aria-label="محل امضا و تأیید طرفین و شهود">
+    <div class="sig-panel" aria-label="محل امضا و تأیید طرفین و شهود">
       <div class="sig-grid">
         <div class="sig-person"><div class="sig-role">مصالح</div><div class="sig-name">مهدی بازیار</div><div class="sig-national-id">کد ملی: ۴۵۴۰۰۰۹۳۴۶</div><div class="sig-line">امضا: ........................</div></div>
         <div class="sig-person"><div class="sig-role">متصالح</div><div class="sig-name">سید محمدرضا معافی مدنی</div><div class="sig-national-id">کد ملی: ۰۳۷۰۰۸۹۹۰۱</div><div class="sig-line">امضا: ........................</div></div>
@@ -1016,7 +996,7 @@
       <span class="fw-site"><span class="dot"></span> taavonmelk.ir</span>
       <span class="fw-left">
         <span class="fw-copy">نسخه ......... از ۳</span>
-        <span class="page-badge"><b>۴</b> از <b>۵</b></span>
+        <span class="page-badge"><b>۴</b> از <b>۷</b></span>
       </span>
     </footer>
   </div>
@@ -1075,18 +1055,57 @@
       </div>
 
     </div>
-    
-    <div class="contract-photo-strip" aria-label="تصاویر موقعیت مکانی قرارداد">
-      <figure class="contract-photo"><img src="../assets/attach/لوکیشن.png" alt="موقعیت مکانی"><figcaption>موقعیت مکانی</figcaption></figure>
-      <figure class="contract-photo"><img src="../assets/attach/لوکیشن2.png" alt="موقعیت مکانی ۲"><figcaption>موقعیت مکانی ۲</figcaption></figure>
-    </div>
-<footer class="page-footer">
+    <footer class="page-footer">
       <span class="fw-site"><span class="dot"></span> taavonmelk.ir</span>
-      <span class="fw-left"><span class="fw-copy">نسخه ......... از ۳</span><span class="page-badge"><b>۵</b> از <b>۵</b></span></span>
+      <span class="fw-left"><span class="fw-copy">نسخه ......... از ۳</span><span class="page-badge"><b>۵</b> از <b>۷</b></span></span>
     </footer>
   </div>
 </div>
 
 
+
+<!-- پیوست تصویری 1 از ۲ -->
+<div class="page attachment-page" data-page="6">
+  <div class="page-inner">
+    <header class="page-header">
+      <div class="brand"><img src="../assets/images/logo.png" alt="لوگو" class="logo"><span>گروه تعاون ملک ایرانیان</span></div>
+      <div class="doc-title">قرارداد صلح حقوق و واگذاری امتیاز پیش‌فروش<small>شماره سند: ۱۴۰۵S۸۹۱ · پیوست تصویری</small></div>
+      <div class="meta">پیوست 1 از ۲</div>
+    </header>
+    <div class="attachment-heading">چک و تصاویر ساختمان</div>
+    <div class="attachment-grid">
+      <figure class="attachment-item"><img src="../assets/attach/چک.jpg" alt="چک صیادی"><figcaption>چک صیادی</figcaption></figure>
+      <figure class="attachment-item"><img src="../assets/attach/نما.jpg" alt="نمای ساختمان ۱"><figcaption>نمای ساختمان ۱</figcaption></figure>
+      <figure class="attachment-item"><img src="../assets/attach/نما2.jpg" alt="نمای ساختمان ۲"><figcaption>نمای ساختمان ۲</figcaption></figure>
+      <figure class="attachment-item"><img src="../assets/attach/نما3.jpg" alt="نمای ساختمان ۳"><figcaption>نمای ساختمان ۳</figcaption></figure>
+      <figure class="attachment-item"><img src="../assets/attach/نما4.jpg" alt="نمای ساختمان ۴"><figcaption>نمای ساختمان ۴</figcaption></figure>
+      <figure class="attachment-item"><img src="../assets/attach/نما5.jpg" alt="نمای ساختمان ۵"><figcaption>نمای ساختمان ۵</figcaption></figure>
+    </div>
+    <footer class="page-footer"><span class="fw-site"><span class="dot"></span> taavonmelk.ir</span><span class="fw-left"><span class="fw-copy">پیوست قرارداد</span><span class="page-badge"><b>۶</b> از <b>۷</b></span></span></footer>
+  </div>
+</div>
+
+<!-- پیوست تصویری 2 از ۲ -->
+<div class="page attachment-page" data-page="7">
+  <div class="page-inner">
+    <header class="page-header">
+      <div class="brand"><img src="../assets/images/logo.png" alt="لوگو" class="logo"><span>گروه تعاون ملک ایرانیان</span></div>
+      <div class="doc-title">قرارداد صلح حقوق و واگذاری امتیاز پیش‌فروش<small>شماره سند: ۱۴۰۵S۸۹۱ · پیوست تصویری</small></div>
+      <div class="meta">پیوست 2 از ۲</div>
+    </header>
+    <div class="attachment-heading">مدارک شهرداری و موقعیت مکانی</div>
+    <div class="attachment-grid">
+      <figure class="attachment-item"><img src="../assets/attach/شهرداری1.jpg" alt="مدرک شهرداری ۱"><figcaption>مدرک شهرداری ۱</figcaption></figure>
+      <figure class="attachment-item"><img src="../assets/attach/شهرداری2.jpg" alt="مدرک شهرداری ۲"><figcaption>مدرک شهرداری ۲</figcaption></figure>
+      <figure class="attachment-item"><img src="../assets/attach/شهرداری3.jpg" alt="مدرک شهرداری ۳"><figcaption>مدرک شهرداری ۳</figcaption></figure>
+      <figure class="attachment-item"><img src="../assets/attach/شهرداری4.jpg" alt="مدرک شهرداری ۴"><figcaption>مدرک شهرداری ۴</figcaption></figure>
+      <figure class="attachment-item"><img src="../assets/attach/شهرداری5.jpg" alt="مدرک شهرداری ۵"><figcaption>مدرک شهرداری ۵</figcaption></figure>
+      <figure class="attachment-item"><img src="../assets/attach/شهرداری6.jpg" alt="مدرک شهرداری ۶"><figcaption>مدرک شهرداری ۶</figcaption></figure>
+      <figure class="attachment-item"><img src="../assets/attach/لوکیشن.png" alt="موقعیت مکانی"><figcaption>موقعیت مکانی</figcaption></figure>
+      <figure class="attachment-item"><img src="../assets/attach/لوکیشن2.png" alt="موقعیت مکانی ۲"><figcaption>موقعیت مکانی ۲</figcaption></figure>
+    </div>
+    <footer class="page-footer"><span class="fw-site"><span class="dot"></span> taavonmelk.ir</span><span class="fw-left"><span class="fw-copy">پیوست قرارداد</span><span class="page-badge"><b>۷</b> از <b>۷</b></span></span></footer>
+  </div>
+</div>
 </body>
 </html>
